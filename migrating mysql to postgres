@@ -1,0 +1,22 @@
+After migrating a database from MySQL to PostgreSQL, we need to verify that all tables, rows, and columns match exactly between the two databases. This includes checking:
+
+
+created sample data for both mysql and postgres sql
+
+pip install mysql-connector-python psycopg2 pandas
+
+
+mysql-connector-python
+✅ Connects to MySQL from Python
+✅ Fetches data from MySQL tables
+
+2️⃣ psycopg2 (or psycopg2-binary)
+✅ Connects to PostgreSQL from Python
+✅ Fetches data from PostgreSQL tables
+
+3️⃣ pandas
+✅ Stores MySQL & PostgreSQL data as dataframes
+✅ Helps compare large datasets efficiently
+✅ Easily finds mismatched rows & columns
+
+
