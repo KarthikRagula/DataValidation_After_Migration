@@ -63,6 +63,24 @@ for table in mysql_tables:
         mismatches.append(f"Column mismatch in {table}: MySQL={mysql_columns}, PostgreSQL={postgres_columns}")
         continue
 
+    # ✅ Check all constraints and keys
+    mysql_cursor.execute(f"""
+        SELECT constraint_name, constraint_type FROM information_schema.table_constraints 
+        WHERE table_name='{table}' AND table_schema='{mysql_db}';
+    """)
+    mysql_constraints = mysql_cursor.fetchall()
+
+    postgres_cursor.execute(f"""
+        SELECT constraint_name, constraint_type FROM information_schema.table_constraints 
+        WHERE table_name='{table}' AND table_schema='public';
+    """)
+    postgres_constraints = postgres_cursor.fetchall()
+
+    if set(mysql_constraints) != set(postgres_constraints):
+        print(f"❌ Constraint mismatch in {table}")
+        mismatches.append(f"Constraint mismatch in {table}: MySQL={mysql_constraints}, PostgreSQL={postgres_constraints}")
+        continue
+
     # ✅ Check for primary key in PostgreSQL
     postgres_cursor.execute(f"""
         SELECT column_name FROM information_schema.key_column_usage 
@@ -76,20 +94,6 @@ for table in mysql_tables:
         continue
 
     postgres_primary_key = pg_pk_result[0]
-
-    # ✅ Compare using SQL-based method (Faster for Huge Data)
-    postgres_cursor.execute(f"""
-        (SELECT * FROM {table})
-        EXCEPT
-        (SELECT * FROM {table});
-    """)
-    
-    diff_rows = postgres_cursor.fetchall()
-
-    if diff_rows:
-        print(f"❌ Mismatches found in {table}")
-        for row in diff_rows:
-            mismatches.append(f"Table: {table}, Mismatched Row: {row}")
 
     # ✅ Compare row-by-row in batches (Backup method)
     mysql_cursor.execute(f"SELECT * FROM {table};")
