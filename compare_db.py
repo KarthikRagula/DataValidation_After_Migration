@@ -1,5 +1,6 @@
 import mysql.connector
 import psycopg2
+import math
 
 # ✅ Get user input for database credentials
 mysql_db = input("Enter MySQL database name: ")
@@ -36,6 +37,11 @@ open("logs.txt", "w").close()  # Clears previous logs
 
 # ✅ Define batch size for fetching rows
 BATCH_SIZE = 1000  # Adjust based on memory availability
+
+# ✅ Helper function for comparing floats with precision tolerance
+def compare_floats(mysql_val, postgres_val):
+    """ Compare FLOAT/DATA values considering precision tolerance """
+    return math.isclose(mysql_val, postgres_val, rel_tol=1e-5)
 
 # ✅ Compare tables
 mismatches = []
@@ -90,10 +96,25 @@ for table in mysql_tables:
                 # Handle NULL comparison
                 elif mysql_row[col_name] is None and postgres_row[col_name] is None:
                     continue  # Both NULLs, no issue
-                
                 elif mysql_row[col_name] != postgres_row[col_name]:
                     mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
                     mismatches.append(mismatch)
+
+                # Handle FLOAT/DATA precision mismatch
+                elif isinstance(mysql_row[col_name], float) and isinstance(postgres_row[col_name], float):
+                    if not compare_floats(mysql_row[col_name], postgres_row[col_name]):
+                        mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                        mismatches.append(mismatch)
+
+                # Handle date and timestamp precision issues (e.g., fractional seconds)
+                elif isinstance(mysql_row[col_name], str) and isinstance(postgres_row[col_name], str):
+                    if len(mysql_row[col_name]) > 19 and len(postgres_row[col_name]) > 19:
+                        # Truncate fractional seconds for comparison
+                        mysql_row[col_name] = mysql_row[col_name][:19]
+                        postgres_row[col_name] = postgres_row[col_name][:19]
+                    if mysql_row[col_name] != postgres_row[col_name]:
+                        mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                        mismatches.append(mismatch)
 
 # ✅ Save mismatches to logs.txt
 if mismatches:
