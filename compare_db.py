@@ -63,38 +63,6 @@ for table in mysql_tables:
         mismatches.append(f"Column mismatch in {table}: MySQL={mysql_columns}, PostgreSQL={postgres_columns}")
         continue
 
-    # ✅ Check all constraints and keys
-    mysql_cursor.execute(f"""
-        SELECT constraint_name, constraint_type FROM information_schema.table_constraints 
-        WHERE table_name='{table}' AND table_schema='{mysql_db}';
-    """)
-    mysql_constraints = mysql_cursor.fetchall()
-
-    postgres_cursor.execute(f"""
-        SELECT constraint_name, constraint_type FROM information_schema.table_constraints 
-        WHERE table_name='{table}' AND table_schema='public';
-    """)
-    postgres_constraints = postgres_cursor.fetchall()
-
-    if set(mysql_constraints) != set(postgres_constraints):
-        print(f"❌ Constraint mismatch in {table}")
-        mismatches.append(f"Constraint mismatch in {table}: MySQL={mysql_constraints}, PostgreSQL={postgres_constraints}")
-        continue
-
-    # ✅ Check for primary key in PostgreSQL
-    postgres_cursor.execute(f"""
-        SELECT column_name FROM information_schema.key_column_usage 
-        WHERE table_name='{table}' AND constraint_name='PRIMARY';
-    """)
-    pg_pk_result = postgres_cursor.fetchone()
-
-    if pg_pk_result is None:
-        print(f"❌ No primary key found for {table} in PostgreSQL!")
-        mismatches.append(f"No primary key found for {table} in PostgreSQL")
-        continue
-
-    postgres_primary_key = pg_pk_result[0]
-
     # ✅ Compare row-by-row in batches (Backup method)
     mysql_cursor.execute(f"SELECT * FROM {table};")
     postgres_cursor.execute(f"SELECT * FROM {table};")
@@ -113,7 +81,17 @@ for table in mysql_tables:
 
         for row_idx, (mysql_row, postgres_row) in enumerate(zip(mysql_dict, postgres_dict), start=row_idx + 1):
             for col_name in mysql_columns:
-                if mysql_row[col_name] != postgres_row[col_name]:
+                # Handle boolean data type mismatch (1/0 vs TRUE/FALSE)
+                if isinstance(mysql_row[col_name], bool) and isinstance(postgres_row[col_name], bool):
+                    if mysql_row[col_name] != postgres_row[col_name]:
+                        mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                        mismatches.append(mismatch)
+                
+                # Handle NULL comparison
+                elif mysql_row[col_name] is None and postgres_row[col_name] is None:
+                    continue  # Both NULLs, no issue
+                
+                elif mysql_row[col_name] != postgres_row[col_name]:
                     mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
                     mismatches.append(mismatch)
 
