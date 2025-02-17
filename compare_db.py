@@ -96,6 +96,7 @@ for table in mysql_tables:
         continue
 
     # ✅ Compare row-by-row in batches
+    # ✅ Compare row-by-row in batches
     try:
         mysql_cursor.execute(f"SELECT * FROM {table};")
         postgres_cursor.execute(f"SELECT * FROM {table};")
@@ -117,7 +118,7 @@ for table in mysql_tables:
                     # Handle boolean data type mismatch (1/0 vs TRUE/FALSE)
                     if isinstance(mysql_row[col_name], bool) and isinstance(postgres_row[col_name], bool):
                         if mysql_row[col_name] != postgres_row[col_name]:
-                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
                             mismatches.append(mismatch)
                             logging.warning(mismatch)
 
@@ -125,14 +126,14 @@ for table in mysql_tables:
                     elif mysql_row[col_name] is None and postgres_row[col_name] is None:
                         continue  # Both NULLs, no issue
                     elif mysql_row[col_name] != postgres_row[col_name]:
-                        mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                        mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
                         mismatches.append(mismatch)
                         logging.warning(mismatch)
 
                     # Handle FLOAT/DATA precision mismatch
                     elif isinstance(mysql_row[col_name], float) and isinstance(postgres_row[col_name], float):
                         if not compare_floats(mysql_row[col_name], postgres_row[col_name]):
-                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
                             mismatches.append(mismatch)
                             logging.warning(mismatch)
 
@@ -142,13 +143,14 @@ for table in mysql_tables:
                         postgres_row[col_name] = normalize_timestamp(postgres_row[col_name])
 
                         if mysql_row[col_name] != postgres_row[col_name]:
-                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
                             mismatches.append(mismatch)
                             logging.warning(mismatch)
 
     except Exception as e:
         logging.error(f"Error comparing rows for table {table}: {e}")
         continue
+
 
 # ✅ Save mismatches to logs.txt
 if mismatches:
