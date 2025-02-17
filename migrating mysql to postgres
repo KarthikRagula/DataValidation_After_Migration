@@ -14,9 +14,3 @@ mysql-connector-python
 ✅ Connects to PostgreSQL from Python
 ✅ Fetches data from PostgreSQL tables
 
-3️⃣ pandas
-✅ Stores MySQL & PostgreSQL data as dataframes
-✅ Helps compare large datasets efficiently
-✅ Easily finds mismatched rows & columns
-
-

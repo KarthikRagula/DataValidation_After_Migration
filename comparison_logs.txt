@@ -1,0 +1,2 @@
+INFO:root:Comparing table: employee
+INFO:root:No mismatches found! Databases are identical.
