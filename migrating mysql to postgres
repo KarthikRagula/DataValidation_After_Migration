@@ -59,3 +59,66 @@ _______________________________________________________
 
 columnname INT          columnname SERIAL   INTEGER PRIMARY 
 AUTO_INCREMENT                              KEY AUTOINCREMENT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # Fetch column names
+    try:
+        mysql_cursor.execute(f"SELECT * FROM {table} LIMIT 1;")
+        mysql_columns = [desc[0].lower() for desc in mysql_cursor.description]  # Normalize column names
+
+        postgres_cursor.execute(f"SELECT * FROM {table} LIMIT 1;")
+        postgres_columns = [desc[0].lower() for desc in postgres_cursor.description]  # Normalize column names
+    except Exception as e:
+        msg = f"❌ Error fetching column names for table {table}: {e}"
+        logging.error(msg)
+        continue
+
+    # ✅ Check if column structure matches
+    if mysql_columns != postgres_columns:
+        msg = f"⚠️ Column mismatch in {table}: MySQL={mysql_columns}, PostgreSQL={postgres_columns}"
+        print(msg)
+        logging.warning(msg)
+        mismatches.append(msg)
+        continue
+
+    # ✅ Compare row-by-row in batches
+    try:
+        mysql_cursor.execute(f"SELECT * FROM {table};")
+        postgres_cursor.execute(f"SELECT * FROM {table};")
+
+        row_idx = 0
+
+        while True:
+            mysql_data = mysql_cursor.fetchmany(BATCH_SIZE)
+            postgres_data = postgres_cursor.fetchmany(BATCH_SIZE)
+
+            if not mysql_data and not postgres_data:
+                break  # Stop when both databases have no more data
+
+            mysql_dict = [dict(zip(mysql_columns, row)) for row in mysql_data]
+            postgres_dict = [dict(zip(postgres_columns, row)) for row in postgres_data]
+
+            for row_idx, (mysql_row, postgres_row) in enumerate(zip(mysql_dict, postgres_dict), start=row_idx + 1):
+                for col_name in mysql_columns:
+                    if mysql_row[col_name] != postgres_row[col_name]:
+                        mismatch = f"❌ Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_row[col_name]}, PostgreSQL: {postgres_row[col_name]}"
+                        mismatches.append(mismatch)
+                        logging.warning(mismatch)
+	
