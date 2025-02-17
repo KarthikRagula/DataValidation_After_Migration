@@ -1,2 +1,3 @@
 INFO:root:Comparing table: employee
-INFO:root:No mismatches found! Databases are identical.
+WARNING:root:Column mismatch in employee: MySQL=['id', 'name', 'age', 'is_active', 'salary', 'rating', 'performance', 'joining_date', 'last_login', 'department', 'remarks', 'lastupdated'], PostgreSQL=['id', 'name', 'age', 'is_active', 'salary', 'rating', 'performance', 'joining_date', 'last_login', 'department', 'remarks']
+INFO:root:Mismatches found!

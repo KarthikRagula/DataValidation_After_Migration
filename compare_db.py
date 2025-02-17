@@ -96,7 +96,6 @@ for table in mysql_tables:
         continue
 
     # ✅ Compare row-by-row in batches
-    # ✅ Compare row-by-row in batches
     try:
         mysql_cursor.execute(f"SELECT * FROM {table};")
         postgres_cursor.execute(f"SELECT * FROM {table};")

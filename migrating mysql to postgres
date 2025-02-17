@@ -14,3 +14,48 @@ mysql-connector-python
 ✅ Connects to PostgreSQL from Python
 ✅ Fetches data from PostgreSQL tables
 
+
+
+MySQL                   PostgreSQL          SQLite
+
+TINYINT                 SMALLINT            INTEGER
+SMALLINT                SMALLINT
+MEDIUMINT               INTEGER
+BIGINT                  BIGINT
+BIT                     BIT                 INTEGER
+_______________________________________________________
+
+TINYINT UNSIGNED        SMALLINT            INTEGER
+SMALLINT UNSIGNED       INTEGER
+MEDIUMINT UNSIGNED      INTEGER
+INT UNSIGNED            BIGINT
+BIGINT UNSIGNED         NUMERIC(20)
+_______________________________________________________
+
+DOUBLE                  DOUBLE PRECISION    REAL
+FLOAT                   REAL                REAL
+DECIMAL                 DECIMAL             REAL
+NUMERIC                 NUMERIC             REAL
+_______________________________________________________
+
+BOOLEAN                 BOOLEAN             INTEGER
+_______________________________________________________
+
+DATE                    DATE                TEXT
+TIME                    TIME
+DATETIME                TIMESTAMP
+_______________________________________________________
+
+TIMESTAMP DEFAULT       TIMESTAMP DEFAULT   TEXT
+NOW()                   NOW()   
+_______________________________________________________
+
+LONGTEXT                TEXT                TEXT
+MEDIUMTEXT              TEXT                TEXT
+BLOB                    BYTEA               BLOB
+VARCHAR                 VARCHAR             TEXT
+CHAR                    CHAR                TEXT
+_______________________________________________________
+
+columnname INT          columnname SERIAL   INTEGER PRIMARY 
+AUTO_INCREMENT                              KEY AUTOINCREMENT
