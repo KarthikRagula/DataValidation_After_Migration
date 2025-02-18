@@ -35,6 +35,7 @@ def generate_row_hash(row):
     row_string = ''.join([str(v) for v in normalized_row])  # Concatenate the normalized values
     return hashlib.sha256(row_string.encode('utf-8')).hexdigest()  # Generate the hash
 
+
 # ✅ Clear logs before running
 open("comparison_logs.txt", "w").close()
 
@@ -164,7 +165,6 @@ for table in mysql_tables:
         mysql_data = mysql_cursor.fetchall()
         postgres_data = postgres_cursor.fetchall()
         
-        # ✅ Create dictionaries to store row hashes mapped to actual row data
         mysql_hash_map = {generate_row_hash(row): row for row in mysql_data}
         postgres_hash_map = {generate_row_hash(row): row for row in postgres_data}
 
@@ -184,11 +184,14 @@ for table in mysql_tables:
 
         if not missing_in_postgres and not missing_in_mysql:
             logging.info(f"✅ Table {table} data matches perfectly!")
+
     except Exception as e:
         logging.error(f"Error comparing rows for table {table}: {e}")
+
 # ✅ Close connections
 mysql_cursor.close()
 mysql_conn.close()
 postgres_cursor.close()
 postgres_conn.close()
+
 logging.info("========== Comparison Completed ==========")

@@ -1,108 +1,111 @@
-2025-02-18 15:19:49,376 - INFO - ========== Comparison started ==========
-2025-02-18 15:19:49,380 - INFO - package: mysql.connector.plugins
-2025-02-18 15:19:49,380 - INFO - plugin_name: caching_sha2_password
-2025-02-18 15:19:49,380 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-18 15:19:49,381 - INFO - ✅ Connected to MySQL successfully
-2025-02-18 15:19:49,385 - INFO - ✅ Connected to PostgreSQL successfully
-2025-02-18 15:19:49,389 - INFO - Number of tables in MySQL: 53
-2025-02-18 15:19:49,389 - INFO - Number of tables in PostgreSQL: 45
-2025-02-18 15:19:49,389 - INFO - ✅ No tables are missing in MySQL.
-2025-02-18 15:19:49,389 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: persistent_logins
-2025-02-18 15:19:49,389 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: separate_edn
-2025-02-18 15:19:49,389 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: invalid_individual_users
-2025-02-18 15:19:49,389 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-18 15:19:49,390 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: activity_progress_tracker
-2025-02-18 15:19:49,390 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: admin_login
-2025-02-18 15:19:49,390 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: new_ent_account
-2025-02-18 15:19:49,390 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-18 15:19:49,395 - INFO - 🔍 Table: user_role_mapping | MySQL Rows: 3441 | PostgreSQL Rows: 3441
-2025-02-18 15:19:49,462 - INFO - ✅ Table user_role_mapping data matches perfectly!
-2025-02-18 15:19:49,466 - INFO - 🔍 Table: enterprise_email_domain | MySQL Rows: 3921 | PostgreSQL Rows: 3921
-2025-02-18 15:19:49,539 - INFO - ✅ Table enterprise_email_domain data matches perfectly!
-2025-02-18 15:19:49,543 - INFO - 🔍 Table: enterprise_password_policy | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:49,544 - INFO - ✅ Table enterprise_password_policy data matches perfectly!
-2025-02-18 15:19:49,547 - INFO - 🔍 Table: login_unlock_account | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:49,548 - INFO - ✅ Table login_unlock_account data matches perfectly!
-2025-02-18 15:19:49,551 - INFO - 🔍 Table: role_permission_mapping | MySQL Rows: 737 | PostgreSQL Rows: 737
-2025-02-18 15:19:49,560 - INFO - ✅ Table role_permission_mapping data matches perfectly!
-2025-02-18 15:19:49,566 - INFO - 🔍 Table: login_forgot_password | MySQL Rows: 19587 | PostgreSQL Rows: 19587
-2025-02-18 15:19:50,082 - INFO - ✅ Table login_forgot_password data matches perfectly!
-2025-02-18 15:19:50,087 - INFO - 🔍 Table: enterprise_account | MySQL Rows: 3908 | PostgreSQL Rows: 3908
-2025-02-18 15:19:50,351 - INFO - ✅ Table enterprise_account data matches perfectly!
-2025-02-18 15:19:50,356 - INFO - 🔍 Table: supported_locale | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:50,359 - INFO - ✅ Table supported_locale data matches perfectly!
-2025-02-18 15:19:50,365 - INFO - 🔍 Table: desktop_studio_users | MySQL Rows: 31 | PostgreSQL Rows: 31
-2025-02-18 15:19:50,366 - INFO - ✅ Table desktop_studio_users data matches perfectly!
-2025-02-18 15:19:50,369 - INFO - 🔍 Table: auth_provider_config | MySQL Rows: 3 | PostgreSQL Rows: 3
-2025-02-18 15:19:50,371 - INFO - ✅ Table auth_provider_config data matches perfectly!
-2025-02-18 15:19:50,373 - INFO - 🔍 Table: login_corp_shard_info | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:50,373 - INFO - ✅ Table login_corp_shard_info data matches perfectly!
-2025-02-18 15:19:50,376 - INFO - 🔍 Table: login_api_access_keys | MySQL Rows: 2409 | PostgreSQL Rows: 2409
-2025-02-18 15:19:50,452 - INFO - ✅ Table login_api_access_keys data matches perfectly!
-2025-02-18 15:19:50,456 - INFO - 🔍 Table: common_key_table | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:50,457 - INFO - ✅ Table common_key_table data matches perfectly!
-2025-02-18 15:19:50,460 - INFO - 🔍 Table: invalid_email_domain | MySQL Rows: 3592 | PostgreSQL Rows: 3592
-2025-02-18 15:19:50,524 - INFO - ✅ Table invalid_email_domain data matches perfectly!
-2025-02-18 15:19:50,529 - INFO - 🔍 Table: login_auth | MySQL Rows: 1084 | PostgreSQL Rows: 1084
-2025-02-18 15:19:50,578 - INFO - ✅ Table login_auth data matches perfectly!
-2025-02-18 15:19:50,582 - INFO - 🔍 Table: enterprise_account_properties | MySQL Rows: 3688 | PostgreSQL Rows: 3688
-2025-02-18 15:19:50,774 - INFO - ✅ Table enterprise_account_properties data matches perfectly!
-2025-02-18 15:19:50,777 - INFO - 🔍 Table: entity_user_permission_mapping | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:50,779 - INFO - ✅ Table entity_user_permission_mapping data matches perfectly!
-2025-02-18 15:19:50,782 - INFO - 🔍 Table: version_details | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:50,782 - INFO - ✅ Table version_details data matches perfectly!
-2025-02-18 15:19:50,785 - INFO - 🔍 Table: white_list | MySQL Rows: 236 | PostgreSQL Rows: 236
-2025-02-18 15:19:50,790 - INFO - ✅ Table white_list data matches perfectly!
-2025-02-18 15:19:50,793 - INFO - 🔍 Table: captcha | MySQL Rows: 880 | PostgreSQL Rows: 880
-2025-02-18 15:19:50,811 - INFO - ✅ Table captcha data matches perfectly!
-2025-02-18 15:19:50,815 - INFO - 🔍 Table: common_ticket_details | MySQL Rows: 2348 | PostgreSQL Rows: 2348
-2025-02-18 15:19:50,901 - INFO - ✅ Table common_ticket_details data matches perfectly!
-2025-02-18 15:19:50,905 - INFO - 🔍 Table: login_corporate_subscription_props | MySQL Rows: 416 | PostgreSQL Rows: 416
-2025-02-18 15:19:50,915 - INFO - ✅ Table login_corporate_subscription_props data matches perfectly!
-2025-02-18 15:19:50,919 - INFO - 🔍 Table: permission | MySQL Rows: 212 | PostgreSQL Rows: 212
-2025-02-18 15:19:50,931 - INFO - ✅ Table permission data matches perfectly!
-2025-02-18 15:19:50,935 - INFO - 🔍 Table: user_account_extension | MySQL Rows: 579 | PostgreSQL Rows: 579
-2025-02-18 15:19:50,948 - INFO - ✅ Table user_account_extension data matches perfectly!
-2025-02-18 15:19:50,952 - INFO - 🔍 Table: cleanup_job | MySQL Rows: 87 | PostgreSQL Rows: 87
-2025-02-18 15:19:50,955 - INFO - ✅ Table cleanup_job data matches perfectly!
-2025-02-18 15:19:50,958 - INFO - 🔍 Table: login_invitation | MySQL Rows: 299 | PostgreSQL Rows: 299
-2025-02-18 15:19:50,968 - INFO - ✅ Table login_invitation data matches perfectly!
-2025-02-18 15:19:50,971 - INFO - 🔍 Table: cleanup_job_account | MySQL Rows: 1297 | PostgreSQL Rows: 1297
-2025-02-18 15:19:51,013 - INFO - ✅ Table cleanup_job_account data matches perfectly!
-2025-02-18 15:19:51,016 - INFO - 🔍 Table: login_corp_preferences | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:51,017 - INFO - ✅ Table login_corp_preferences data matches perfectly!
-2025-02-18 15:19:51,020 - INFO - 🔍 Table: enterprise_role_permission_mapping | MySQL Rows: 126 | PostgreSQL Rows: 126
-2025-02-18 15:19:51,022 - INFO - ✅ Table enterprise_role_permission_mapping data matches perfectly!
-2025-02-18 15:19:51,025 - INFO - 🔍 Table: login_free_domains | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:51,025 - INFO - ✅ Table login_free_domains data matches perfectly!
-2025-02-18 15:19:51,029 - INFO - 🔍 Table: login_account_password | MySQL Rows: 2777 | PostgreSQL Rows: 2777
-2025-02-18 15:19:51,121 - INFO - ✅ Table login_account_password data matches perfectly!
-2025-02-18 15:19:51,124 - INFO - 🔍 Table: login_last_password | MySQL Rows: 373 | PostgreSQL Rows: 373
-2025-02-18 15:19:51,135 - INFO - ✅ Table login_last_password data matches perfectly!
-2025-02-18 15:19:51,138 - INFO - 🔍 Table: desktop_studio_keys | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:51,139 - INFO - ✅ Table desktop_studio_keys data matches perfectly!
-2025-02-18 15:19:51,141 - INFO - 🔍 Table: beta_user | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:51,142 - INFO - ✅ Table beta_user data matches perfectly!
-2025-02-18 15:19:51,145 - INFO - 🔍 Table: login_unconfirmed_accounts | MySQL Rows: 2798 | PostgreSQL Rows: 2798
-2025-02-18 15:19:51,318 - INFO - ✅ Table login_unconfirmed_accounts data matches perfectly!
-2025-02-18 15:19:51,321 - INFO - 🔍 Table: email_migration_history | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:51,322 - INFO - ✅ Table email_migration_history data matches perfectly!
-2025-02-18 15:19:51,326 - INFO - 🔍 Table: login_accounts | MySQL Rows: 3534 | PostgreSQL Rows: 3534
-2025-02-18 15:19:51,594 - INFO - ✅ Table login_accounts data matches perfectly!
-2025-02-18 15:19:51,597 - INFO - 🔍 Table: common_audit_trail_log | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:51,600 - INFO - ✅ Table common_audit_trail_log data matches perfectly!
-2025-02-18 15:19:51,603 - INFO - 🔍 Table: login_auth_vs_ssid | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-18 15:19:51,604 - INFO - ✅ Table login_auth_vs_ssid data matches perfectly!
-2025-02-18 15:19:51,610 - INFO - 🔍 Table: entity_user_role_mapping | MySQL Rows: 21313 | PostgreSQL Rows: 21313
-2025-02-18 15:19:52,093 - INFO - ✅ Table entity_user_role_mapping data matches perfectly!
-2025-02-18 15:19:52,097 - INFO - 🔍 Table: login_key_table | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-18 15:19:52,101 - INFO - ✅ Table login_key_table data matches perfectly!
-2025-02-18 15:19:52,104 - INFO - 🔍 Table: email_domain | MySQL Rows: 2 | PostgreSQL Rows: 2
-2025-02-18 15:19:52,105 - INFO - ✅ Table email_domain data matches perfectly!
-2025-02-18 15:19:52,108 - INFO - 🔍 Table: spring_persistent_logins | MySQL Rows: 157 | PostgreSQL Rows: 157
-2025-02-18 15:19:52,112 - INFO - ✅ Table spring_persistent_logins data matches perfectly!
-2025-02-18 15:19:52,116 - INFO - 🔍 Table: user_enterprise_mapping | MySQL Rows: 4832 | PostgreSQL Rows: 4832
-2025-02-18 15:19:52,208 - INFO - ✅ Table user_enterprise_mapping data matches perfectly!
-2025-02-18 15:19:52,211 - INFO - 🔍 Table: role | MySQL Rows: 31 | PostgreSQL Rows: 31
-2025-02-18 15:19:52,214 - INFO - ✅ Table role data matches perfectly!
-2025-02-18 15:19:52,215 - INFO - ========== Comparison Completed ==========
+2025-02-18 15:29:17,144 - INFO - ========== Comparison started ==========
+2025-02-18 15:29:17,148 - INFO - package: mysql.connector.plugins
+2025-02-18 15:29:17,148 - INFO - plugin_name: caching_sha2_password
+2025-02-18 15:29:17,148 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-18 15:29:17,149 - INFO - ✅ Connected to MySQL successfully
+2025-02-18 15:29:17,153 - INFO - ✅ Connected to PostgreSQL successfully
+2025-02-18 15:29:17,157 - INFO - Number of tables in MySQL: 53
+2025-02-18 15:29:17,157 - INFO - Number of tables in PostgreSQL: 45
+2025-02-18 15:29:17,157 - INFO - ✅ No tables are missing in MySQL.
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: separate_edn
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: activity_progress_tracker
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: persistent_logins
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: admin_login
+2025-02-18 15:29:17,157 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: invalid_individual_users
+2025-02-18 15:29:17,158 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: new_ent_account
+2025-02-18 15:29:17,163 - INFO - 🔍 Table: login_corp_preferences | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:17,163 - INFO - ✅ Table login_corp_preferences data matches perfectly!
+2025-02-18 15:29:17,167 - INFO - 🔍 Table: enterprise_account | MySQL Rows: 3908 | PostgreSQL Rows: 3908
+2025-02-18 15:29:17,402 - INFO - ✅ Table enterprise_account data matches perfectly!
+2025-02-18 15:29:17,406 - INFO - 🔍 Table: captcha | MySQL Rows: 880 | PostgreSQL Rows: 880
+2025-02-18 15:29:17,426 - WARNING - ❌ 1 rows in MySQL are missing in PostgreSQL for table captcha
+2025-02-18 15:29:17,426 - WARNING - MySQL Missing Row: ('mbn38', datetime.datetime(2015, 4, 6, 18, 30, 28), '00c968c2-06d4-40a2-a2ed-6fede5329fa9')
+2025-02-18 15:29:17,426 - WARNING - ❌ 1 rows in PostgreSQL are missing in MySQL for table captcha
+2025-02-18 15:29:17,426 - WARNING - PostgreSQL Missing Row: ('mbn37', datetime.datetime(2015, 4, 6, 18, 30, 28), '00c968c2-06d4-40a2-a2ed-6fede5329fa9')
+2025-02-18 15:29:17,431 - INFO - 🔍 Table: version_details | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:17,431 - INFO - ✅ Table version_details data matches perfectly!
+2025-02-18 15:29:17,436 - INFO - 🔍 Table: login_accounts | MySQL Rows: 3534 | PostgreSQL Rows: 3534
+2025-02-18 15:29:17,700 - INFO - ✅ Table login_accounts data matches perfectly!
+2025-02-18 15:29:17,704 - INFO - 🔍 Table: enterprise_email_domain | MySQL Rows: 3921 | PostgreSQL Rows: 3921
+2025-02-18 15:29:17,777 - INFO - ✅ Table enterprise_email_domain data matches perfectly!
+2025-02-18 15:29:17,781 - INFO - 🔍 Table: enterprise_password_policy | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:17,782 - INFO - ✅ Table enterprise_password_policy data matches perfectly!
+2025-02-18 15:29:17,785 - INFO - 🔍 Table: login_last_password | MySQL Rows: 373 | PostgreSQL Rows: 373
+2025-02-18 15:29:17,795 - INFO - ✅ Table login_last_password data matches perfectly!
+2025-02-18 15:29:17,798 - INFO - 🔍 Table: supported_locale | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:17,799 - INFO - ✅ Table supported_locale data matches perfectly!
+2025-02-18 15:29:17,803 - INFO - 🔍 Table: user_enterprise_mapping | MySQL Rows: 4832 | PostgreSQL Rows: 4832
+2025-02-18 15:29:17,896 - INFO - ✅ Table user_enterprise_mapping data matches perfectly!
+2025-02-18 15:29:17,901 - INFO - 🔍 Table: user_account_extension | MySQL Rows: 579 | PostgreSQL Rows: 579
+2025-02-18 15:29:17,913 - INFO - ✅ Table user_account_extension data matches perfectly!
+2025-02-18 15:29:17,917 - INFO - 🔍 Table: beta_user | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:17,917 - INFO - ✅ Table beta_user data matches perfectly!
+2025-02-18 15:29:17,920 - INFO - 🔍 Table: entity_user_permission_mapping | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:17,920 - INFO - ✅ Table entity_user_permission_mapping data matches perfectly!
+2025-02-18 15:29:17,924 - INFO - 🔍 Table: login_auth | MySQL Rows: 1084 | PostgreSQL Rows: 1084
+2025-02-18 15:29:17,971 - INFO - ✅ Table login_auth data matches perfectly!
+2025-02-18 15:29:17,975 - INFO - 🔍 Table: permission | MySQL Rows: 212 | PostgreSQL Rows: 212
+2025-02-18 15:29:17,987 - INFO - ✅ Table permission data matches perfectly!
+2025-02-18 15:29:17,990 - INFO - 🔍 Table: email_domain | MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-18 15:29:17,991 - INFO - ✅ Table email_domain data matches perfectly!
+2025-02-18 15:29:17,994 - INFO - 🔍 Table: cleanup_job_account | MySQL Rows: 1297 | PostgreSQL Rows: 1297
+2025-02-18 15:29:18,035 - INFO - ✅ Table cleanup_job_account data matches perfectly!
+2025-02-18 15:29:18,039 - INFO - 🔍 Table: user_role_mapping | MySQL Rows: 3441 | PostgreSQL Rows: 3441
+2025-02-18 15:29:18,106 - INFO - ✅ Table user_role_mapping data matches perfectly!
+2025-02-18 15:29:18,110 - INFO - 🔍 Table: login_invitation | MySQL Rows: 299 | PostgreSQL Rows: 299
+2025-02-18 15:29:18,119 - INFO - ✅ Table login_invitation data matches perfectly!
+2025-02-18 15:29:18,123 - INFO - 🔍 Table: login_free_domains | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:18,123 - INFO - ✅ Table login_free_domains data matches perfectly!
+2025-02-18 15:29:18,127 - INFO - 🔍 Table: spring_persistent_logins | MySQL Rows: 157 | PostgreSQL Rows: 157
+2025-02-18 15:29:18,131 - INFO - ✅ Table spring_persistent_logins data matches perfectly!
+2025-02-18 15:29:18,134 - INFO - 🔍 Table: invalid_email_domain | MySQL Rows: 3592 | PostgreSQL Rows: 3592
+2025-02-18 15:29:18,198 - INFO - ✅ Table invalid_email_domain data matches perfectly!
+2025-02-18 15:29:18,201 - INFO - 🔍 Table: login_unlock_account | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:18,202 - INFO - ✅ Table login_unlock_account data matches perfectly!
+2025-02-18 15:29:18,206 - INFO - 🔍 Table: login_key_table | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:18,206 - INFO - ✅ Table login_key_table data matches perfectly!
+2025-02-18 15:29:18,210 - INFO - 🔍 Table: enterprise_account_properties | MySQL Rows: 3688 | PostgreSQL Rows: 3688
+2025-02-18 15:29:18,405 - INFO - ✅ Table enterprise_account_properties data matches perfectly!
+2025-02-18 15:29:18,409 - INFO - 🔍 Table: role | MySQL Rows: 31 | PostgreSQL Rows: 31
+2025-02-18 15:29:18,412 - INFO - ✅ Table role data matches perfectly!
+2025-02-18 15:29:18,416 - INFO - 🔍 Table: login_api_access_keys | MySQL Rows: 2409 | PostgreSQL Rows: 2409
+2025-02-18 15:29:18,494 - INFO - ✅ Table login_api_access_keys data matches perfectly!
+2025-02-18 15:29:18,497 - INFO - 🔍 Table: cleanup_job | MySQL Rows: 87 | PostgreSQL Rows: 87
+2025-02-18 15:29:18,501 - INFO - ✅ Table cleanup_job data matches perfectly!
+2025-02-18 15:29:18,505 - INFO - 🔍 Table: login_corporate_subscription_props | MySQL Rows: 416 | PostgreSQL Rows: 416
+2025-02-18 15:29:18,515 - INFO - ✅ Table login_corporate_subscription_props data matches perfectly!
+2025-02-18 15:29:18,521 - INFO - 🔍 Table: login_forgot_password | MySQL Rows: 19587 | PostgreSQL Rows: 19587
+2025-02-18 15:29:19,032 - INFO - ✅ Table login_forgot_password data matches perfectly!
+2025-02-18 15:29:19,037 - INFO - 🔍 Table: desktop_studio_keys | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:19,040 - INFO - ✅ Table desktop_studio_keys data matches perfectly!
+2025-02-18 15:29:19,044 - INFO - 🔍 Table: role_permission_mapping | MySQL Rows: 737 | PostgreSQL Rows: 737
+2025-02-18 15:29:19,054 - INFO - ✅ Table role_permission_mapping data matches perfectly!
+2025-02-18 15:29:19,057 - INFO - 🔍 Table: enterprise_role_permission_mapping | MySQL Rows: 126 | PostgreSQL Rows: 126
+2025-02-18 15:29:19,060 - INFO - ✅ Table enterprise_role_permission_mapping data matches perfectly!
+2025-02-18 15:29:19,063 - INFO - 🔍 Table: common_audit_trail_log | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:19,063 - INFO - ✅ Table common_audit_trail_log data matches perfectly!
+2025-02-18 15:29:19,067 - INFO - 🔍 Table: login_account_password | MySQL Rows: 2777 | PostgreSQL Rows: 2777
+2025-02-18 15:29:19,159 - INFO - ✅ Table login_account_password data matches perfectly!
+2025-02-18 15:29:19,164 - INFO - 🔍 Table: common_ticket_details | MySQL Rows: 2348 | PostgreSQL Rows: 2348
+2025-02-18 15:29:19,255 - INFO - ✅ Table common_ticket_details data matches perfectly!
+2025-02-18 15:29:19,259 - INFO - 🔍 Table: login_auth_vs_ssid | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:19,260 - INFO - ✅ Table login_auth_vs_ssid data matches perfectly!
+2025-02-18 15:29:19,264 - INFO - 🔍 Table: login_unconfirmed_accounts | MySQL Rows: 2798 | PostgreSQL Rows: 2798
+2025-02-18 15:29:19,441 - INFO - ✅ Table login_unconfirmed_accounts data matches perfectly!
+2025-02-18 15:29:19,447 - INFO - 🔍 Table: entity_user_role_mapping | MySQL Rows: 21313 | PostgreSQL Rows: 21313
+2025-02-18 15:29:19,931 - INFO - ✅ Table entity_user_role_mapping data matches perfectly!
+2025-02-18 15:29:19,936 - INFO - 🔍 Table: desktop_studio_users | MySQL Rows: 31 | PostgreSQL Rows: 31
+2025-02-18 15:29:19,940 - INFO - ✅ Table desktop_studio_users data matches perfectly!
+2025-02-18 15:29:19,944 - INFO - 🔍 Table: login_corp_shard_info | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:19,945 - INFO - ✅ Table login_corp_shard_info data matches perfectly!
+2025-02-18 15:29:19,948 - INFO - 🔍 Table: white_list | MySQL Rows: 236 | PostgreSQL Rows: 236
+2025-02-18 15:29:19,953 - INFO - ✅ Table white_list data matches perfectly!
+2025-02-18 15:29:19,956 - INFO - 🔍 Table: common_key_table | MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-18 15:29:19,956 - INFO - ✅ Table common_key_table data matches perfectly!
+2025-02-18 15:29:19,959 - INFO - 🔍 Table: email_migration_history | MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-18 15:29:19,959 - INFO - ✅ Table email_migration_history data matches perfectly!
+2025-02-18 15:29:19,963 - INFO - 🔍 Table: auth_provider_config | MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-18 15:29:19,965 - INFO - ✅ Table auth_provider_config data matches perfectly!
+2025-02-18 15:29:19,965 - INFO - ========== Comparison Completed ==========
