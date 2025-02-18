@@ -111,10 +111,8 @@ def generate_row_hash(row):
     return hashlib.sha256(row_string.encode('utf-8')).hexdigest()  # Generate the hash
 
 # ✅ Compare tables
-mismatches = []
-cnt=0
 for table in mysql_tables:
-    if table not in postgres_tables:
+    if table !='common_ticket_details':
         continue
     try:
         # ✅ MySQL Query using INFORMATION_SCHEMA for column details
@@ -128,6 +126,8 @@ for table in mysql_tables:
             )
         postgres_columns = sorted([desc[0].lower() for desc in postgres_cursor.fetchall()])
 
+        print(mysql_columns)
+        print(postgres_columns)
         # ✅ Check if column structure matches using 'not in'
         missing_in_mysql = [col for col in postgres_columns if col not in mysql_columns]
         missing_in_postgres = [col for col in mysql_columns if col not in postgres_columns]
@@ -161,19 +161,22 @@ for table in mysql_tables:
         mysql_cursor.execute(f"SELECT {', '.join(mysql_columns)} FROM {table.upper()} ORDER BY {', '.join(mysql_columns)};")
         postgres_cursor.execute(f"SELECT {', '.join(postgres_columns)} FROM {table} ORDER BY {', '.join(postgres_columns)};")
         
-        mysql_data = mysql_cursor.fetchall()
-        postgres_data = postgres_cursor.fetchall()
+        mysql_data = mysql_cursor.fetchmany(1)
+        postgres_data = postgres_cursor.fetchmany(1)
         
         # Assuming you have already fetched data from both MySQL and PostgreSQL
-        mysql_hashes = [generate_row_hash(row) for row in mysql_data]  # List of hashes from MySQL
-        postgres_hashes = [generate_row_hash(row) for row in postgres_data]  # List of hashes from PostgreSQL
-            
+        mysql_hashes = {generate_row_hash(row) : row for row in mysql_data}  # List of hashes from MySQL
+        postgres_hashes = {generate_row_hash(row) : row for row in postgres_data}  # List of hashes from PostgreSQL
+        print(mysql_hashes)
+        print(postgres_hashes)
         logging.info(f"Comparing hashes for table: {table}")  # Print the table name at the start
         for mysql_hash in mysql_hashes:
             if mysql_hash not in postgres_hashes:
                 logging.warning(f"Hash {mysql_hash} not found in PostgreSQL.")
     except Exception as e:
         logging.error(f"Error comparing rows for table {table}: {e}")
+
+
 
 # ✅ Close connections
 mysql_cursor.close()
