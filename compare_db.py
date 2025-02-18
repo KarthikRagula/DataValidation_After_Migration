@@ -3,6 +3,7 @@ import psycopg2
 import math
 import logging
 import traceback
+import hashlib
 from datetime import datetime
 
 # ✅ Clear logs before running
@@ -77,39 +78,59 @@ try:
 except Exception as e:
     logging.error(f"❌ Error fetching table names: {e}")
     exit(1)
+def normalize_value(value):
+    """Normalize MySQL and PostgreSQL values for consistent hashing."""
+    if isinstance(value, bool):
+        return int(value)  # Normalize boolean values as integers (True -> 1, False -> 0)
+    elif isinstance(value, int):
+        return value  # Keep integers as they are
+    elif value == 'TRUE' or value == 'FALSE':
+        return True if value == 'TRUE' else False  # Handle string boolean values from PostgreSQL
+    return value  # Return other types of values as they are
 
-# ✅ Define batch size for fetching rows
-BATCH_SIZE = 1000  # Adjust based on memory availability
-
-# ✅ Helper function for comparing floats with precision tolerance
-def compare_floats(mysql_val, postgres_val):
-    """ Compare FLOAT/DOUBLE values considering precision tolerance """
-    return math.isclose(mysql_val, postgres_val, rel_tol=1e-5)
-
-# ✅ Helper function to normalize timestamps for comparison
-def normalize_timestamp(timestamp):
-    """ Normalize timestamp by truncating fractional seconds """
-    if timestamp and len(timestamp) > 19:
-        return timestamp[:19]  # Remove fractional seconds
-    return timestamp
+def generate_row_hash(row):
+    """Generate a hash for a given row by concatenating all columns as a string."""
+    # Normalize all values in the row
+    normalized_row = [str(normalize_value(value)) for value in row]
+    logging.debug(f"Normalized Row: {normalized_row}")  # Log normalized values for debugging
+    row_string = ''.join(normalized_row)  # Concatenate the values into a single string
+    return hashlib.sha256(row_string.encode('utf-8')).hexdigest()  # Generate the hash
 
 # ✅ Compare tables
 mismatches = []
-
+cnt=0
 for table in mysql_tables:
     if table not in postgres_tables:
         continue
     try:
         # ✅ MySQL Query using INFORMATION_SCHEMA for column details
         mysql_cursor.execute(
-        f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = %s AND TABLE_SCHEMA = %s;", 
+        f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = %s AND TABLE_SCHEMA = %s ORDER BY ORDINAL_POSITION;", 
         (table.upper(), mysql_db))
-        mysql_columns = [desc[0].lower() for desc in mysql_cursor.fetchall()]
+        mysql_columns = sorted([desc[0].lower() for desc in mysql_cursor.fetchall()])
         # ✅ PostgreSQL Query using INFORMATION_SCHEMA for column details
         postgres_cursor.execute(
-            "SELECT column_name FROM information_schema.columns WHERE table_name = %s AND table_schema = 'public';", (table,)
-        )
-        postgres_columns = [desc[0].lower() for desc in postgres_cursor.fetchall()]
+                "SELECT column_name FROM information_schema.columns WHERE table_name = %s AND table_schema = 'public' ORDER BY ordinal_position;", (table,)
+            )
+        postgres_columns = sorted([desc[0].lower() for desc in postgres_cursor.fetchall()])
+
+        print(mysql_columns)
+        print(postgres_columns)
+        # ✅ Check if column structure matches using 'not in'
+        missing_in_mysql = [col for col in postgres_columns if col not in mysql_columns]
+        missing_in_postgres = [col for col in mysql_columns if col not in postgres_columns]
+            
+        if missing_in_mysql or missing_in_postgres:
+            if missing_in_mysql:
+                msg = f"❌ Columns present in PostgreSQL but missing in MySQL: {missing_in_mysql}"
+                logging.warning(msg)
+                mismatches.append(msg)
+                
+            if missing_in_postgres:
+                msg = f"❌ Columns present in MySQL but missing in PostgreSQL: {missing_in_postgres}"
+                logging.warning(msg)
+                mismatches.append(msg)
+            continue
     except mysql.connector.errors.ProgrammingError as e:
         if "1146" in str(e):
             msg = f"❌ Table {table} doesn't exist in MySQL!"
@@ -123,128 +144,26 @@ for table in mysql_tables:
         msg = f"❌ Error fetching column names for table {table}: {e}\n{traceback.format_exc()}"
         logging.error(msg)
         continue
-    # ✅ Check if column structure matches using 'not in'
-    missing_in_mysql = [col for col in postgres_columns if col not in mysql_columns]
-    missing_in_postgres = [col for col in mysql_columns if col not in postgres_columns]
-
-    if missing_in_mysql or missing_in_postgres:
-        if missing_in_mysql:
-            msg = f"❌ Columns present in PostgreSQL but missing in MySQL: {missing_in_mysql}"
-            logging.warning(msg)
-            mismatches.append(msg)
-        
-        if missing_in_postgres:
-            msg = f"❌ Columns present in MySQL but missing in PostgreSQL: {missing_in_postgres}"
-            logging.warning(msg)
-            mismatches.append(msg)
-        continue
-
-
     # ✅ Compare row-by-row in batches
     try:
-        mysql_cursor.execute(f"SELECT * FROM {table.upper()};")
-        postgres_cursor.execute(f"SELECT * FROM {table.upper()};")
-
-        row_idx = 0
-
-        while True:
-            mysql_data = mysql_cursor.fetchmany(BATCH_SIZE)
-            postgres_data = postgres_cursor.fetchmany(BATCH_SIZE)
-
-            if not mysql_data and not postgres_data:
-                break  # Stop when both databases have no more data
-
-            # Create dictionaries mapping column names to values for each row
-            mysql_dict = [dict(zip(mysql_columns, row)) for row in mysql_data]
-            postgres_dict = [dict(zip(postgres_columns, row)) for row in postgres_data]
-
-            # Compare the rows by checking column names explicitly
-            for row_idx, (mysql_row, postgres_row) in enumerate(zip(mysql_dict, postgres_dict), start=row_idx + 1):
-                for col_name in mysql_columns:
-                    if col_name in mysql_row and col_name in postgres_row:
-                        mysql_value = mysql_row[col_name]
-                        postgres_value = postgres_row[col_name]
-
-                        # Handle boolean data type mismatch (1/0 vs TRUE/FALSE)
-                        if isinstance(mysql_value, bool) and isinstance(postgres_value, bool):
-                            if mysql_value != postgres_value:
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_value}, PostgreSQL: {postgres_value}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-                        # Handle BLOB (MySQL) and BYTEA (PostgreSQL) comparison
-                        elif isinstance(mysql_value, bytes) and isinstance(postgres_value, memoryview):
-                            # Convert memoryview (PostgreSQL) to bytes for comparison
-                            postgres_value = bytes(postgres_value)
-                            if mysql_value != postgres_value:
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: BLOB (binary data), PostgreSQL: BYTEA (binary data)\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-
-                        # Alternatively, if both are of type 'bytes', just compare them as normal:
-                        elif isinstance(mysql_value, bytes) and isinstance(postgres_value, bytes):
-                            if mysql_value != postgres_value:
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: BLOB (binary data), PostgreSQL: BYTEA (binary data)\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-
-                        # Handle NULL comparison
-                        elif mysql_value is None and postgres_value is None:
-                            continue  # Both NULLs, no issue
-                        elif mysql_value != postgres_value:
-                            mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_value}, PostgreSQL: {postgres_value}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                            mismatches.append(mismatch)
-                            logging.warning(mismatch)
-
-                        # Handle FLOAT/DATA precision mismatch
-                        elif isinstance(mysql_value, float) and isinstance(postgres_value, float):
-                            if not compare_floats(mysql_value, postgres_value):
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_value}, PostgreSQL: {postgres_value}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-
-                        # Handle datetime and string mismatch
-                        elif isinstance(mysql_value, datetime) and isinstance(postgres_value, datetime):
-                            if mysql_value != postgres_value:
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_value}, PostgreSQL: {postgres_value}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-
-                        elif isinstance(mysql_value, str) and isinstance(postgres_value, str):
-                            # If they are datetime strings, try parsing them into datetime objects
-                            try:
-                                mysql_value = datetime.strptime(mysql_value, '%Y-%m-%d %H:%M:%S')
-                            except ValueError:
-                                pass  # Not a datetime string
-
-                            try:
-                                postgres_value = datetime.strptime(postgres_value, '%Y-%m-%d %H:%M:%S')
-                            except ValueError:
-                                pass  # Not a datetime string
-
-                            if mysql_value != postgres_value:
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_value}, PostgreSQL: {postgres_value}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-
-                        # Handle timestamp precision issues
-                        elif isinstance(mysql_value, str) and isinstance(postgres_value, str):
-                            mysql_value = normalize_timestamp(mysql_value)
-                            postgres_value = normalize_timestamp(postgres_value)
-
-                            if mysql_value != postgres_value:
-                                mismatch = f"Mismatch in Table: {table}, Row: {row_idx}, Column: {col_name} | MySQL: {mysql_value}, PostgreSQL: {postgres_value}\nMySQL Row: {mysql_row}\nPostgreSQL Row: {postgres_row}"
-                                mismatches.append(mismatch)
-                                logging.warning(mismatch)
-
+        mysql_cursor.execute(f"SELECT {', '.join(mysql_columns)} FROM {table.upper()} ORDER BY {', '.join(mysql_columns)};")
+        postgres_cursor.execute(f"SELECT {', '.join(postgres_columns)} FROM {table} ORDER BY {', '.join(postgres_columns)};")
+        
+        mysql_data = mysql_cursor.fetchall()
+        postgres_data = postgres_cursor.fetchall()
+        
+        # Assuming you have already fetched data from both MySQL and PostgreSQL
+        mysql_hashes = [generate_row_hash(row) for row in mysql_data]  # List of hashes from MySQL
+        postgres_hashes = [generate_row_hash(row) for row in postgres_data]  # List of hashes from PostgreSQL
+            
+        logging.info(f"Comparing hashes for table: {table}")  # Print the table name at the start
+        for mysql_hash in mysql_hashes:
+            if mysql_hash not in postgres_hashes:
+                logging.warning(f"Hash {mysql_hash} not found in PostgreSQL.")
     except Exception as e:
         logging.error(f"Error comparing rows for table {table}: {e}")
 
 
-# ✅ Save mismatches to logs.txt
-if mismatches:
-    logging.info("❌ Mismatches found! Check the logs.")
-else:
-    logging.info("✅ No mismatches found! Databases are identical.")
 
 # ✅ Close connections
 mysql_cursor.close()
