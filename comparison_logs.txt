@@ -1,96 +1,49 @@
-2025-02-19 11:44:53,604 - INFO - ========== Comparison started ==========
-2025-02-19 11:44:53,608 - INFO - package: mysql.connector.plugins
-2025-02-19 11:44:53,609 - INFO - plugin_name: caching_sha2_password
-2025-02-19 11:44:53,609 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-19 11:44:53,610 - INFO - ✅ Connected to MySQL successfully
-2025-02-19 11:44:53,614 - INFO - ✅ Connected to PostgreSQL successfully
-2025-02-19 11:44:53,618 - INFO - Number of tables in MySQL: 53
-2025-02-19 11:44:53,618 - INFO - Number of tables in PostgreSQL: 45
-2025-02-19 11:44:53,618 - INFO - ✅ No tables are missing in MySQL.
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: separate_edn
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: new_ent_account
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: persistent_logins
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: invalid_individual_users
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: admin_login
-2025-02-19 11:44:53,618 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: activity_progress_tracker
-2025-02-19 11:44:53,623 - INFO - 🔍 Table: login_unlock_account | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:53,623 - INFO - ✅ Table login_unlock_account data matches perfectly!
-2025-02-19 11:44:53,626 - INFO - 🔍 Table: role | MySQL Rows: 31 | PostgreSQL Rows: 31
-2025-02-19 11:44:53,629 - INFO - ✅ Table role data matches perfectly!
-2025-02-19 11:44:53,632 - INFO - 🔍 Table: role_permission_mapping | MySQL Rows: 737 | PostgreSQL Rows: 737
-2025-02-19 11:44:53,642 - INFO - ✅ Table role_permission_mapping data matches perfectly!
-2025-02-19 11:44:53,645 - INFO - 🔍 Table: invalid_email_domain | MySQL Rows: 3592 | PostgreSQL Rows: 3592
-2025-02-19 11:44:53,711 - INFO - ✅ Table invalid_email_domain data matches perfectly!
-2025-02-19 11:44:53,715 - INFO - 🔍 Table: enterprise_account | MySQL Rows: 3908 | PostgreSQL Rows: 3908
-2025-02-19 11:44:53,938 - INFO - ✅ Table enterprise_account data matches perfectly!
-2025-02-19 11:44:53,941 - INFO - 🔍 Table: version_details | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:53,943 - INFO - ✅ Table version_details data matches perfectly!
-2025-02-19 11:44:53,947 - INFO - 🔍 Table: enterprise_email_domain | MySQL Rows: 3921 | PostgreSQL Rows: 3921
-2025-02-19 11:44:54,017 - INFO - ✅ Table enterprise_email_domain data matches perfectly!
-2025-02-19 11:44:54,021 - INFO - 🔍 Table: login_api_access_keys | MySQL Rows: 2409 | PostgreSQL Rows: 2409
-2025-02-19 11:44:54,089 - INFO - ✅ Table login_api_access_keys data matches perfectly!
-2025-02-19 11:44:54,093 - INFO - 🔍 Table: login_account_password | MySQL Rows: 2777 | PostgreSQL Rows: 2777
-2025-02-19 11:44:54,184 - INFO - ✅ Table login_account_password data matches perfectly!
-2025-02-19 11:44:54,188 - INFO - 🔍 Table: captcha | MySQL Rows: 880 | PostgreSQL Rows: 880
-2025-02-19 11:44:54,205 - INFO - ✅ Table captcha data matches perfectly!
-2025-02-19 11:44:54,208 - INFO - 🔍 Table: desktop_studio_users | MySQL Rows: 31 | PostgreSQL Rows: 31
-2025-02-19 11:44:54,210 - INFO - ✅ Table desktop_studio_users data matches perfectly!
-2025-02-19 11:44:54,213 - INFO - 🔍 Table: login_free_domains | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:54,214 - INFO - ✅ Table login_free_domains data matches perfectly!
-2025-02-19 11:44:54,217 - INFO - 🔍 Table: user_role_mapping | MySQL Rows: 3441 | PostgreSQL Rows: 3441
-2025-02-19 11:44:54,278 - INFO - ✅ Table user_role_mapping data matches perfectly!
-2025-02-19 11:44:54,281 - INFO - 🔍 Table: email_domain | MySQL Rows: 2 | PostgreSQL Rows: 2
-2025-02-19 11:44:54,282 - INFO - ✅ Table email_domain data matches perfectly!
-2025-02-19 11:44:54,286 - INFO - 🔍 Table: user_enterprise_mapping | MySQL Rows: 4832 | PostgreSQL Rows: 4832
-2025-02-19 11:44:54,380 - INFO - ✅ Table user_enterprise_mapping data matches perfectly!
-2025-02-19 11:44:54,384 - INFO - 🔍 Table: cleanup_job | MySQL Rows: 87 | PostgreSQL Rows: 87
-2025-02-19 11:44:54,388 - INFO - ✅ Table cleanup_job data matches perfectly!
-2025-02-19 11:44:54,391 - INFO - 🔍 Table: login_corp_shard_info | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:54,391 - INFO - ✅ Table login_corp_shard_info data matches perfectly!
-2025-02-19 11:44:54,394 - INFO - 🔍 Table: login_invitation | MySQL Rows: 299 | PostgreSQL Rows: 299
-2025-02-19 11:44:54,403 - INFO - ✅ Table login_invitation data matches perfectly!
-2025-02-19 11:44:54,407 - INFO - 🔍 Table: white_list | MySQL Rows: 236 | PostgreSQL Rows: 236
-2025-02-19 11:44:54,412 - INFO - ✅ Table white_list data matches perfectly!
-2025-02-19 11:44:54,415 - INFO - 🔍 Table: cleanup_job_account | MySQL Rows: 1297 | PostgreSQL Rows: 1297
-2025-02-19 11:44:54,455 - INFO - ✅ Table cleanup_job_account data matches perfectly!
-2025-02-19 11:44:54,458 - INFO - 🔍 Table: common_key_table | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:54,459 - INFO - ✅ Table common_key_table data matches perfectly!
-2025-02-19 11:44:54,462 - INFO - 🔍 Table: login_key_table | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:54,462 - INFO - ✅ Table login_key_table data matches perfectly!
-2025-02-19 11:44:54,466 - INFO - 🔍 Table: permission | MySQL Rows: 212 | PostgreSQL Rows: 212
-2025-02-19 11:44:54,477 - INFO - ✅ Table permission data matches perfectly!
-2025-02-19 11:44:54,481 - INFO - 🔍 Table: login_unconfirmed_accounts | MySQL Rows: 2798 | PostgreSQL Rows: 2798
-2025-02-19 11:44:54,647 - INFO - ✅ Table login_unconfirmed_accounts data matches perfectly!
-2025-02-19 11:44:54,651 - INFO - 🔍 Table: user_account_extension | MySQL Rows: 579 | PostgreSQL Rows: 579
-2025-02-19 11:44:54,664 - INFO - ✅ Table user_account_extension data matches perfectly!
-2025-02-19 11:44:54,667 - INFO - 🔍 Table: login_last_password | MySQL Rows: 373 | PostgreSQL Rows: 373
-2025-02-19 11:44:54,676 - INFO - ✅ Table login_last_password data matches perfectly!
-2025-02-19 11:44:54,679 - INFO - 🔍 Table: enterprise_role_permission_mapping | MySQL Rows: 126 | PostgreSQL Rows: 126
-2025-02-19 11:44:54,682 - INFO - ✅ Table enterprise_role_permission_mapping data matches perfectly!
-2025-02-19 11:44:54,684 - INFO - 🔍 Table: login_corp_preferences | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:54,685 - INFO - ✅ Table login_corp_preferences data matches perfectly!
-2025-02-19 11:44:54,687 - INFO - 🔍 Table: entity_user_permission_mapping | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:54,688 - INFO - ✅ Table entity_user_permission_mapping data matches perfectly!
-2025-02-19 11:44:54,690 - INFO - 🔍 Table: common_audit_trail_log | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:54,691 - INFO - ✅ Table common_audit_trail_log data matches perfectly!
-2025-02-19 11:44:54,693 - INFO - 🔍 Table: login_auth_vs_ssid | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:54,694 - INFO - ✅ Table login_auth_vs_ssid data matches perfectly!
-2025-02-19 11:44:54,697 - INFO - 🔍 Table: common_ticket_details | MySQL Rows: 2348 | PostgreSQL Rows: 2348
-2025-02-19 11:44:54,782 - INFO - ✅ Table common_ticket_details data matches perfectly!
-2025-02-19 11:44:54,788 - INFO - 🔍 Table: entity_user_role_mapping | MySQL Rows: 21313 | PostgreSQL Rows: 21313
-2025-02-19 11:44:55,253 - INFO - ✅ Table entity_user_role_mapping data matches perfectly!
-2025-02-19 11:44:55,257 - INFO - 🔍 Table: email_migration_history | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:55,261 - INFO - ✅ Table email_migration_history data matches perfectly!
-2025-02-19 11:44:55,265 - INFO - 🔍 Table: enterprise_password_policy | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:55,266 - INFO - ✅ Table enterprise_password_policy data matches perfectly!
-2025-02-19 11:44:55,270 - INFO - 🔍 Table: enterprise_account_properties | MySQL Rows: 3688 | PostgreSQL Rows: 3688
-2025-02-19 11:44:55,445 - INFO - ✅ Table enterprise_account_properties data matches perfectly!
-2025-02-19 11:44:55,449 - INFO - 🔍 Table: desktop_studio_keys | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:55,451 - INFO - ✅ Table desktop_studio_keys data matches perfectly!
-2025-02-19 11:44:55,455 - INFO - 🔍 Table: login_accounts | MySQL Rows: 3534 | PostgreSQL Rows: 3534
-2025-02-19 11:44:55,711 - WARNING - 
+2025-02-19 13:14:40,417 - INFO - ========== Comparison started ==========
+2025-02-19 13:14:40,421 - INFO - package: mysql.connector.plugins
+2025-02-19 13:14:40,421 - INFO - plugin_name: caching_sha2_password
+2025-02-19 13:14:40,421 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-19 13:14:40,422 - INFO - ✅ Connected to MySQL successfully
+2025-02-19 13:14:40,426 - INFO - ✅ Connected to PostgreSQL successfully
+2025-02-19 13:14:40,430 - INFO - Number of tables in MySQL: 53
+2025-02-19 13:14:40,430 - INFO - Number of tables in PostgreSQL: 45
+2025-02-19 13:14:40,430 - INFO - ✅ No tables are missing in MySQL.
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: separate_edn
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: new_ent_account
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: activity_progress_tracker
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: admin_login
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: persistent_logins
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: invalid_individual_users
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-19 13:14:40,430 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-19 13:14:40,430 - INFO - 🔍 Table: entity_user_role_mapping 
+2025-02-19 13:14:40,442 - INFO - MySQL Constraints
+2025-02-19 13:14:40,442 - WARNING - {'primary_key': ['enterprise_id', 'entity_id', 'role_id', 'user_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('role_id', 'role', 'role_id'), ('user_id', 'login_accounts', 'account_id')], 'unique_keys': ['enterprise_id', 'entity_id', 'role_id', 'user_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'role_id', 'enterprise_id', 'user_id', 'entity_id'}}
+2025-02-19 13:14:40,442 - INFO - Postgres Constraints
+2025-02-19 13:14:40,442 - WARNING - {'primary_key': ['enterprise_id', 'entity_id', 'role_id', 'user_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('role_id', 'role', 'role_id'), ('user_id', 'login_accounts', 'account_id')], 'unique_keys': ['enterprise_id', 'entity_id', 'role_id', 'user_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'role_id', 'enterprise_id', 'user_id', 'entity_id'}}
+2025-02-19 13:14:40,446 - INFO -  MySQL Rows: 21313 | PostgreSQL Rows: 21313
+2025-02-19 13:14:40,944 - INFO - ✅ Table entity_user_role_mapping data matches perfectly!
+2025-02-19 13:14:40,944 - INFO - 🔍 Table: common_key_table 
+2025-02-19 13:14:40,953 - INFO - MySQL Constraints
+2025-02-19 13:14:40,953 - WARNING - {'primary_key': ['key_name'], 'foreign_keys': [], 'unique_keys': ['key_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'key_name'}}
+2025-02-19 13:14:40,953 - INFO - Postgres Constraints
+2025-02-19 13:14:40,953 - WARNING - {'primary_key': ['key_name'], 'foreign_keys': [], 'unique_keys': ['key_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'key_name'}}
+2025-02-19 13:14:40,954 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:40,958 - INFO - ✅ Table common_key_table data matches perfectly!
+2025-02-19 13:14:40,958 - INFO - 🔍 Table: entity_user_permission_mapping 
+2025-02-19 13:14:40,966 - INFO - MySQL Constraints
+2025-02-19 13:14:40,966 - WARNING - {'primary_key': ['enterprise_id', 'entity_id', 'permission_id', 'user_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('permission_id', 'permission', 'permission_id'), ('user_id', 'login_accounts', 'account_id')], 'unique_keys': ['enterprise_id', 'entity_id', 'permission_id', 'user_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'permission_id', 'enterprise_id', 'user_id', 'entity_id'}}
+2025-02-19 13:14:40,966 - INFO - Postgres Constraints
+2025-02-19 13:14:40,966 - WARNING - {'primary_key': ['enterprise_id', 'entity_id', 'permission_id', 'user_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('permission_id', 'permission', 'permission_id'), ('user_id', 'login_accounts', 'account_id')], 'unique_keys': ['enterprise_id', 'entity_id', 'permission_id', 'user_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'permission_id', 'enterprise_id', 'user_id', 'entity_id'}}
+2025-02-19 13:14:40,967 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:40,967 - INFO - ✅ Table entity_user_permission_mapping data matches perfectly!
+2025-02-19 13:14:40,967 - INFO - 🔍 Table: login_accounts 
+2025-02-19 13:14:40,976 - INFO - MySQL Constraints
+2025-02-19 13:14:40,977 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [('user_locale', 'supported_locale', 'locale_id')], 'unique_keys': ['account_id', 'email_id', 'tenant_domain_name', 'user_id'], 'check_constraints': [], 'default_values': {'is_edn_enabled': "b'0'", 'is_system_user': '0', 'is_verified': '0', 'last_update_timestamp': 'CURRENT_TIMESTAMP', 'trial_end_time': 'CURRENT_TIMESTAMP', 'user_locale': 'en'}, 'not_null': {'user_id', 'last_update_timestamp', 'trial_end_time', 'account_id'}}
+2025-02-19 13:14:40,977 - INFO - Postgres Constraints
+2025-02-19 13:14:40,977 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [('user_locale', 'supported_locale', 'locale_id')], 'unique_keys': ['account_id', 'email_id', 'tenant_domain_name', 'user_id'], 'check_constraints': [], 'default_values': {'last_update_timestamp': 'CURRENT_TIMESTAMP', 'is_edn_enabled': 'false', 'is_verified': 'false', 'is_system_user': 'false', 'company_name': 'NULL::character varying', 'user_locale': "'en'::character varying"}, 'not_null': {'user_id', 'last_update_timestamp', 'account_id'}}
+2025-02-19 13:14:40,977 - WARNING - 🔴 Missing not_null in PostgreSQL for table login_accounts: {'trial_end_time'}
+2025-02-19 13:14:40,978 - INFO -  MySQL Rows: 3534 | PostgreSQL Rows: 3534
+2025-02-19 13:14:41,243 - WARNING - 
 ❌ 2 rows in PostgreSQL are missing for table login_accounts:
 +--------------+----------------+--------------+---------------------+---------------+----------------+--------------+--------------+--------------+--------------+----------------+------------------+------------------+---------------+--------------+-------------------------+--------------+----------------+----------------------+--------------+------------------+--------------+---------------+
 | account_id   | company_name   | country      | create_time_stamp   | designation   | display_name   | email_id     | first_name   | icon_url     | ip_address   |   is_confirmed |   is_edn_enabled |   is_system_user |   is_verified | last_name    | last_update_timestamp   | status       | telephone_no   | tenant_domain_name   | timezone     | trial_end_time   | user_id      | user_locale   |
@@ -100,7 +53,7 @@
 | 2014091315   | None           | None         | 2014-09-13 14:59:   | None          | selvi prabhu   | tamil.selv   | selvi        | None         | 182.73.145   |   1            |   1              |   0              |   1           | prabhu       | 2024-08-22 14:30:39     | Delete Fai   | None           | d2mdyspjdv           | None         | 2024-08-22 14:   | tamil.selv   | en            |
 +--------------+----------------+--------------+---------------------+---------------+----------------+--------------+--------------+--------------+--------------+----------------+------------------+------------------+---------------+--------------+-------------------------+--------------+----------------+----------------------+--------------+------------------+--------------+---------------+
 ====================================================================================================
-2025-02-19 11:44:55,712 - WARNING - 
+2025-02-19 13:14:41,243 - WARNING - 
 ❌ 2 rows in MySQL are missing for table login_accounts:
 +--------------+----------------+--------------+---------------------+---------------+----------------+--------------+--------------+--------------+--------------+----------------+------------------+------------------+---------------+--------------+-------------------------+--------------+----------------+----------------------+--------------+------------------+--------------+---------------+
 | account_id   | company_name   | country      | create_time_stamp   | designation   | display_name   | email_id     | first_name   | icon_url     | ip_address   | is_confirmed   | is_edn_enabled   | is_system_user   | is_verified   | last_name    | last_update_timestamp   | status       | telephone_no   | tenant_domain_name   | timezone     | trial_end_time   | user_id      | user_locale   |
@@ -110,53 +63,329 @@
 | 1d4ee308a0   | None           | India        | 2014-04-08 05:09:   | None          | harish vanam   | harish.van   | harish       | None         | 14.141.6.1   | False          | True             | False            | True          | vanama       | 2025-02-18 16:18:18     | Active       | +91 90 52 06   | harishv              | None         | 2024-08-20 15:   | harish.van   | en            |
 +--------------+----------------+--------------+---------------------+---------------+----------------+--------------+--------------+--------------+--------------+----------------+------------------+------------------+---------------+--------------+-------------------------+--------------+----------------+----------------------+--------------+------------------+--------------+---------------+
 ====================================================================================================
-2025-02-19 11:44:55,715 - INFO - 🔍 Table: beta_user | MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-19 11:44:55,717 - INFO - ✅ Table beta_user data matches perfectly!
-2025-02-19 11:44:55,721 - INFO - 🔍 Table: login_auth | MySQL Rows: 1084 | PostgreSQL Rows: 1084
-2025-02-19 11:44:55,766 - WARNING - 
+2025-02-19 13:14:41,243 - INFO - 🔍 Table: user_enterprise_mapping 
+2025-02-19 13:14:41,252 - INFO - MySQL Constraints
+2025-02-19 13:14:41,252 - WARNING - {'primary_key': ['account_id', 'ent_id'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id'), ('ent_id', 'enterprise_account', 'ent_id')], 'unique_keys': ['account_id', 'ent_id'], 'check_constraints': [], 'default_values': {'is_default': '0'}, 'not_null': {'ent_id', 'status', 'account_id'}}
+2025-02-19 13:14:41,252 - INFO - Postgres Constraints
+2025-02-19 13:14:41,252 - WARNING - {'primary_key': ['account_id', 'ent_id'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id'), ('ent_id', 'enterprise_account', 'ent_id')], 'unique_keys': ['account_id', 'ent_id'], 'check_constraints': [], 'default_values': {'is_default': 'false'}, 'not_null': {'ent_id', 'status', 'account_id'}}
+2025-02-19 13:14:41,254 - INFO -  MySQL Rows: 4832 | PostgreSQL Rows: 4832
+2025-02-19 13:14:41,349 - INFO - ✅ Table user_enterprise_mapping data matches perfectly!
+2025-02-19 13:14:41,349 - INFO - 🔍 Table: login_unlock_account 
+2025-02-19 13:14:41,357 - INFO - MySQL Constraints
+2025-02-19 13:14:41,357 - WARNING - {'primary_key': ['unlock_account_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['account_id', 'unlock_account_key'], 'check_constraints': [], 'default_values': {}, 'not_null': {'account_id', 'unlock_account_key'}}
+2025-02-19 13:14:41,357 - INFO - Postgres Constraints
+2025-02-19 13:14:41,357 - WARNING - {'primary_key': ['unlock_account_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['account_id', 'unlock_account_key'], 'check_constraints': [], 'default_values': {}, 'not_null': {'account_id', 'unlock_account_key'}}
+2025-02-19 13:14:41,358 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:41,359 - INFO - ✅ Table login_unlock_account data matches perfectly!
+2025-02-19 13:14:41,359 - INFO - 🔍 Table: enterprise_email_domain 
+2025-02-19 13:14:41,367 - INFO - MySQL Constraints
+2025-02-19 13:14:41,367 - WARNING - {'primary_key': ['email_domain', 'ent_id'], 'foreign_keys': [('ent_id', 'enterprise_account', 'ent_id')], 'unique_keys': ['email_domain', 'ent_id'], 'check_constraints': [], 'default_values': {'is_allowed': '1'}, 'not_null': {'ent_id', 'email_domain'}}
+2025-02-19 13:14:41,367 - INFO - Postgres Constraints
+2025-02-19 13:14:41,367 - WARNING - {'primary_key': ['email_domain', 'ent_id'], 'foreign_keys': [('ent_id', 'enterprise_account', 'ent_id')], 'unique_keys': ['email_domain', 'ent_id'], 'check_constraints': [], 'default_values': {'is_allowed': 'true'}, 'not_null': {'ent_id', 'email_domain'}}
+2025-02-19 13:14:41,369 - INFO -  MySQL Rows: 3921 | PostgreSQL Rows: 3921
+2025-02-19 13:14:41,441 - INFO - ✅ Table enterprise_email_domain data matches perfectly!
+2025-02-19 13:14:41,441 - INFO - 🔍 Table: role_permission_mapping 
+2025-02-19 13:14:41,449 - INFO - MySQL Constraints
+2025-02-19 13:14:41,449 - WARNING - {'primary_key': ['permission_id', 'role_id'], 'foreign_keys': [('permission_id', 'permission', 'permission_id'), ('role_id', 'role', 'role_id')], 'unique_keys': ['permission_id', 'role_id'], 'check_constraints': [], 'default_values': {'is_system': '0'}, 'not_null': {'is_system', 'role_id', 'permission_id'}}
+2025-02-19 13:14:41,449 - INFO - Postgres Constraints
+2025-02-19 13:14:41,449 - WARNING - {'primary_key': ['permission_id', 'role_id'], 'foreign_keys': [('permission_id', 'permission', 'permission_id'), ('role_id', 'role', 'role_id')], 'unique_keys': ['permission_id', 'role_id'], 'check_constraints': [], 'default_values': {'is_system': 'false'}, 'not_null': {'permission_id', 'role_id', 'is_system'}}
+2025-02-19 13:14:41,450 - INFO -  MySQL Rows: 737 | PostgreSQL Rows: 737
+2025-02-19 13:14:41,460 - INFO - ✅ Table role_permission_mapping data matches perfectly!
+2025-02-19 13:14:41,460 - INFO - 🔍 Table: email_domain 
+2025-02-19 13:14:41,468 - INFO - MySQL Constraints
+2025-02-19 13:14:41,468 - WARNING - {'primary_key': ['domain_name'], 'foreign_keys': [('created_by', 'login_accounts', 'account_id')], 'unique_keys': ['domain_name'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'domain_type', 'domain_name', 'created_by'}}
+2025-02-19 13:14:41,468 - INFO - Postgres Constraints
+2025-02-19 13:14:41,468 - WARNING - {'primary_key': ['domain_name'], 'foreign_keys': [('created_by', 'login_accounts', 'account_id')], 'unique_keys': ['domain_name'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_by', 'domain_name', 'domain_type'}}
+2025-02-19 13:14:41,469 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-19 13:14:41,470 - INFO - ✅ Table email_domain data matches perfectly!
+2025-02-19 13:14:41,470 - INFO - 🔍 Table: login_api_access_keys 
+2025-02-19 13:14:41,477 - INFO - MySQL Constraints
+2025-02-19 13:14:41,477 - WARNING - {'primary_key': ['api_access_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['api_access_key'], 'check_constraints': [], 'default_values': {'creation_date': 'CURRENT_TIMESTAMP', 'update_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'api_access_key', 'update_time', 'account_id'}}
+2025-02-19 13:14:41,477 - INFO - Postgres Constraints
+2025-02-19 13:14:41,477 - WARNING - {'primary_key': ['api_access_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['api_access_key'], 'check_constraints': [], 'default_values': {'creation_date': 'CURRENT_TIMESTAMP', 'update_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'account_id', 'api_access_key'}}
+2025-02-19 13:14:41,477 - WARNING - 🔴 Missing not_null in PostgreSQL for table login_api_access_keys: {'update_time'}
+2025-02-19 13:14:41,479 - INFO -  MySQL Rows: 2409 | PostgreSQL Rows: 2409
+2025-02-19 13:14:41,547 - INFO - ✅ Table login_api_access_keys data matches perfectly!
+2025-02-19 13:14:41,547 - INFO - 🔍 Table: enterprise_password_policy 
+2025-02-19 13:14:41,557 - INFO - MySQL Constraints
+2025-02-19 13:14:41,557 - WARNING - {'primary_key': ['ent_id'], 'foreign_keys': [], 'unique_keys': ['ent_id'], 'check_constraints': [], 'default_values': {'creation_date': 'CURRENT_TIMESTAMP', 'min_length': '0', 'update_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'ent_id', 'update_time'}}
+2025-02-19 13:14:41,557 - INFO - Postgres Constraints
+2025-02-19 13:14:41,557 - WARNING - {'primary_key': ['ent_id'], 'foreign_keys': [], 'unique_keys': ['ent_id'], 'check_constraints': [], 'default_values': {'update_time': 'CURRENT_TIMESTAMP', 'min_length': '0', 'creation_date': 'CURRENT_TIMESTAMP'}, 'not_null': {'ent_id', 'update_time'}}
+2025-02-19 13:14:41,558 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:41,559 - INFO - ✅ Table enterprise_password_policy data matches perfectly!
+2025-02-19 13:14:41,559 - INFO - 🔍 Table: common_audit_trail_log 
+2025-02-19 13:14:41,567 - INFO - MySQL Constraints
+2025-02-19 13:14:41,567 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'id'}}
+2025-02-19 13:14:41,567 - INFO - Postgres Constraints
+2025-02-19 13:14:41,567 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'id'}}
+2025-02-19 13:14:41,567 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:41,568 - INFO - ✅ Table common_audit_trail_log data matches perfectly!
+2025-02-19 13:14:41,568 - INFO - 🔍 Table: login_corporate_subscription_props 
+2025-02-19 13:14:41,575 - INFO - MySQL Constraints
+2025-02-19 13:14:41,575 - WARNING - {'primary_key': [], 'foreign_keys': [], 'unique_keys': [], 'check_constraints': [], 'default_values': {}, 'not_null': {'corp_id'}}
+2025-02-19 13:14:41,575 - INFO - Postgres Constraints
+2025-02-19 13:14:41,575 - WARNING - {'primary_key': [], 'foreign_keys': [], 'unique_keys': [], 'check_constraints': [], 'default_values': {}, 'not_null': {'corp_id'}}
+2025-02-19 13:14:41,576 - INFO -  MySQL Rows: 416 | PostgreSQL Rows: 416
+2025-02-19 13:14:41,586 - INFO - ✅ Table login_corporate_subscription_props data matches perfectly!
+2025-02-19 13:14:41,586 - INFO - 🔍 Table: login_last_password 
+2025-02-19 13:14:41,593 - INFO - MySQL Constraints
+2025-02-19 13:14:41,593 - WARNING - {'primary_key': [], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': [], 'check_constraints': [], 'default_values': {'update_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'update_time'}}
+2025-02-19 13:14:41,593 - INFO - Postgres Constraints
+2025-02-19 13:14:41,593 - WARNING - {'primary_key': [], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': [], 'check_constraints': [], 'default_values': {'update_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'update_time'}}
+2025-02-19 13:14:41,594 - INFO -  MySQL Rows: 373 | PostgreSQL Rows: 373
+2025-02-19 13:14:41,604 - INFO - ✅ Table login_last_password data matches perfectly!
+2025-02-19 13:14:41,604 - INFO - 🔍 Table: email_migration_history 
+2025-02-19 13:14:41,612 - INFO - MySQL Constraints
+2025-02-19 13:14:41,612 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [], 'unique_keys': ['account_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_at', 'account_id'}}
+2025-02-19 13:14:41,612 - INFO - Postgres Constraints
+2025-02-19 13:14:41,612 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [], 'unique_keys': ['account_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_at', 'account_id'}}
+2025-02-19 13:14:41,613 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:41,614 - INFO - ✅ Table email_migration_history data matches perfectly!
+2025-02-19 13:14:41,614 - INFO - 🔍 Table: login_key_table 
+2025-02-19 13:14:41,621 - INFO - MySQL Constraints
+2025-02-19 13:14:41,621 - WARNING - {'primary_key': ['key_name'], 'foreign_keys': [], 'unique_keys': ['key_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'key_name'}}
+2025-02-19 13:14:41,621 - INFO - Postgres Constraints
+2025-02-19 13:14:41,621 - WARNING - {'primary_key': ['key_name'], 'foreign_keys': [], 'unique_keys': ['key_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'key_name'}}
+2025-02-19 13:14:41,623 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:41,623 - INFO - ✅ Table login_key_table data matches perfectly!
+2025-02-19 13:14:41,623 - INFO - 🔍 Table: user_role_mapping 
+2025-02-19 13:14:41,631 - INFO - MySQL Constraints
+2025-02-19 13:14:41,631 - WARNING - {'primary_key': ['enterprise_id', 'role_id', 'user_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('role_id', 'role', 'role_id'), ('user_id', 'login_accounts', 'account_id')], 'unique_keys': ['enterprise_id', 'role_id', 'user_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'role_id', 'enterprise_id', 'user_id'}}
+2025-02-19 13:14:41,631 - INFO - Postgres Constraints
+2025-02-19 13:14:41,631 - WARNING - {'primary_key': ['enterprise_id', 'role_id', 'user_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('role_id', 'role', 'role_id'), ('user_id', 'login_accounts', 'account_id')], 'unique_keys': ['enterprise_id', 'role_id', 'user_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'role_id', 'enterprise_id', 'user_id'}}
+2025-02-19 13:14:41,632 - INFO -  MySQL Rows: 3441 | PostgreSQL Rows: 3441
+2025-02-19 13:14:41,694 - INFO - ✅ Table user_role_mapping data matches perfectly!
+2025-02-19 13:14:41,694 - INFO - 🔍 Table: spring_persistent_logins 
+2025-02-19 13:14:41,702 - INFO - MySQL Constraints
+2025-02-19 13:14:41,702 - WARNING - {'primary_key': ['series'], 'foreign_keys': [], 'unique_keys': ['series'], 'check_constraints': [], 'default_values': {'last_used': 'CURRENT_TIMESTAMP'}, 'not_null': {'username', 'last_used', 'series', 'token'}}
+2025-02-19 13:14:41,702 - INFO - Postgres Constraints
+2025-02-19 13:14:41,702 - WARNING - {'primary_key': ['series'], 'foreign_keys': [], 'unique_keys': ['series'], 'check_constraints': [], 'default_values': {'last_used': 'CURRENT_TIMESTAMP'}, 'not_null': {'username', 'last_used', 'series', 'token'}}
+2025-02-19 13:14:41,704 - INFO -  MySQL Rows: 157 | PostgreSQL Rows: 157
+2025-02-19 13:14:41,708 - INFO - ✅ Table spring_persistent_logins data matches perfectly!
+2025-02-19 13:14:41,708 - INFO - 🔍 Table: permission 
+2025-02-19 13:14:41,720 - INFO - MySQL Constraints
+2025-02-19 13:14:41,720 - WARNING - {'primary_key': ['permission_id'], 'foreign_keys': [], 'unique_keys': ['permission_id'], 'check_constraints': [], 'default_values': {'category': 'COMMON', 'created_at': 'CURRENT_TIMESTAMP', 'enabled_for': 'ALL', 'group_id': '0', 'last_modified_at': 'CURRENT_TIMESTAMP', 'mode': 'any', 'product': 'BOTH', 'type': 'PRODUCT'}, 'not_null': {'last_modified_at', 'created_by', 'last_modified_by', 'created_at', 'is_system', 'mode', 'permission_id', 'type', 'parent_permission_id'}}
+2025-02-19 13:14:41,720 - INFO - Postgres Constraints
+2025-02-19 13:14:41,720 - WARNING - {'primary_key': ['permission_id'], 'foreign_keys': [], 'unique_keys': ['permission_id'], 'check_constraints': [], 'default_values': {'group_id': '0', 'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'permission_id': "nextval('permission_permission_id_seq'::regclass)", 'action': 'NULL::character varying', 'resource_id': 'NULL::character varying', 'mode': "'any'::character varying", 'enabled_for': "'ALL'::character varying", 'description': 'NULL::character varying', 'product': "'BOTH'::character varying", 'type': "'PRODUCT'::character varying", 'category': "'COMMON'::character varying", 'resource_type': 'NULL::character varying'}, 'not_null': {'last_modified_at', 'created_by', 'last_modified_by', 'created_at', 'is_system', 'mode', 'permission_id', 'type', 'parent_permission_id'}}
+2025-02-19 13:14:41,721 - INFO -  MySQL Rows: 212 | PostgreSQL Rows: 212
+2025-02-19 13:14:41,742 - INFO - ✅ Table permission data matches perfectly!
+2025-02-19 13:14:41,742 - INFO - 🔍 Table: desktop_studio_keys 
+2025-02-19 13:14:41,752 - INFO - MySQL Constraints
+2025-02-19 13:14:41,752 - WARNING - {'primary_key': ['studio_version'], 'foreign_keys': [], 'unique_keys': ['studio_version'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'expired': "b'1'"}, 'not_null': {'created_at', 'studio_version', 'expired'}}
+2025-02-19 13:14:41,752 - INFO - Postgres Constraints
+2025-02-19 13:14:41,752 - WARNING - {'primary_key': ['studio_version'], 'foreign_keys': [], 'unique_keys': ['studio_version'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'expired': 'true', 'secret_key': 'NULL::character varying'}, 'not_null': {'created_at', 'studio_version'}}
+2025-02-19 13:14:41,752 - WARNING - 🔴 Missing not_null in PostgreSQL for table desktop_studio_keys: {'expired'}
+2025-02-19 13:14:41,754 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:41,755 - INFO - ✅ Table desktop_studio_keys data matches perfectly!
+2025-02-19 13:14:41,755 - INFO - 🔍 Table: role 
+2025-02-19 13:14:41,771 - INFO - MySQL Constraints
+2025-02-19 13:14:41,771 - WARNING - {'primary_key': ['role_id'], 'foreign_keys': [], 'unique_keys': ['enterprise_id', 'role_id', 'role_name'], 'check_constraints': [], 'default_values': {'category': 'COMMON', 'created_at': 'CURRENT_TIMESTAMP', 'default_user_type': 'NONE', 'enterprise_id': 'DEFAULT', 'is_system': '0', 'last_modified_at': 'CURRENT_TIMESTAMP', 'type': 'PRODUCT'}, 'not_null': {'last_modified_at', 'created_by', 'last_modified_by', 'created_at', 'is_system', 'role_name', 'enterprise_id', 'role_id', 'product'}}
+2025-02-19 13:14:41,771 - INFO - Postgres Constraints
+2025-02-19 13:14:41,771 - WARNING - {'primary_key': ['role_id'], 'foreign_keys': [], 'unique_keys': ['enterprise_id', 'role_id', 'role_name'], 'check_constraints': [], 'default_values': {'last_modified_at': 'CURRENT_TIMESTAMP', 'is_system': 'false', 'created_at': 'CURRENT_TIMESTAMP', 'role_id': "nextval('role_role_id_seq'::regclass)", 'category': "'COMMON'::character varying", 'enterprise_id': "'DEFAULT'::character varying", 'default_user_type': "'NONE'::character varying", 'description': 'NULL::character varying', 'type': "'PRODUCT'::character varying"}, 'not_null': {'last_modified_at', 'created_by', 'last_modified_by', 'created_at', 'is_system', 'role_name', 'enterprise_id', 'role_id', 'product'}}
+2025-02-19 13:14:41,773 - INFO -  MySQL Rows: 31 | PostgreSQL Rows: 31
+2025-02-19 13:14:41,778 - INFO - ✅ Table role data matches perfectly!
+2025-02-19 13:14:41,778 - INFO - 🔍 Table: captcha 
+2025-02-19 13:14:41,797 - INFO - MySQL Constraints
+2025-02-19 13:14:41,797 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_at', 'id'}}
+2025-02-19 13:14:41,797 - INFO - Postgres Constraints
+2025-02-19 13:14:41,797 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'id'}}
+2025-02-19 13:14:41,797 - WARNING - 🔴 Missing not_null in PostgreSQL for table captcha: {'created_at'}
+2025-02-19 13:14:41,800 - INFO -  MySQL Rows: 880 | PostgreSQL Rows: 880
+2025-02-19 13:14:41,828 - INFO - ✅ Table captcha data matches perfectly!
+2025-02-19 13:14:41,828 - INFO - 🔍 Table: login_corp_shard_info 
+2025-02-19 13:14:41,837 - INFO - MySQL Constraints
+2025-02-19 13:14:41,837 - WARNING - {'primary_key': ['corp_id'], 'foreign_keys': [], 'unique_keys': ['corp_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'corp_id'}}
+2025-02-19 13:14:41,837 - INFO - Postgres Constraints
+2025-02-19 13:14:41,837 - WARNING - {'primary_key': ['corp_id'], 'foreign_keys': [], 'unique_keys': ['corp_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'corp_id'}}
+2025-02-19 13:14:41,838 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:41,838 - INFO - ✅ Table login_corp_shard_info data matches perfectly!
+2025-02-19 13:14:41,838 - INFO - 🔍 Table: login_corp_preferences 
+2025-02-19 13:14:41,848 - INFO - MySQL Constraints
+2025-02-19 13:14:41,848 - WARNING - {'primary_key': ['corp_id', 'name'], 'foreign_keys': [], 'unique_keys': ['corp_id', 'name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'corp_id', 'name'}}
+2025-02-19 13:14:41,848 - INFO - Postgres Constraints
+2025-02-19 13:14:41,848 - WARNING - {'primary_key': ['corp_id', 'name'], 'foreign_keys': [], 'unique_keys': ['corp_id', 'name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'corp_id', 'name'}}
+2025-02-19 13:14:41,849 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:41,849 - INFO - ✅ Table login_corp_preferences data matches perfectly!
+2025-02-19 13:14:41,849 - INFO - 🔍 Table: supported_locale 
+2025-02-19 13:14:41,864 - INFO - MySQL Constraints
+2025-02-19 13:14:41,864 - WARNING - {'primary_key': ['locale_id'], 'foreign_keys': [], 'unique_keys': ['locale_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'locale_id', 'display_name'}}
+2025-02-19 13:14:41,864 - INFO - Postgres Constraints
+2025-02-19 13:14:41,864 - WARNING - {'primary_key': ['locale_id'], 'foreign_keys': [], 'unique_keys': ['locale_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'locale_id', 'display_name'}}
+2025-02-19 13:14:41,866 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:41,867 - INFO - ✅ Table supported_locale data matches perfectly!
+2025-02-19 13:14:41,867 - INFO - 🔍 Table: login_auth 
+2025-02-19 13:14:41,884 - INFO - MySQL Constraints
+2025-02-19 13:14:41,885 - WARNING - {'primary_key': ['auth_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id'), ('ent_id', 'enterprise_account', 'ent_id')], 'unique_keys': ['auth_key'], 'check_constraints': [], 'default_values': {'creation_date': 'CURRENT_TIMESTAMP', 'invalidate_type': 'NONE', 'is_active': "b'0'", 'last_access_timestamp': 'CURRENT_TIMESTAMP'}, 'not_null': {'invalidate_type', 'ent_id', 'client_ip', 'auth_key', 'account_id', 'last_access_timestamp', 'creation_date'}}
+2025-02-19 13:14:41,885 - INFO - Postgres Constraints
+2025-02-19 13:14:41,885 - WARNING - {'primary_key': ['auth_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id'), ('ent_id', 'enterprise_account', 'ent_id')], 'unique_keys': ['auth_key'], 'check_constraints': [], 'default_values': {'creation_date': 'CURRENT_TIMESTAMP', 'last_access_timestamp': 'CURRENT_TIMESTAMP', 'is_active': 'false', 'invalidate_type': "'NONE'::character varying"}, 'not_null': {'invalidate_type', 'ent_id', 'auth_key', 'client_ip', 'account_id', 'last_access_timestamp', 'creation_date'}}
+2025-02-19 13:14:41,887 - INFO -  MySQL Rows: 1084 | PostgreSQL Rows: 1084
+2025-02-19 13:14:41,940 - WARNING - 
 ❌ 6 rows in PostgreSQL are missing for table login_auth:
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   account_id | auth_key     | client_ip    | creation_date   | ent_id       | info         | invalidate_type   |   is_active  | last_access_timestamp   | user_agent   |
 +==============+==============+==============+=================+==============+==============+===================+==============+=========================+==============+
 |   2018062644 | tZLftDFkFN   | 59.162.164   | 2024-07-24 06   | ent1268976   | LoginReque   | FORCE_LOGOUT      |   0          | 2024-07-24 12:03:10     | Mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
-|   2022061557 | Wl2K6F8QwK   | 52.203.158   | 2022-06-15 07   | ent1263fa9   | Generate T   | FORCE_LOGOUT      |   1          | 2022-06-15 13:11:44     | Apache-Htt   |
+|   2020090751 | TzlPBJxWkX   | 35.245.244   | 2020-09-07 07   | ent125f63e   | Generate T   | FORCE_LOGOUT      |   1          | 2020-09-09 14:12:44     | None         |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   2023092970 | v1nMNqTGTK   | 152.59.217   | 2025-01-16 09   | ent12665b0   | SwitchOrga   | FORCE_LOGOUT      |   0          | 2025-01-16 15:15:32     | Mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
-|   2020101551 | 01Kc2r13p4   | 10.0.13.33   | 2024-01-12 10   | ent125f6a5   | LoginReque   | FORCE_LOGOUT      |   1          | 2024-01-16 10:31:16     | Apache-Htt   |
-+--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
-|   2020090751 | TzlPBJxWkX   | 35.245.244   | 2020-09-07 07   | ent125f63e   | Generate T   | FORCE_LOGOUT      |   1          | 2020-09-09 14:12:44     | None         |
+|   2022061557 | Wl2K6F8QwK   | 52.203.158   | 2022-06-15 07   | ent1263fa9   | Generate T   | FORCE_LOGOUT      |   1          | 2022-06-15 13:11:44     | Apache-Htt   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   2022041356 | WfXHmvjRmd   | 49.43.229.   | 2024-05-16 11   | ent1263ee9   | LoginReque   | FORCE_LOGOUT      |   0          | 2024-05-16 16:58:07     | Mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
+|   2020101551 | 01Kc2r13p4   | 10.0.13.33   | 2024-01-12 10   | ent125f6a5   | LoginReque   | FORCE_LOGOUT      |   1          | 2024-01-16 10:31:16     | Apache-Htt   |
++--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 ====================================================================================================
-2025-02-19 11:44:55,767 - WARNING - 
+2025-02-19 13:14:41,941 - WARNING - 
 ❌ 6 rows in MySQL are missing for table login_auth:
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   account_id | auth_key     | client_ip    | creation_date   | ent_id       | info         | invalidate_type   | is_active    | last_access_timestamp   | user_agent   |
 +==============+==============+==============+=================+==============+==============+===================+==============+=========================+==============+
-|   2020101551 | 01Kc2r13p4   | 10.0.13.33   | 2024-01-12 10   | ent125f6a5   | LoginReque   | FORCE_LOGOUT      | False        | 2025-02-18 16:10:13     | Apache-Htt   |
+|   2020090751 | TzlPBJxWkX   | 35.245.244   | 2020-09-07 07   | ent125f63e   | Generate T   | FORCE_LOGOUT      | True         | 2025-02-18 16:10:13     | mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   2018062644 | tZLftDFkFN   | 59.162.164   | 2024-07-24 06   | ent1268976   | LoginReque   | FORCE_LOGOUT      | True         | 2025-02-18 16:10:13     | Mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   2023092970 | v1nMNqTGTK   | 152.59.217   | 2025-01-16 09   | ent12665b0   | SwitchOrga   | FORCE_LOGOUT      | True         | 2025-02-18 16:10:13     | Mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
-|   2022061557 | Wl2K6F8QwK   | 52.203.158   | 2022-06-15 07   | ent1263fa9   | Generate T   | FORCE_LOGOUT      | True         | 2025-02-18 16:10:13     | Apache-Htt   |
-+--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 |   2022041356 | WfXHmvjRmd   | 49.43.229.   | 2024-05-16 11   | ent1263ee9   | LoginReque   | FORCE_LOGOUT      | False        | 2025-02-18 16:14:28     | Mozilla/5.   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
-|   2020090751 | TzlPBJxWkX   | 35.245.244   | 2020-09-07 07   | ent125f63e   | Generate T   | FORCE_LOGOUT      | True         | 2025-02-18 16:10:13     | mozilla/5.   |
+|   2020101551 | 01Kc2r13p4   | 10.0.13.33   | 2024-01-12 10   | ent125f6a5   | LoginReque   | FORCE_LOGOUT      | False        | 2025-02-18 16:10:13     | Apache-Htt   |
++--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
+|   2022061557 | Wl2K6F8QwK   | 52.203.158   | 2022-06-15 07   | ent1263fa9   | Generate T   | FORCE_LOGOUT      | True         | 2025-02-18 16:10:13     | Apache-Htt   |
 +--------------+--------------+--------------+-----------------+--------------+--------------+-------------------+--------------+-------------------------+--------------+
 ====================================================================================================
-2025-02-19 11:44:55,771 - INFO - 🔍 Table: supported_locale | MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-19 11:44:55,772 - INFO - ✅ Table supported_locale data matches perfectly!
-2025-02-19 11:44:55,777 - INFO - 🔍 Table: login_forgot_password | MySQL Rows: 19587 | PostgreSQL Rows: 19587
-2025-02-19 11:44:56,270 - INFO - ✅ Table login_forgot_password data matches perfectly!
-2025-02-19 11:44:56,274 - INFO - 🔍 Table: login_corporate_subscription_props | MySQL Rows: 416 | PostgreSQL Rows: 416
-2025-02-19 11:44:56,286 - INFO - ✅ Table login_corporate_subscription_props data matches perfectly!
-2025-02-19 11:44:56,290 - INFO - 🔍 Table: auth_provider_config | MySQL Rows: 3 | PostgreSQL Rows: 3
-2025-02-19 11:44:56,291 - INFO - ✅ Table auth_provider_config data matches perfectly!
-2025-02-19 11:44:56,294 - INFO - 🔍 Table: spring_persistent_logins | MySQL Rows: 157 | PostgreSQL Rows: 157
-2025-02-19 11:44:56,299 - INFO - ✅ Table spring_persistent_logins data matches perfectly!
-2025-02-19 11:44:56,299 - INFO - ========== Comparison Completed ==========
+2025-02-19 13:14:41,941 - INFO - 🔍 Table: login_invitation 
+2025-02-19 13:14:41,949 - INFO - MySQL Constraints
+2025-02-19 13:14:41,949 - WARNING - {'primary_key': ['invitation_id'], 'foreign_keys': [('invitee_email_id', 'login_unconfirmed_accounts', 'email_id'), ('inviter_account_id', 'login_accounts', 'account_id')], 'unique_keys': ['invitation_id', 'invitee_email_id', 'inviter_account_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'invitation_id', 'last_modified_at', 'invitee_email_id', 'inviter_account_id', 'created_at'}}
+2025-02-19 13:14:41,949 - INFO - Postgres Constraints
+2025-02-19 13:14:41,949 - WARNING - {'primary_key': ['invitation_id'], 'foreign_keys': [('invitee_email_id', 'login_unconfirmed_accounts', 'email_id'), ('inviter_account_id', 'login_accounts', 'account_id')], 'unique_keys': ['invitation_id', 'invitee_email_id', 'inviter_account_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'invitation_id', 'last_modified_at', 'invitee_email_id', 'inviter_account_id', 'created_at'}}
+2025-02-19 13:14:41,950 - INFO -  MySQL Rows: 299 | PostgreSQL Rows: 299
+2025-02-19 13:14:41,959 - INFO - ✅ Table login_invitation data matches perfectly!
+2025-02-19 13:14:41,960 - INFO - 🔍 Table: auth_provider_config 
+2025-02-19 13:14:41,969 - INFO - MySQL Constraints
+2025-02-19 13:14:41,969 - WARNING - {'primary_key': ['provider_id'], 'foreign_keys': [], 'unique_keys': ['provider_id'], 'check_constraints': [], 'default_values': {'active': '1', 'created_at': 'CURRENT_TIMESTAMP', 'is_default': '0', 'is_system': '0', 'last_modified_at': 'CURRENT_TIMESTAMP', 'login_restricted': '0'}, 'not_null': {'last_modified_at', 'created_by', 'authentication_source', 'last_modified_by', 'name', 'created_at', 'provider_id', 'description'}}
+2025-02-19 13:14:41,969 - INFO - Postgres Constraints
+2025-02-19 13:14:41,969 - WARNING - {'primary_key': ['provider_id'], 'foreign_keys': [], 'unique_keys': ['provider_id'], 'check_constraints': [], 'default_values': {'provider_id': "nextval('auth_provider_config_provider_id_seq'::regclass)", 'active': 'true', 'is_default': 'false', 'is_system': 'false', 'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'login_restricted': 'false'}, 'not_null': {'last_modified_at', 'created_by', 'authentication_source', 'name', 'last_modified_by', 'created_at', 'provider_id', 'description'}}
+2025-02-19 13:14:41,970 - INFO -  MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-19 13:14:41,971 - INFO - ✅ Table auth_provider_config data matches perfectly!
+2025-02-19 13:14:41,971 - INFO - 🔍 Table: login_free_domains 
+2025-02-19 13:14:41,979 - INFO - MySQL Constraints
+2025-02-19 13:14:41,979 - WARNING - {'primary_key': ['domain_id'], 'foreign_keys': [], 'unique_keys': ['domain_id', 'domain_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'domain_name', 'domain_id'}}
+2025-02-19 13:14:41,979 - INFO - Postgres Constraints
+2025-02-19 13:14:41,979 - WARNING - {'primary_key': ['domain_id'], 'foreign_keys': [], 'unique_keys': ['domain_id', 'domain_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'domain_name', 'domain_id'}}
+2025-02-19 13:14:41,980 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:41,980 - INFO - ✅ Table login_free_domains data matches perfectly!
+2025-02-19 13:14:41,980 - INFO - 🔍 Table: login_unconfirmed_accounts 
+2025-02-19 13:14:41,989 - INFO - MySQL Constraints
+2025-02-19 13:14:41,989 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [], 'unique_keys': ['account_id', 'email_id', 'registration_key'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'last_reminded_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'email_id', 'registration_key', 'last_modified_at', 'pref_language', 'created_at', 'account_id', 'last_reminded_at'}}
+2025-02-19 13:14:41,989 - INFO - Postgres Constraints
+2025-02-19 13:14:41,989 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [], 'unique_keys': ['account_id', 'email_id', 'registration_key'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'last_reminded_at': 'CURRENT_TIMESTAMP', 'password': 'NULL::character varying', 'ent_name': 'NULL::character varying', 'country': 'NULL::character varying', 'designation': 'NULL::character varying', 'company_name': 'NULL::character varying', 'ent_id': 'NULL::character varying'}, 'not_null': {'registration_key', 'email_id', 'last_modified_at', 'pref_language', 'created_at', 'account_id', 'last_reminded_at'}}
+2025-02-19 13:14:41,990 - INFO -  MySQL Rows: 2798 | PostgreSQL Rows: 2798
+2025-02-19 13:14:42,158 - INFO - ✅ Table login_unconfirmed_accounts data matches perfectly!
+2025-02-19 13:14:42,158 - INFO - 🔍 Table: login_forgot_password 
+2025-02-19 13:14:42,167 - INFO - MySQL Constraints
+2025-02-19 13:14:42,167 - WARNING - {'primary_key': ['forgot_password_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['forgot_password_key'], 'check_constraints': [], 'default_values': {}, 'not_null': {'forgot_password_key', 'account_id'}}
+2025-02-19 13:14:42,167 - INFO - Postgres Constraints
+2025-02-19 13:14:42,167 - WARNING - {'primary_key': ['forgot_password_key'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['forgot_password_key'], 'check_constraints': [], 'default_values': {}, 'not_null': {'forgot_password_key', 'account_id'}}
+2025-02-19 13:14:42,170 - INFO -  MySQL Rows: 19587 | PostgreSQL Rows: 19587
+2025-02-19 13:14:42,671 - INFO - ✅ Table login_forgot_password data matches perfectly!
+2025-02-19 13:14:42,672 - INFO - 🔍 Table: user_account_extension 
+2025-02-19 13:14:42,681 - INFO - MySQL Constraints
+2025-02-19 13:14:42,681 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['account_id'], 'check_constraints': [], 'default_values': {'last_accessed_time': 'CURRENT_TIMESTAMP', 'max_apps': '0'}, 'not_null': {'max_apps', 'last_accessed_time', 'account_id'}}
+2025-02-19 13:14:42,681 - INFO - Postgres Constraints
+2025-02-19 13:14:42,681 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['account_id'], 'check_constraints': [], 'default_values': {'max_apps': '0', 'last_accessed_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'account_id', 'last_accessed_time', 'max_apps'}}
+2025-02-19 13:14:42,683 - INFO -  MySQL Rows: 579 | PostgreSQL Rows: 579
+2025-02-19 13:14:42,699 - INFO - ✅ Table user_account_extension data matches perfectly!
+2025-02-19 13:14:42,699 - INFO - 🔍 Table: beta_user 
+2025-02-19 13:14:42,708 - INFO - MySQL Constraints
+2025-02-19 13:14:42,708 - WARNING - {'primary_key': ['email_id'], 'foreign_keys': [], 'unique_keys': ['email_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'email_id'}}
+2025-02-19 13:14:42,708 - INFO - Postgres Constraints
+2025-02-19 13:14:42,708 - WARNING - {'primary_key': ['email_id'], 'foreign_keys': [], 'unique_keys': ['email_id'], 'check_constraints': [], 'default_values': {'first_name': 'NULL::character varying', 'last_name': 'NULL::character varying', 'password': 'NULL::character varying'}, 'not_null': {'email_id'}}
+2025-02-19 13:14:42,709 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:42,710 - INFO - ✅ Table beta_user data matches perfectly!
+2025-02-19 13:14:42,710 - INFO - 🔍 Table: invalid_email_domain 
+2025-02-19 13:14:42,720 - INFO - MySQL Constraints
+2025-02-19 13:14:42,720 - WARNING - {'primary_key': ['domain_name'], 'foreign_keys': [], 'unique_keys': ['domain_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'source', 'domain_name', 'domain_type'}}
+2025-02-19 13:14:42,720 - INFO - Postgres Constraints
+2025-02-19 13:14:42,720 - WARNING - {'primary_key': ['domain_name'], 'foreign_keys': [], 'unique_keys': ['domain_name'], 'check_constraints': [], 'default_values': {}, 'not_null': {'source', 'domain_name', 'domain_type'}}
+2025-02-19 13:14:42,721 - INFO -  MySQL Rows: 3592 | PostgreSQL Rows: 3592
+2025-02-19 13:14:42,782 - INFO - ✅ Table invalid_email_domain data matches perfectly!
+2025-02-19 13:14:42,782 - INFO - 🔍 Table: cleanup_job_account 
+2025-02-19 13:14:42,792 - INFO - MySQL Constraints
+2025-02-19 13:14:42,792 - WARNING - {'primary_key': ['account_id', 'job_id'], 'foreign_keys': [('job_id', 'cleanup_job', 'job_id')], 'unique_keys': ['account_id', 'job_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_at', 'last_modified_at', 'job_id', 'account_id'}}
+2025-02-19 13:14:42,792 - INFO - Postgres Constraints
+2025-02-19 13:14:42,792 - WARNING - {'primary_key': ['account_id', 'job_id'], 'foreign_keys': [('job_id', 'cleanup_job', 'job_id')], 'unique_keys': ['account_id', 'job_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'status': 'NULL::character varying'}, 'not_null': {'created_at', 'last_modified_at', 'job_id', 'account_id'}}
+2025-02-19 13:14:42,793 - INFO -  MySQL Rows: 1297 | PostgreSQL Rows: 1297
+2025-02-19 13:14:42,833 - INFO - ✅ Table cleanup_job_account data matches perfectly!
+2025-02-19 13:14:42,833 - INFO - 🔍 Table: enterprise_role_permission_mapping 
+2025-02-19 13:14:42,842 - INFO - MySQL Constraints
+2025-02-19 13:14:42,842 - WARNING - {'primary_key': ['enterprise_id', 'permission_id', 'role_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('permission_id', 'permission', 'permission_id'), ('role_id', 'role', 'role_id')], 'unique_keys': ['enterprise_id', 'permission_id', 'role_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'permission_id', 'role_id', 'enterprise_id'}}
+2025-02-19 13:14:42,842 - INFO - Postgres Constraints
+2025-02-19 13:14:42,842 - WARNING - {'primary_key': ['enterprise_id', 'permission_id', 'role_id'], 'foreign_keys': [('enterprise_id', 'enterprise_account', 'ent_id'), ('permission_id', 'permission', 'permission_id'), ('role_id', 'role', 'role_id')], 'unique_keys': ['enterprise_id', 'permission_id', 'role_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'permission_id', 'role_id', 'enterprise_id'}}
+2025-02-19 13:14:42,843 - INFO -  MySQL Rows: 126 | PostgreSQL Rows: 126
+2025-02-19 13:14:42,846 - INFO - ✅ Table enterprise_role_permission_mapping data matches perfectly!
+2025-02-19 13:14:42,846 - INFO - 🔍 Table: login_auth_vs_ssid 
+2025-02-19 13:14:42,854 - INFO - MySQL Constraints
+2025-02-19 13:14:42,855 - WARNING - {'primary_key': ['ssid'], 'foreign_keys': [('auth_key', 'login_auth', 'auth_key')], 'unique_keys': ['ssid'], 'check_constraints': [], 'default_values': {}, 'not_null': {'auth_key', 'ssid'}}
+2025-02-19 13:14:42,855 - INFO - Postgres Constraints
+2025-02-19 13:14:42,855 - WARNING - {'primary_key': ['ssid'], 'foreign_keys': [('auth_key', 'login_auth', 'auth_key')], 'unique_keys': ['ssid'], 'check_constraints': [], 'default_values': {}, 'not_null': {'auth_key', 'ssid'}}
+2025-02-19 13:14:42,855 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-19 13:14:42,856 - INFO - ✅ Table login_auth_vs_ssid data matches perfectly!
+2025-02-19 13:14:42,856 - INFO - 🔍 Table: common_ticket_details 
+2025-02-19 13:14:42,865 - INFO - MySQL Constraints
+2025-02-19 13:14:42,865 - WARNING - {'primary_key': ['ticket_id'], 'foreign_keys': [], 'unique_keys': ['ticket_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'ticket_id'}}
+2025-02-19 13:14:42,865 - INFO - Postgres Constraints
+2025-02-19 13:14:42,865 - WARNING - {'primary_key': ['ticket_id'], 'foreign_keys': [], 'unique_keys': ['ticket_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'ticket_id'}}
+2025-02-19 13:14:42,867 - INFO -  MySQL Rows: 2348 | PostgreSQL Rows: 2348
+2025-02-19 13:14:42,959 - INFO - ✅ Table common_ticket_details data matches perfectly!
+2025-02-19 13:14:42,959 - INFO - 🔍 Table: version_details 
+2025-02-19 13:14:42,968 - INFO - MySQL Constraints
+2025-02-19 13:14:42,968 - WARNING - {'primary_key': ['application_id'], 'foreign_keys': [], 'unique_keys': ['application_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'application_id'}}
+2025-02-19 13:14:42,968 - INFO - Postgres Constraints
+2025-02-19 13:14:42,968 - WARNING - {'primary_key': ['application_id'], 'foreign_keys': [], 'unique_keys': ['application_id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'application_id'}}
+2025-02-19 13:14:42,969 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-19 13:14:42,971 - INFO - ✅ Table version_details data matches perfectly!
+2025-02-19 13:14:42,971 - INFO - 🔍 Table: cleanup_job 
+2025-02-19 13:14:42,979 - INFO - MySQL Constraints
+2025-02-19 13:14:42,979 - WARNING - {'primary_key': ['job_id'], 'foreign_keys': [], 'unique_keys': ['job_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_at', 'last_modified_at', 'job_id'}}
+2025-02-19 13:14:42,979 - INFO - Postgres Constraints
+2025-02-19 13:14:42,979 - WARNING - {'primary_key': ['job_id'], 'foreign_keys': [], 'unique_keys': ['job_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'job_status': 'NULL::character varying', 'created_by': 'NULL::character varying', 'last_modified_by': 'NULL::character varying'}, 'not_null': {'created_at', 'last_modified_at', 'job_id'}}
+2025-02-19 13:14:42,980 - INFO -  MySQL Rows: 87 | PostgreSQL Rows: 87
+2025-02-19 13:14:42,983 - INFO - ✅ Table cleanup_job data matches perfectly!
+2025-02-19 13:14:42,983 - INFO - 🔍 Table: login_account_password 
+2025-02-19 13:14:42,990 - INFO - MySQL Constraints
+2025-02-19 13:14:42,990 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['account_id'], 'check_constraints': [], 'default_values': {'bad_attempts': '0', 'creation_date': 'CURRENT_TIMESTAMP', 'expired': '0', 'locked': '0', 'update_time': 'CURRENT_TIMESTAMP'}, 'not_null': {'password', 'update_time', 'account_id', 'user_name', 'creation_date'}}
+2025-02-19 13:14:42,990 - INFO - Postgres Constraints
+2025-02-19 13:14:42,990 - WARNING - {'primary_key': ['account_id'], 'foreign_keys': [('account_id', 'login_accounts', 'account_id')], 'unique_keys': ['account_id'], 'check_constraints': [], 'default_values': {'update_time': 'CURRENT_TIMESTAMP', 'expired': 'false', 'creation_date': 'CURRENT_TIMESTAMP', 'bad_attempts': '0', 'locked': 'false'}, 'not_null': {'password', 'update_time', 'account_id', 'user_name', 'creation_date'}}
+2025-02-19 13:14:42,992 - INFO -  MySQL Rows: 2777 | PostgreSQL Rows: 2777
+2025-02-19 13:14:43,083 - INFO - ✅ Table login_account_password data matches perfectly!
+2025-02-19 13:14:43,083 - INFO - 🔍 Table: white_list 
+2025-02-19 13:14:43,092 - INFO - MySQL Constraints
+2025-02-19 13:14:43,092 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {}, 'not_null': {'domain', 'id', 'email_address'}}
+2025-02-19 13:14:43,092 - INFO - Postgres Constraints
+2025-02-19 13:14:43,092 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {'id': "nextval('white_list_id_seq'::regclass)"}, 'not_null': {'domain', 'id', 'email_address'}}
+2025-02-19 13:14:43,093 - INFO -  MySQL Rows: 236 | PostgreSQL Rows: 236
+2025-02-19 13:14:43,098 - INFO - ✅ Table white_list data matches perfectly!
+2025-02-19 13:14:43,098 - INFO - 🔍 Table: enterprise_account 
+2025-02-19 13:14:43,108 - INFO - MySQL Constraints
+2025-02-19 13:14:43,108 - WARNING - {'primary_key': ['ent_id'], 'foreign_keys': [], 'unique_keys': ['ent_id', 'ent_name'], 'check_constraints': [], 'default_values': {'admin_account_id': 'DEFAULT_ADMIN_ACC', 'admin_mail_id': 'DEFAULT_ADMIN_MAIL_ID', 'created_at': 'CURRENT_TIMESTAMP', 'enterprise_mode': 'own', 'is_configured': '0', 'is_custom_domain': "b'0'", 'is_primary': '0', 'last_modified_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'enterprise_mode', 'last_modified_at', 'admin_account_id', 'ent_name', 'created_at', 'ent_id', 'admin_mail_id'}}
+2025-02-19 13:14:43,108 - INFO - Postgres Constraints
+2025-02-19 13:14:43,108 - WARNING - {'primary_key': ['ent_id'], 'foreign_keys': [], 'unique_keys': ['ent_id', 'ent_name'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'listed': 'false', 'is_custom_domain': 'false', 'is_configured': 'false', 'is_primary': 'false', 'admin_mail_id': "'DEFAULT_ADMIN_MAIL_ID'::character varying", 'enterprise_mode': "'own'::character varying", 'admin_account_id': "'DEFAULT_ADMIN_ACC'::character varying"}, 'not_null': {'last_modified_at', 'enterprise_mode', 'admin_account_id', 'ent_name', 'created_at', 'ent_id', 'admin_mail_id'}}
+2025-02-19 13:14:43,109 - INFO -  MySQL Rows: 3908 | PostgreSQL Rows: 3908
+2025-02-19 13:14:43,345 - INFO - ✅ Table enterprise_account data matches perfectly!
+2025-02-19 13:14:43,345 - INFO - 🔍 Table: enterprise_account_properties 
+2025-02-19 13:14:43,355 - INFO - MySQL Constraints
+2025-02-19 13:14:43,355 - WARNING - {'primary_key': ['ent_id'], 'foreign_keys': [('locale', 'supported_locale', 'locale_id')], 'unique_keys': ['ent_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'created_by': 'DEFAULT', 'last_modified_at': 'CURRENT_TIMESTAMP', 'last_modified_by': 'DEFAULT', 'locale': 'en', 'max_project_branches': '0'}, 'not_null': {'last_modified_at', 'created_by', 'last_modified_by', 'created_at', 'ent_id', 'default_package_name'}}
+2025-02-19 13:14:43,355 - INFO - Postgres Constraints
+2025-02-19 13:14:43,355 - WARNING - {'primary_key': ['ent_id'], 'foreign_keys': [('locale', 'supported_locale', 'locale_id')], 'unique_keys': ['ent_id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'last_modified_at': 'CURRENT_TIMESTAMP', 'max_project_branches': '0', 'created_by': "'DEFAULT'::character varying", 'locale': "'en'::character varying", 'last_modified_by': "'DEFAULT'::character varying"}, 'not_null': {'last_modified_at', 'created_by', 'last_modified_by', 'created_at', 'ent_id', 'default_package_name'}}
+2025-02-19 13:14:43,357 - INFO -  MySQL Rows: 3688 | PostgreSQL Rows: 3688
+2025-02-19 13:14:43,539 - INFO - ✅ Table enterprise_account_properties data matches perfectly!
+2025-02-19 13:14:43,540 - INFO - 🔍 Table: desktop_studio_users 
+2025-02-19 13:14:43,549 - INFO - MySQL Constraints
+2025-02-19 13:14:43,549 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP'}, 'not_null': {'created_at', 'id'}}
+2025-02-19 13:14:43,549 - INFO - Postgres Constraints
+2025-02-19 13:14:43,549 - WARNING - {'primary_key': ['id'], 'foreign_keys': [], 'unique_keys': ['id'], 'check_constraints': [], 'default_values': {'created_at': 'CURRENT_TIMESTAMP', 'first_name': 'NULL::character varying', 'last_name': 'NULL::character varying', 'ip_address': 'NULL::character varying', 'studio_version': 'NULL::character varying', 'email_id': 'NULL::character varying'}, 'not_null': {'created_at', 'id'}}
+2025-02-19 13:14:43,550 - INFO -  MySQL Rows: 31 | PostgreSQL Rows: 31
+2025-02-19 13:14:43,553 - INFO - ✅ Table desktop_studio_users data matches perfectly!
+2025-02-19 13:14:43,553 - INFO - ========== Comparison Completed ==========

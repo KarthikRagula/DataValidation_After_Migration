@@ -5,6 +5,162 @@ import hashlib
 from tabulate import tabulate
 from datetime import datetime
 
+def get_mysql_constraints(mysql_cursor, table, mysql_db):
+    """Fetch constraints from MySQL"""
+    constraints = {
+        "primary_key": set(),
+        "foreign_keys": set(),
+        "unique_keys": set(),
+        "check_constraints": set(),
+        "default_values": {},
+        "not_null": set()
+    }
+    
+    # Fetch Primary Key
+    mysql_cursor.execute(
+        """
+        SELECT COLUMN_NAME FROM information_schema.key_column_usage
+        WHERE table_name = %s AND table_schema = %s AND constraint_name = 'PRIMARY'
+        """, (table, mysql_db)
+    )
+    constraints["primary_key"] = sorted({row[0].lower() for row in mysql_cursor.fetchall()})
+    
+    # Fetch Foreign Keys
+    mysql_cursor.execute(
+        """
+        SELECT COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
+        FROM information_schema.key_column_usage
+        WHERE table_name = %s AND table_schema = %s AND REFERENCED_TABLE_NAME IS NOT NULL
+        """, (table, mysql_db)
+    )
+    constraints["foreign_keys"] = sorted({(row[0].lower(), row[1].lower(), row[2].lower()) for row in mysql_cursor.fetchall()})
+    
+    # Fetch Unique Constraints
+    mysql_cursor.execute(
+        """
+        SELECT DISTINCT INDEX_NAME, COLUMN_NAME FROM information_schema.statistics
+        WHERE table_name = %s AND table_schema = %s AND non_unique = 0
+        """, (table, mysql_db)
+    )
+    constraints["unique_keys"] = sorted({row[1].lower() for row in mysql_cursor.fetchall()})
+    
+    # Fetch CHECK Constraints 
+    mysql_cursor.execute(
+        """
+        SELECT tc.constraint_name, cc.check_clause 
+        FROM information_schema.table_constraints tc
+        JOIN information_schema.check_constraints cc 
+        ON tc.constraint_name = cc.constraint_name
+        WHERE tc.table_schema = %s AND tc.table_name = %s
+        """, (mysql_db, table)
+    )
+    constraints["check_constraints"] = sorted({row[1].strip().lower() for row in mysql_cursor.fetchall()})
+
+    # Fetch Default Values & Not Null
+    mysql_cursor.execute(
+        """
+        SELECT COLUMN_NAME, COLUMN_DEFAULT, IS_NULLABLE FROM information_schema.columns
+        WHERE table_name = %s AND table_schema = %s
+        """, (table, mysql_db)
+    )
+    for row in mysql_cursor.fetchall():
+        column, default_value, is_nullable = row
+        if default_value:
+            constraints["default_values"][column.lower()] = default_value
+        if is_nullable == 'NO':
+            constraints["not_null"].add(column.lower())
+    
+    return constraints
+
+def get_postgres_constraints(postgres_cursor, table):
+    """Fetch constraints from PostgreSQL"""
+    constraints = {
+        "primary_key": set(),
+        "foreign_keys": set(),
+        "unique_keys": set(),
+        "check_constraints": set(),
+        "default_values": {},
+        "not_null": set()
+    }
+    
+    # Fetch Primary Key
+    postgres_cursor.execute(
+        """
+        SELECT a.attname FROM pg_index i
+        JOIN pg_attribute a ON a.attrelid = i.indrelid AND a.attnum = ANY(i.indkey)
+        WHERE i.indrelid = %s::regclass AND i.indisprimary
+        """, (table,)
+    )
+    constraints["primary_key"] = sorted({row[0] for row in postgres_cursor.fetchall()})
+    
+    # Fetch Foreign Keys
+    postgres_cursor.execute(
+        """
+        SELECT a.attname, c.confrelid::regclass, d.attname
+        FROM pg_constraint c
+        JOIN pg_attribute a ON a.attrelid = c.conrelid AND a.attnum = ANY(c.conkey)
+        JOIN pg_attribute d ON d.attrelid = c.confrelid AND d.attnum = ANY(c.confkey)
+        WHERE c.contype = 'f' AND c.conrelid = %s::regclass
+        """, (table,)
+    )
+    constraints["foreign_keys"] = sorted({(row[0], row[1], row[2]) for row in postgres_cursor.fetchall()})
+    
+    # Fetch Unique Constraints
+    postgres_cursor.execute(
+        """
+        SELECT a.attname FROM pg_index i
+        JOIN pg_attribute a ON a.attrelid = i.indrelid AND a.attnum = ANY(i.indkey)
+        WHERE i.indrelid = %s::regclass AND i.indisunique
+        """, (table,)
+    )
+    constraints["unique_keys"] = sorted({row[0] for row in postgres_cursor.fetchall()})
+
+    # Fetch CHECK Constraints
+    postgres_cursor.execute(
+        """
+        SELECT conname, pg_get_constraintdef(oid)
+        FROM pg_constraint
+        WHERE conrelid = %s::regclass AND contype = 'c'
+        """, (table,)
+    )
+    constraints["check_constraints"] = sorted({row[1].strip() for row in postgres_cursor.fetchall()})
+    
+    # Fetch Default Values & Not Null
+    postgres_cursor.execute(
+        """
+        SELECT column_name, column_default, is_nullable
+        FROM information_schema.columns
+        WHERE table_name = %s
+        """, (table,)
+    )
+    for row in postgres_cursor.fetchall():
+        column, default_value, is_nullable = row
+        if default_value:
+            constraints["default_values"][column] = default_value
+        if is_nullable == 'NO':
+            constraints["not_null"].add(column)
+    
+    return constraints
+def compare_constraints(mysql_constraints, postgres_constraints, table_name):
+    """Compare constraints between MySQL and PostgreSQL"""
+    logging.info(f"MySQL Constraints")
+    logging.warning(mysql_constraints)
+    logging.info(f"Postgres Constraints")
+    logging.warning(postgres_constraints)
+    for key in mysql_constraints.keys():
+        if isinstance(mysql_constraints[key], set) and isinstance(postgres_constraints[key], set):
+            # Set-based comparison for primary key, foreign keys, unique keys, check constraints, not null
+            missing_in_postgres = mysql_constraints[key] - postgres_constraints[key]
+            missing_in_mysql = postgres_constraints[key] - mysql_constraints[key]
+        elif isinstance(mysql_constraints[key], dict) and isinstance(postgres_constraints[key], dict):
+            # Dictionary-based comparison for default values
+            missing_in_postgres = {k: v for k, v in mysql_constraints[key].items() if k not in postgres_constraints[key]}
+            missing_in_mysql = {k: v for k, v in postgres_constraints[key].items() if k not in mysql_constraints[key]}
+    if missing_in_postgres:
+        logging.warning(f"🔴 Missing {key} in PostgreSQL for table {table_name}: {missing_in_postgres}")  
+    if missing_in_mysql:
+        logging.warning(f"🔴 Missing {key} in MySQL for table {table_name}: {missing_in_mysql}")
+
 def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns):
     if not missing_hashes:
         return
@@ -142,6 +298,7 @@ except Exception as e:
 for table in mysql_tables:
     if table not in postgres_tables:
         continue
+    logging.info(f"🔍 Table: {table} ")
     try:
         # ✅ MySQL Query using INFORMATION_SCHEMA for column details
         mysql_cursor.execute(f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = %s AND TABLE_SCHEMA = %s ORDER BY ORDINAL_POSITION;", (table.upper(), mysql_db))
@@ -166,7 +323,10 @@ for table in mysql_tables:
         msg = f"❌ Error fetching column names for table {table}: {e}\n{traceback.format_exc()}"
         logging.error(msg)
         continue
-    
+    mysql_constraints = get_mysql_constraints(mysql_cursor, table.upper(), mysql_db)
+    postgres_constraints = get_postgres_constraints(postgres_cursor, table)
+    compare_constraints(mysql_constraints, postgres_constraints, table)
+
     # ✅ Compare row-by-row in batches
     try:
         mysql_cursor.execute(f"SELECT COUNT(*) FROM {table.upper()};")
@@ -177,7 +337,7 @@ for table in mysql_tables:
         postgres_row_count = postgres_cursor.fetchone()[0]
 
         # ✅ Log the row counts
-        logging.info(f"🔍 Table: {table} | MySQL Rows: {mysql_row_count} | PostgreSQL Rows: {postgres_row_count}")
+        logging.info(f" MySQL Rows: {mysql_row_count} | PostgreSQL Rows: {postgres_row_count}")
 
         # ✅ If row counts don't match, log a warning and continue
         if mysql_row_count != postgres_row_count:
