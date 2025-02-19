@@ -2,6 +2,31 @@ import mysql.connector
 import psycopg2
 import logging
 import hashlib
+from tabulate import tabulate
+from datetime import datetime
+
+def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns):
+    if not missing_hashes:
+        return
+    missing_rows = [hash_map[hash_value] for hash_value in missing_hashes]
+    # ✅ Convert datetime values to string for better readability
+    formatted_rows = [
+        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else value for value in row]
+        for row in missing_rows
+    ]
+    # ✅ Dynamically set column width based on MySQL column name lengths
+    column_widths = [max(len(col), 10) for col in mysql_columns]  # Ensure a minimum width of 10
+    # ✅ Apply column widths to headers
+    formatted_headers = [col.ljust(width) for col, width in zip(mysql_columns, column_widths)]
+    # ✅ Apply column widths to each row
+    formatted_rows = [
+        [str(value).ljust(width)[:width] for value, width in zip(row, column_widths)] for row in formatted_rows
+    ]
+    # ✅ Format table with proper alignment
+    table_str = tabulate(formatted_rows, headers=formatted_headers, tablefmt="grid")
+    # ✅ Log & Print Neatly
+    log_message = f"\n❌ {len(missing_hashes)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 100
+    logging.warning(log_message)  # Log as warning
 
 def normalize_value(value):
     """Normalize MySQL and PostgreSQL values for consistent hashing."""
@@ -173,14 +198,10 @@ for table in mysql_tables:
         missing_in_mysql = postgres_hash_map.keys() - mysql_hash_map.keys()
 
         if missing_in_postgres:
-            logging.warning(f"❌ {len(missing_in_postgres)} rows in MySQL are missing in PostgreSQL for table {table}")
-            for hash_value in missing_in_postgres:
-                logging.warning(f"MySQL Missing Row: {mysql_hash_map[hash_value]}")
+            print_missing_rows(missing_in_postgres, mysql_hash_map, "PostgreSQL", table, mysql_columns)
 
         if missing_in_mysql:
-            logging.warning(f"❌ {len(missing_in_mysql)} rows in PostgreSQL are missing in MySQL for table {table}")
-            for hash_value in missing_in_mysql:
-                logging.warning(f"PostgreSQL Missing Row: {postgres_hash_map[hash_value]}")
+            print_missing_rows(missing_in_mysql, postgres_hash_map, "MySQL", table, mysql_columns)
 
         if not missing_in_postgres and not missing_in_mysql:
             logging.info(f"✅ Table {table} data matches perfectly!")
