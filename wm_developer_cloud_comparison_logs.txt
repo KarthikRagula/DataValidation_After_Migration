@@ -1,0 +1,83 @@
+2025-02-21 16:21:04,652 - INFO - ========== Comparison started ==========
+2025-02-21 16:21:04,659 - INFO - package: mysql.connector.plugins
+2025-02-21 16:21:04,659 - INFO - plugin_name: caching_sha2_password
+2025-02-21 16:21:04,659 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-21 16:21:04,661 - INFO - ✅ Connected to MySQL successfully
+2025-02-21 16:21:04,668 - INFO - ✅ Connected to PostgreSQL successfully
+2025-02-21 16:21:04,689 - INFO - Number of tables in MySQL: 26
+2025-02-21 16:21:04,689 - INFO - Number of tables in PostgreSQL: 24
+2025-02-21 16:21:04,689 - INFO - ✅ No tables are missing in MySQL.
+2025-02-21 16:21:04,689 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-21 16:21:04,689 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-21 16:21:04,689 - INFO - 🔍 Table: qrtz_triggers 
+2025-02-21 16:21:04,730 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-21 16:21:04,732 - INFO - ✅ Table qrtz_triggers data matches perfectly!
+2025-02-21 16:21:04,732 - INFO - 🔍 Table: k8s_volumes 
+2025-02-21 16:21:04,747 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:21:04,748 - INFO - ✅ Table k8s_volumes data matches perfectly!
+2025-02-21 16:21:04,748 - INFO - 🔍 Table: qrtz_calendars 
+2025-02-21 16:21:04,764 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:21:04,765 - INFO - ✅ Table qrtz_calendars data matches perfectly!
+2025-02-21 16:21:04,765 - INFO - 🔍 Table: container_composition_last_access_time 
+2025-02-21 16:21:04,784 - INFO -  MySQL Rows: 11 | PostgreSQL Rows: 11
+2025-02-21 16:21:04,785 - INFO - ✅ Table container_composition_last_access_time data matches perfectly!
+2025-02-21 16:21:04,785 - INFO - 🔍 Table: qrtz_paused_trigger_grps 
+2025-02-21 16:21:04,802 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:21:04,803 - INFO - ✅ Table qrtz_paused_trigger_grps data matches perfectly!
+2025-02-21 16:21:04,803 - INFO - 🔍 Table: remote_studio_meta 
+2025-02-21 16:21:04,820 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:21:04,821 - INFO - ✅ Table remote_studio_meta data matches perfectly!
+2025-02-21 16:21:04,821 - INFO - 🔍 Table: user_workspace 
+2025-02-21 16:21:04,841 - INFO -  MySQL Rows: 569 | PostgreSQL Rows: 569
+2025-02-21 16:21:04,883 - INFO - ✅ Table user_workspace data matches perfectly!
+2025-02-21 16:21:04,884 - INFO - 🔍 Table: k8s_user_workspace 
+2025-02-21 16:21:04,888 - WARNING - ❌ Columns present in PostgreSQL but missing in MySQL: ['created_at', 'last_modified_at']
+2025-02-21 16:21:04,888 - INFO - 🔍 Table: lb_instance 
+2025-02-21 16:21:04,911 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-21 16:21:04,912 - INFO - ✅ Table lb_instance data matches perfectly!
+2025-02-21 16:21:04,912 - INFO - 🔍 Table: qrtz_job_details 
+2025-02-21 16:21:04,929 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-21 16:21:04,931 - INFO - ✅ Table qrtz_job_details data matches perfectly!
+2025-02-21 16:21:04,931 - INFO - 🔍 Table: wm_cluster 
+2025-02-21 16:21:04,949 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-21 16:21:04,951 - INFO - ✅ Table wm_cluster data matches perfectly!
+2025-02-21 16:21:04,951 - INFO - 🔍 Table: lb_entry_log 
+2025-02-21 16:21:05,549 - INFO -  MySQL Rows: 1570410 | PostgreSQL Rows: 1570410
+2025-02-21 16:22:32,078 - INFO - ✅ Table lb_entry_log data matches perfectly!
+2025-02-21 16:22:32,078 - INFO - 🔍 Table: qrtz_simple_triggers 
+2025-02-21 16:22:32,129 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-21 16:22:32,459 - INFO - ✅ Table qrtz_simple_triggers data matches perfectly!
+2025-02-21 16:22:32,459 - INFO - 🔍 Table: qrtz_cron_triggers 
+2025-02-21 16:22:32,485 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:22:32,487 - INFO - ✅ Table qrtz_cron_triggers data matches perfectly!
+2025-02-21 16:22:32,487 - INFO - 🔍 Table: qrtz_fired_triggers 
+2025-02-21 16:22:32,514 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:22:32,517 - INFO - ✅ Table qrtz_fired_triggers data matches perfectly!
+2025-02-21 16:22:32,517 - INFO - 🔍 Table: user_pod_provision_response 
+2025-02-21 16:22:32,535 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:22:32,536 - INFO - ✅ Table user_pod_provision_response data matches perfectly!
+2025-02-21 16:22:32,536 - INFO - 🔍 Table: activity_progress_tracker 
+2025-02-21 16:22:32,553 - INFO -  MySQL Rows: 66 | PostgreSQL Rows: 66
+2025-02-21 16:22:32,563 - INFO - ✅ Table activity_progress_tracker data matches perfectly!
+2025-02-21 16:22:32,563 - INFO - 🔍 Table: qrtz_blob_triggers 
+2025-02-21 16:22:32,586 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:22:32,588 - INFO - ✅ Table qrtz_blob_triggers data matches perfectly!
+2025-02-21 16:22:32,588 - INFO - 🔍 Table: user_account 
+2025-02-21 16:22:32,617 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
+2025-02-21 16:22:32,718 - INFO - ✅ Table user_account data matches perfectly!
+2025-02-21 16:22:32,718 - INFO - 🔍 Table: qrtz_simprop_triggers 
+2025-02-21 16:22:32,733 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:22:32,734 - INFO - ✅ Table qrtz_simprop_triggers data matches perfectly!
+2025-02-21 16:22:32,734 - INFO - 🔍 Table: lb_entries 
+2025-02-21 16:22:37,364 - INFO -  MySQL Rows: 7809131 | PostgreSQL Rows: 7809131
+2025-02-21 16:32:15,308 - INFO - ✅ Table lb_entries data matches perfectly!
+2025-02-21 16:32:15,317 - INFO - 🔍 Table: qrtz_locks 
+2025-02-21 16:32:15,625 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-21 16:32:17,502 - INFO - ✅ Table qrtz_locks data matches perfectly!
+2025-02-21 16:32:17,502 - INFO - 🔍 Table: user_container_composition 
+2025-02-21 16:32:17,518 - INFO -  MySQL Rows: 443 | PostgreSQL Rows: 443
+2025-02-21 16:32:17,543 - INFO - ✅ Table user_container_composition data matches perfectly!
+2025-02-21 16:32:17,543 - INFO - 🔍 Table: qrtz_scheduler_state 
+2025-02-21 16:32:17,557 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-21 16:32:17,558 - INFO - ✅ Table qrtz_scheduler_state data matches perfectly!
+2025-02-21 16:32:17,560 - INFO - ========== Comparison Completed ==========

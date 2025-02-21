@@ -1,0 +1,143 @@
+2025-02-21 16:16:12,207 - INFO - ========== Comparison started ==========
+2025-02-21 16:16:12,211 - INFO - package: mysql.connector.plugins
+2025-02-21 16:16:12,211 - INFO - plugin_name: caching_sha2_password
+2025-02-21 16:16:12,211 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-21 16:16:12,215 - INFO - ✅ Connected to MySQL successfully
+2025-02-21 16:16:12,220 - INFO - ✅ Connected to PostgreSQL successfully
+2025-02-21 16:16:12,240 - INFO - Number of tables in MySQL: 45
+2025-02-21 16:16:12,240 - INFO - Number of tables in PostgreSQL: 43
+2025-02-21 16:16:12,240 - INFO - ✅ No tables are missing in MySQL.
+2025-02-21 16:16:12,240 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-21 16:16:12,240 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-21 16:16:12,240 - INFO - 🔍 Table: qrtz_triggers 
+2025-02-21 16:16:12,277 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-21 16:16:12,281 - INFO - ✅ Table qrtz_triggers data matches perfectly!
+2025-02-21 16:16:12,281 - INFO - 🔍 Table: user_account 
+2025-02-21 16:16:12,316 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
+2025-02-21 16:16:12,400 - INFO - ✅ Table user_account data matches perfectly!
+2025-02-21 16:16:12,400 - INFO - 🔍 Table: container_template_autohealing_info 
+2025-02-21 16:16:12,411 - WARNING - 🔴 Missing not_null in PostgreSQL for table container_template_autohealing_info: {'last_heal_time'}
+2025-02-21 16:16:12,416 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:12,417 - INFO - ✅ Table container_template_autohealing_info data matches perfectly!
+2025-02-21 16:16:12,417 - INFO - 🔍 Table: container_composition_container_vs_health_check 
+2025-02-21 16:16:12,432 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:12,433 - INFO - ✅ Table container_composition_container_vs_health_check data matches perfectly!
+2025-02-21 16:16:12,433 - INFO - 🔍 Table: activity_progress_tracker 
+2025-02-21 16:16:12,518 - INFO -  MySQL Rows: 24953 | PostgreSQL Rows: 24953
+2025-02-21 16:16:13,957 - INFO - ✅ Table activity_progress_tracker data matches perfectly!
+2025-02-21 16:16:13,957 - INFO - 🔍 Table: bridge_info 
+2025-02-21 16:16:13,981 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:13,994 - INFO - ✅ Table bridge_info data matches perfectly!
+2025-02-21 16:16:13,994 - INFO - 🔍 Table: container_composition_template 
+2025-02-21 16:16:14,176 - INFO -  MySQL Rows: 22321 | PostgreSQL Rows: 22321
+2025-02-21 16:16:15,083 - INFO - ✅ Table container_composition_template data matches perfectly!
+2025-02-21 16:16:15,083 - INFO - 🔍 Table: container_composition_operation_series 
+2025-02-21 16:16:15,390 - INFO -  MySQL Rows: 105831 | PostgreSQL Rows: 105831
+2025-02-21 16:16:20,312 - INFO - ✅ Table container_composition_operation_series data matches perfectly!
+2025-02-21 16:16:20,312 - INFO - 🔍 Table: key_pair 
+2025-02-21 16:16:20,330 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-21 16:16:20,361 - INFO - ✅ Table key_pair data matches perfectly!
+2025-02-21 16:16:20,361 - INFO - 🔍 Table: container_exec_status 
+2025-02-21 16:16:20,374 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:20,375 - INFO - ✅ Table container_exec_status data matches perfectly!
+2025-02-21 16:16:20,375 - INFO - 🔍 Table: qrtz_simple_triggers 
+2025-02-21 16:16:20,386 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-21 16:16:20,387 - INFO - ✅ Table qrtz_simple_triggers data matches perfectly!
+2025-02-21 16:16:20,387 - INFO - 🔍 Table: container_composition_container 
+2025-02-21 16:16:20,389 - WARNING - ❌ Columns present in MySQL but missing in PostgreSQL: ['level']
+2025-02-21 16:16:20,389 - INFO - 🔍 Table: container_event_history 
+2025-02-21 16:16:20,513 - INFO -  MySQL Rows: 35502 | PostgreSQL Rows: 35502
+2025-02-21 16:16:22,075 - INFO - ✅ Table container_event_history data matches perfectly!
+2025-02-21 16:16:22,075 - INFO - 🔍 Table: container_template_dependency 
+2025-02-21 16:16:22,096 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:22,108 - INFO - ✅ Table container_template_dependency data matches perfectly!
+2025-02-21 16:16:22,108 - INFO - 🔍 Table: container 
+2025-02-21 16:16:22,122 - INFO -  MySQL Rows: 84 | PostgreSQL Rows: 84
+2025-02-21 16:16:22,129 - INFO - ✅ Table container data matches perfectly!
+2025-02-21 16:16:22,129 - INFO - 🔍 Table: passivation_cache 
+2025-02-21 16:16:22,150 - INFO -  MySQL Rows: 4871 | PostgreSQL Rows: 4871
+2025-02-21 16:16:22,286 - INFO - ✅ Table passivation_cache data matches perfectly!
+2025-02-21 16:16:22,286 - INFO - 🔍 Table: qrtz_scheduler_state 
+2025-02-21 16:16:22,311 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-21 16:16:22,313 - INFO - ✅ Table qrtz_scheduler_state data matches perfectly!
+2025-02-21 16:16:22,313 - INFO - 🔍 Table: container_template 
+2025-02-21 16:16:22,316 - WARNING - ❌ Columns present in MySQL but missing in PostgreSQL: ['position']
+2025-02-21 16:16:22,316 - INFO - 🔍 Table: container_template_action_history 
+2025-02-21 16:16:22,329 - WARNING - 🔴 Missing not_null in MySQL for table container_template_action_history: {'container_composition_id'}
+2025-02-21 16:16:22,374 - INFO -  MySQL Rows: 15422 | PostgreSQL Rows: 15422
+2025-02-21 16:16:23,112 - INFO - ✅ Table container_template_action_history data matches perfectly!
+2025-02-21 16:16:23,112 - INFO - 🔍 Table: container_composition_ipam 
+2025-02-21 16:16:23,135 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,141 - INFO - ✅ Table container_composition_ipam data matches perfectly!
+2025-02-21 16:16:23,141 - INFO - 🔍 Table: dns_server_info 
+2025-02-21 16:16:23,161 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,162 - INFO - ✅ Table dns_server_info data matches perfectly!
+2025-02-21 16:16:23,162 - INFO - 🔍 Table: wm_container_types 
+2025-02-21 16:16:23,187 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-21 16:16:23,190 - INFO - ✅ Table wm_container_types data matches perfectly!
+2025-02-21 16:16:23,190 - INFO - 🔍 Table: container_template_autoscaling_info 
+2025-02-21 16:16:23,205 - WARNING - 🔴 Missing not_null in PostgreSQL for table container_template_autoscaling_info: {'last_action_time'}
+2025-02-21 16:16:23,208 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,209 - INFO - ✅ Table container_template_autoscaling_info data matches perfectly!
+2025-02-21 16:16:23,209 - INFO - 🔍 Table: container_composition_schedule_suggestion 
+2025-02-21 16:16:23,219 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-21 16:16:23,220 - INFO - ✅ Table container_composition_schedule_suggestion data matches perfectly!
+2025-02-21 16:16:23,220 - INFO - 🔍 Table: container_composition_actions 
+2025-02-21 16:16:23,233 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,234 - INFO - ✅ Table container_composition_actions data matches perfectly!
+2025-02-21 16:16:23,234 - INFO - 🔍 Table: qrtz_calendars 
+2025-02-21 16:16:23,244 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,245 - INFO - ✅ Table qrtz_calendars data matches perfectly!
+2025-02-21 16:16:23,245 - INFO - 🔍 Table: qrtz_paused_trigger_grps 
+2025-02-21 16:16:23,254 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,255 - INFO - ✅ Table qrtz_paused_trigger_grps data matches perfectly!
+2025-02-21 16:16:23,255 - INFO - 🔍 Table: qrtz_simprop_triggers 
+2025-02-21 16:16:23,266 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,267 - INFO - ✅ Table qrtz_simprop_triggers data matches perfectly!
+2025-02-21 16:16:23,267 - INFO - 🔍 Table: passivated_container 
+2025-02-21 16:16:23,282 - INFO -  MySQL Rows: 921 | PostgreSQL Rows: 921
+2025-02-21 16:16:23,323 - INFO - ✅ Table passivated_container data matches perfectly!
+2025-02-21 16:16:23,323 - INFO - 🔍 Table: container_composition 
+2025-02-21 16:16:23,331 - WARNING - 🔴 Missing not_null in MySQL for table container_composition: {'name'}
+2025-02-21 16:16:23,338 - INFO -  MySQL Rows: 940 | PostgreSQL Rows: 940
+2025-02-21 16:16:23,405 - INFO - ✅ Table container_composition data matches perfectly!
+2025-02-21 16:16:23,405 - INFO - 🔍 Table: qrtz_blob_triggers 
+2025-02-21 16:16:23,414 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,415 - INFO - ✅ Table qrtz_blob_triggers data matches perfectly!
+2025-02-21 16:16:23,415 - INFO - 🔍 Table: container_rw 
+2025-02-21 16:16:23,428 - INFO -  MySQL Rows: 783 | PostgreSQL Rows: 783
+2025-02-21 16:16:23,461 - INFO - ✅ Table container_rw data matches perfectly!
+2025-02-21 16:16:23,461 - INFO - 🔍 Table: container_volume_attachment 
+2025-02-21 16:16:23,477 - INFO -  MySQL Rows: 2182 | PostgreSQL Rows: 2182
+2025-02-21 16:16:23,527 - INFO - ✅ Table container_volume_attachment data matches perfectly!
+2025-02-21 16:16:23,527 - INFO - 🔍 Table: container_port_mapping 
+2025-02-21 16:16:23,538 - INFO -  MySQL Rows: 352 | PostgreSQL Rows: 352
+2025-02-21 16:16:23,547 - INFO - ✅ Table container_port_mapping data matches perfectly!
+2025-02-21 16:16:23,547 - INFO - 🔍 Table: qrtz_cron_triggers 
+2025-02-21 16:16:23,557 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:23,557 - INFO - ✅ Table qrtz_cron_triggers data matches perfectly!
+2025-02-21 16:16:23,557 - INFO - 🔍 Table: qrtz_locks 
+2025-02-21 16:16:23,567 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-21 16:16:23,567 - INFO - ✅ Table qrtz_locks data matches perfectly!
+2025-02-21 16:16:23,568 - INFO - 🔍 Table: container_volume 
+2025-02-21 16:16:23,600 - INFO -  MySQL Rows: 27013 | PostgreSQL Rows: 27013
+2025-02-21 16:16:24,495 - INFO - ✅ Table container_volume data matches perfectly!
+2025-02-21 16:16:24,495 - INFO - 🔍 Table: wm_shard 
+2025-02-21 16:16:24,521 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-21 16:16:24,528 - INFO - ✅ Table wm_shard data matches perfectly!
+2025-02-21 16:16:24,528 - INFO - 🔍 Table: wm_instance 
+2025-02-21 16:16:24,545 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-21 16:16:24,547 - INFO - ✅ Table wm_instance data matches perfectly!
+2025-02-21 16:16:24,547 - INFO - 🔍 Table: global_ports 
+2025-02-21 16:16:24,561 - INFO -  MySQL Rows: 699 | PostgreSQL Rows: 699
+2025-02-21 16:16:24,581 - INFO - ✅ Table global_ports data matches perfectly!
+2025-02-21 16:16:24,581 - INFO - 🔍 Table: qrtz_job_details 
+2025-02-21 16:16:24,597 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-21 16:16:24,599 - INFO - ✅ Table qrtz_job_details data matches perfectly!
+2025-02-21 16:16:24,599 - INFO - 🔍 Table: health_watch_services 
+2025-02-21 16:16:24,618 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:24,619 - INFO - ✅ Table health_watch_services data matches perfectly!
+2025-02-21 16:16:24,619 - INFO - 🔍 Table: qrtz_fired_triggers 
+2025-02-21 16:16:24,634 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-21 16:16:24,636 - INFO - ✅ Table qrtz_fired_triggers data matches perfectly!
+2025-02-21 16:16:24,636 - INFO - ========== Comparison Completed ==========

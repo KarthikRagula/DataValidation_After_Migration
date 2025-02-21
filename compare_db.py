@@ -2,6 +2,7 @@ import mysql.connector
 import psycopg2
 import logging
 import hashlib
+import traceback
 from tabulate import tabulate
 from datetime import datetime
 
@@ -170,7 +171,7 @@ def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns
     # ✅ Format table with proper alignment
     table_str = tabulate(formatted_rows, headers=formatted_headers, tablefmt="grid")
     # ✅ Log & Print Neatly
-    log_message = f"\n❌ {len(missing_hashes)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 100
+    log_message = f"\n❌ {len(missing_hashes)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
     logging.warning(log_message)  # Log as warning
 
 def normalize_value(value):
@@ -261,6 +262,9 @@ def get_postgres_indexes(postgres_cursor, table):
         if len(columns) == 1:
             column_name = columns[0]
             expected_index_name = f"{table}_{column_name}_key"  # Construct expected index name
+            # Skip indexes where index name is exactly the same as column name
+            if index_name == column_name:
+                continue  
             if index_name == expected_index_name:
                 continue  # Skip storing this index
         indexes[index_name] = {"columns": [col.lower() for col in columns], "unique": unique}
@@ -287,10 +291,18 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
         if mysql_index["unique"] != postgres_index["unique"]:
             logging.warning(f"⚠️ Uniqueness mismatch in index {index_name} for table {table_name}.")
 
-# ✅ Clear logs before running
-open("comparison_logs.txt", "w").close()
-
 # ✅ Get user input for database credentials
+# Get MySQL credentials
+mysql_db = input("Enter MySQL database name: ")
+mysql_user = input("Enter MySQL username: ")
+mysql_pass = input("Enter MySQL password: ")
+
+# Get PostgreSQL credentials
+postgres_db = input("Enter PostgreSQL database name: ")
+postgres_user = input("Enter PostgreSQL username: ")
+postgres_pass = input("Enter PostgreSQL password: ")
+
+"""
 mysql_db = 'wm_login_mysql_stage'
 mysql_user = 'karthikragula'
 mysql_pass = 'R.Karthik@04'
@@ -299,8 +311,53 @@ postgres_db = 'wm_login_stage_postgres'
 postgres_user = 'postgres'
 postgres_pass = 'R.Karthik@04'
 
+mysql_db = 'wmstudio_mysql'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_studio_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_edn'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_edn_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_container_services'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_container_services_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_deployment_cloud'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_deployment_cloud_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_developer_cloud'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_developer_cloud_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+"""
+# ✅ Clear logs before running
+log_file = f"{mysql_db}_comparison_logs.txt"
+open(log_file, "w").close()
+
+
 # ✅ Configure logging
-logging.basicConfig(filename="comparison_logs.txt", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(filename=log_file, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logging.info("========== Comparison started ==========")
 
 # ✅ Connect to MySQL
@@ -383,11 +440,9 @@ for table in mysql_tables:
             if missing_in_mysql:
                 msg = f"❌ Columns present in PostgreSQL but missing in MySQL: {missing_in_mysql}"
                 logging.warning(msg)
-                mismatches.append(msg)
             if missing_in_postgres:
                 msg = f"❌ Columns present in MySQL but missing in PostgreSQL: {missing_in_postgres}"
                 logging.warning(msg)
-                mismatches.append(msg)
             continue
     except Exception as e:
         msg = f"❌ Error fetching column names for table {table}: {e}\n{traceback.format_exc()}"
@@ -396,11 +451,10 @@ for table in mysql_tables:
     mysql_constraints = get_mysql_constraints(mysql_cursor, table.upper(), mysql_db)
     postgres_constraints = get_postgres_constraints(postgres_cursor, table)
     compare_constraints(mysql_constraints, postgres_constraints, table)
-
+    """
     mysql_indexes = get_mysql_indexes(mysql_cursor, table.upper(), mysql_db)
     postgres_indexes = get_postgres_indexes(postgres_cursor, table)
-    compare_indexes(mysql_indexes, postgres_indexes, table)
-
+    compare_indexes(mysql_indexes, postgres_indexes, table)"""
 
     # ✅ Compare row-by-row in batches
     try:

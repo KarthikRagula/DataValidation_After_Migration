@@ -1,0 +1,67 @@
+2025-02-21 16:18:57,330 - INFO - ========== Comparison started ==========
+2025-02-21 16:18:57,343 - INFO - package: mysql.connector.plugins
+2025-02-21 16:18:57,344 - INFO - plugin_name: caching_sha2_password
+2025-02-21 16:18:57,344 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-21 16:18:57,348 - INFO - ✅ Connected to MySQL successfully
+2025-02-21 16:18:57,352 - INFO - ✅ Connected to PostgreSQL successfully
+2025-02-21 16:18:57,372 - INFO - Number of tables in MySQL: 0
+2025-02-21 16:18:57,373 - INFO - Number of tables in PostgreSQL: 57
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: aws_instance_deployment_target
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: azure_resource
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_simple_triggers
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: azure_instance_deployment_target
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: app_pipeline_phase
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: azure_deployment_allowed_region
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: container_composition_last_access_time
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: container
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: aws_deployment_allowed_region
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: gcloud_region_zone_mapping
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: app_deployments
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: digital_ocean_credentials
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_fired_triggers
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_triggers
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: wmcloud_deployment_target
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: lb_entry_log
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: deployment_target_ssh_access
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_simprop_triggers
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_calendars
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: cc_client_container_composition
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: app_pipeline_version
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: domain_certificate
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: app_pipeline
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: pipeline_template_phase
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: lb_instance
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: file_meta
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: pipeline_phase_hook
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: k8s_app_config
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: activity_progress_tracker
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: key_pair
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_locks
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: k8s_deployment_target
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_scheduler_state
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: k8s_context
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: lb_entries
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: k8s_cluster
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: trusted_certificate
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: pipeline_template
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: app_deployment_profile
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: app_build_request
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: gcloud_instance_deployment_target
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: user_account
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: registry_deployment_target
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: k8s_user
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_cron_triggers
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: azure_credential
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: azure_source_storage_account
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: gcloud_deployment_allowed_region
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_paused_trigger_grps
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: ssl_config
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_job_details
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: wm_cluster
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: user_container_composition
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: pipeline_phase_hook_execution
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: qrtz_blob_triggers
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: k8s_cluster_config
+2025-02-21 16:18:57,373 - WARNING - ❌ Table present in PostgreSQL but missing in MySQL: docker_image_registry
+2025-02-21 16:18:57,373 - INFO - ✅ No tables are missing in PostgreSQL.
+2025-02-21 16:18:57,374 - INFO - ========== Comparison Completed ==========
