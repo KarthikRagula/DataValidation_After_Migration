@@ -412,11 +412,12 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
             
 def main():
-    mysql_db = 'wm_login_mysql_stage'
+            
+    mysql_db = 'wm_deployment_cloud'
     mysql_user = 'karthikragula'
     mysql_pass = 'R.Karthik@04'
 
-    postgres_db = 'wm_login_stage_postgres'
+    postgres_db = 'wm_deployment_cloud_postgres'
     postgres_user = 'postgres'
     postgres_pass = 'R.Karthik@04'
 
