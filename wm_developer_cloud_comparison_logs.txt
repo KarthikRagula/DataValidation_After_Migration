@@ -1,83 +1,89 @@
-2025-02-21 16:21:04,652 - INFO - ========== Comparison started ==========
-2025-02-21 16:21:04,659 - INFO - package: mysql.connector.plugins
-2025-02-21 16:21:04,659 - INFO - plugin_name: caching_sha2_password
-2025-02-21 16:21:04,659 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-21 16:21:04,661 - INFO - ✅ Connected to MySQL successfully
-2025-02-21 16:21:04,668 - INFO - ✅ Connected to PostgreSQL successfully
-2025-02-21 16:21:04,689 - INFO - Number of tables in MySQL: 26
-2025-02-21 16:21:04,689 - INFO - Number of tables in PostgreSQL: 24
-2025-02-21 16:21:04,689 - INFO - ✅ No tables are missing in MySQL.
-2025-02-21 16:21:04,689 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-21 16:21:04,689 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-21 16:21:04,689 - INFO - 🔍 Table: qrtz_triggers 
-2025-02-21 16:21:04,730 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-21 16:21:04,732 - INFO - ✅ Table qrtz_triggers data matches perfectly!
-2025-02-21 16:21:04,732 - INFO - 🔍 Table: k8s_volumes 
-2025-02-21 16:21:04,747 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:21:04,748 - INFO - ✅ Table k8s_volumes data matches perfectly!
-2025-02-21 16:21:04,748 - INFO - 🔍 Table: qrtz_calendars 
-2025-02-21 16:21:04,764 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:21:04,765 - INFO - ✅ Table qrtz_calendars data matches perfectly!
-2025-02-21 16:21:04,765 - INFO - 🔍 Table: container_composition_last_access_time 
-2025-02-21 16:21:04,784 - INFO -  MySQL Rows: 11 | PostgreSQL Rows: 11
-2025-02-21 16:21:04,785 - INFO - ✅ Table container_composition_last_access_time data matches perfectly!
-2025-02-21 16:21:04,785 - INFO - 🔍 Table: qrtz_paused_trigger_grps 
-2025-02-21 16:21:04,802 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:21:04,803 - INFO - ✅ Table qrtz_paused_trigger_grps data matches perfectly!
-2025-02-21 16:21:04,803 - INFO - 🔍 Table: remote_studio_meta 
-2025-02-21 16:21:04,820 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:21:04,821 - INFO - ✅ Table remote_studio_meta data matches perfectly!
-2025-02-21 16:21:04,821 - INFO - 🔍 Table: user_workspace 
-2025-02-21 16:21:04,841 - INFO -  MySQL Rows: 569 | PostgreSQL Rows: 569
-2025-02-21 16:21:04,883 - INFO - ✅ Table user_workspace data matches perfectly!
-2025-02-21 16:21:04,884 - INFO - 🔍 Table: k8s_user_workspace 
-2025-02-21 16:21:04,888 - WARNING - ❌ Columns present in PostgreSQL but missing in MySQL: ['created_at', 'last_modified_at']
-2025-02-21 16:21:04,888 - INFO - 🔍 Table: lb_instance 
-2025-02-21 16:21:04,911 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-21 16:21:04,912 - INFO - ✅ Table lb_instance data matches perfectly!
-2025-02-21 16:21:04,912 - INFO - 🔍 Table: qrtz_job_details 
-2025-02-21 16:21:04,929 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-21 16:21:04,931 - INFO - ✅ Table qrtz_job_details data matches perfectly!
-2025-02-21 16:21:04,931 - INFO - 🔍 Table: wm_cluster 
-2025-02-21 16:21:04,949 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-21 16:21:04,951 - INFO - ✅ Table wm_cluster data matches perfectly!
-2025-02-21 16:21:04,951 - INFO - 🔍 Table: lb_entry_log 
-2025-02-21 16:21:05,549 - INFO -  MySQL Rows: 1570410 | PostgreSQL Rows: 1570410
-2025-02-21 16:22:32,078 - INFO - ✅ Table lb_entry_log data matches perfectly!
-2025-02-21 16:22:32,078 - INFO - 🔍 Table: qrtz_simple_triggers 
-2025-02-21 16:22:32,129 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-21 16:22:32,459 - INFO - ✅ Table qrtz_simple_triggers data matches perfectly!
-2025-02-21 16:22:32,459 - INFO - 🔍 Table: qrtz_cron_triggers 
-2025-02-21 16:22:32,485 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:22:32,487 - INFO - ✅ Table qrtz_cron_triggers data matches perfectly!
-2025-02-21 16:22:32,487 - INFO - 🔍 Table: qrtz_fired_triggers 
-2025-02-21 16:22:32,514 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:22:32,517 - INFO - ✅ Table qrtz_fired_triggers data matches perfectly!
-2025-02-21 16:22:32,517 - INFO - 🔍 Table: user_pod_provision_response 
-2025-02-21 16:22:32,535 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:22:32,536 - INFO - ✅ Table user_pod_provision_response data matches perfectly!
-2025-02-21 16:22:32,536 - INFO - 🔍 Table: activity_progress_tracker 
-2025-02-21 16:22:32,553 - INFO -  MySQL Rows: 66 | PostgreSQL Rows: 66
-2025-02-21 16:22:32,563 - INFO - ✅ Table activity_progress_tracker data matches perfectly!
-2025-02-21 16:22:32,563 - INFO - 🔍 Table: qrtz_blob_triggers 
-2025-02-21 16:22:32,586 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:22:32,588 - INFO - ✅ Table qrtz_blob_triggers data matches perfectly!
-2025-02-21 16:22:32,588 - INFO - 🔍 Table: user_account 
-2025-02-21 16:22:32,617 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
-2025-02-21 16:22:32,718 - INFO - ✅ Table user_account data matches perfectly!
-2025-02-21 16:22:32,718 - INFO - 🔍 Table: qrtz_simprop_triggers 
-2025-02-21 16:22:32,733 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:22:32,734 - INFO - ✅ Table qrtz_simprop_triggers data matches perfectly!
-2025-02-21 16:22:32,734 - INFO - 🔍 Table: lb_entries 
-2025-02-21 16:22:37,364 - INFO -  MySQL Rows: 7809131 | PostgreSQL Rows: 7809131
-2025-02-21 16:32:15,308 - INFO - ✅ Table lb_entries data matches perfectly!
-2025-02-21 16:32:15,317 - INFO - 🔍 Table: qrtz_locks 
-2025-02-21 16:32:15,625 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
-2025-02-21 16:32:17,502 - INFO - ✅ Table qrtz_locks data matches perfectly!
-2025-02-21 16:32:17,502 - INFO - 🔍 Table: user_container_composition 
-2025-02-21 16:32:17,518 - INFO -  MySQL Rows: 443 | PostgreSQL Rows: 443
-2025-02-21 16:32:17,543 - INFO - ✅ Table user_container_composition data matches perfectly!
-2025-02-21 16:32:17,543 - INFO - 🔍 Table: qrtz_scheduler_state 
-2025-02-21 16:32:17,557 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
-2025-02-21 16:32:17,558 - INFO - ✅ Table qrtz_scheduler_state data matches perfectly!
-2025-02-21 16:32:17,560 - INFO - ========== Comparison Completed ==========
+2025-02-24 11:15:19,325 - INFO - ========== Comparison started ==========
+2025-02-24 11:15:19,337 - INFO - package: mysql.connector.plugins
+2025-02-24 11:15:19,337 - INFO - plugin_name: caching_sha2_password
+2025-02-24 11:15:19,337 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-24 11:15:19,341 - INFO -  Connected to MySQL successfully
+2025-02-24 11:15:19,345 - INFO -  Connected to PostgreSQL successfully
+2025-02-24 11:15:19,364 - INFO - Number of tables in MySQL: 26
+2025-02-24 11:15:19,364 - INFO - Number of tables in PostgreSQL: 24
+2025-02-24 11:15:19,364 - INFO -  No tables are missing in MySQL.
+2025-02-24 11:15:19,364 - ERROR -  Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-24 11:15:19,364 - ERROR -  Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-24 11:15:19,364 - INFO - Table: QRTZ_CRON_TRIGGERS 
+2025-02-24 11:15:19,399 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:15:19,400 - INFO - Table QRTZ_CRON_TRIGGERS data matches perfectly!
+2025-02-24 11:15:19,400 - INFO - Table: K8S_VOLUMES 
+2025-02-24 11:15:19,419 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:15:19,420 - INFO - Table K8S_VOLUMES data matches perfectly!
+2025-02-24 11:15:19,420 - INFO - Table: CONTAINER_COMPOSITION_LAST_ACCESS_TIME 
+2025-02-24 11:15:19,439 - INFO -  MySQL Rows: 11 | PostgreSQL Rows: 11
+2025-02-24 11:15:19,441 - INFO - Table CONTAINER_COMPOSITION_LAST_ACCESS_TIME data matches perfectly!
+2025-02-24 11:15:19,441 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
+2025-02-24 11:15:19,454 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:15:19,455 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
+2025-02-24 11:15:19,455 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
+2025-02-24 11:15:19,469 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-24 11:15:19,470 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
+2025-02-24 11:15:19,470 - INFO - Table: USER_CONTAINER_COMPOSITION 
+2025-02-24 11:15:19,484 - INFO -  MySQL Rows: 443 | PostgreSQL Rows: 443
+2025-02-24 11:15:19,501 - INFO - Table USER_CONTAINER_COMPOSITION data matches perfectly!
+2025-02-24 11:15:19,501 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
+2025-02-24 11:15:19,516 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:15:19,516 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
+2025-02-24 11:15:19,516 - INFO - Table: ACTIVITY_PROGRESS_TRACKER 
+2025-02-24 11:15:19,529 - ERROR - Missing indexes in PostgreSQL for table ACTIVITY_PROGRESS_TRACKER: {'index_activity_progress_tracker_tenant_id'}
+2025-02-24 11:15:19,536 - INFO -  MySQL Rows: 66 | PostgreSQL Rows: 66
+2025-02-24 11:15:19,540 - INFO - Table ACTIVITY_PROGRESS_TRACKER data matches perfectly!
+2025-02-24 11:15:19,540 - INFO - Table: REMOTE_STUDIO_META 
+2025-02-24 11:15:19,559 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:15:19,560 - INFO - Table REMOTE_STUDIO_META data matches perfectly!
+2025-02-24 11:15:19,561 - INFO - Table: LB_ENTRIES 
+2025-02-24 11:15:23,951 - INFO -  MySQL Rows: 7809131 | PostgreSQL Rows: 7809131
+2025-02-24 11:24:47,301 - INFO - Table LB_ENTRIES data matches perfectly!
+2025-02-24 11:24:47,302 - INFO - Table: QRTZ_BLOB_TRIGGERS 
+2025-02-24 11:24:47,601 - ERROR - Missing indexes in PostgreSQL for table QRTZ_BLOB_TRIGGERS: {'sched_name'}
+2025-02-24 11:24:47,612 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:24:49,733 - INFO - Table QRTZ_BLOB_TRIGGERS data matches perfectly!
+2025-02-24 11:24:49,734 - INFO - Table: WM_CLUSTER 
+2025-02-24 11:24:49,767 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-24 11:24:49,769 - INFO - Table WM_CLUSTER data matches perfectly!
+2025-02-24 11:24:49,769 - INFO - Table: QRTZ_LOCKS 
+2025-02-24 11:24:49,789 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-24 11:24:49,790 - INFO - Table QRTZ_LOCKS data matches perfectly!
+2025-02-24 11:24:49,790 - INFO - Table: QRTZ_TRIGGERS 
+2025-02-24 11:24:49,809 - ERROR -  Column mismatch in index idx_qrtz_t_nft_misfire for table QRTZ_TRIGGERS.
+2025-02-24 11:24:49,809 - ERROR -  Column mismatch in index idx_qrtz_t_nft_st_misfire for table QRTZ_TRIGGERS.
+2025-02-24 11:24:49,810 - ERROR -  Column mismatch in index idx_qrtz_t_nft_st_misfire_grp for table QRTZ_TRIGGERS.
+2025-02-24 11:24:49,810 - ERROR -  Column mismatch in index idx_qrtz_t_nft_st for table QRTZ_TRIGGERS.
+2025-02-24 11:24:49,818 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-24 11:24:49,819 - INFO - Table QRTZ_TRIGGERS data matches perfectly!
+2025-02-24 11:24:49,819 - INFO - Table: USER_ACCOUNT 
+2025-02-24 11:24:49,847 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
+2025-02-24 11:24:49,978 - INFO - Table USER_ACCOUNT data matches perfectly!
+2025-02-24 11:24:49,978 - INFO - Table: K8S_USER_WORKSPACE 
+2025-02-24 11:24:49,981 - ERROR -  Columns present in PostgreSQL but missing in MySQL: ['created_at', 'last_modified_at']
+2025-02-24 11:24:49,982 - INFO - Table: QRTZ_FIRED_TRIGGERS 
+2025-02-24 11:24:50,003 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:24:50,005 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
+2025-02-24 11:24:50,005 - INFO - Table: QRTZ_JOB_DETAILS 
+2025-02-24 11:24:50,024 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-24 11:24:50,025 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
+2025-02-24 11:24:50,025 - INFO - Table: QRTZ_SCHEDULER_STATE 
+2025-02-24 11:24:50,043 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-24 11:24:50,044 - INFO - Table QRTZ_SCHEDULER_STATE data matches perfectly!
+2025-02-24 11:24:50,044 - INFO - Table: LB_ENTRY_LOG 
+2025-02-24 11:24:50,517 - INFO -  MySQL Rows: 1570410 | PostgreSQL Rows: 1570410
+2025-02-24 11:26:05,390 - INFO - Table LB_ENTRY_LOG data matches perfectly!
+2025-02-24 11:26:05,390 - INFO - Table: LB_INSTANCE 
+2025-02-24 11:26:05,447 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-24 11:26:05,839 - INFO - Table LB_INSTANCE data matches perfectly!
+2025-02-24 11:26:05,839 - INFO - Table: QRTZ_CALENDARS 
+2025-02-24 11:26:05,868 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:26:05,869 - INFO - Table QRTZ_CALENDARS data matches perfectly!
+2025-02-24 11:26:05,869 - INFO - Table: USER_POD_PROVISION_RESPONSE 
+2025-02-24 11:26:05,885 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:26:05,886 - INFO - Table USER_POD_PROVISION_RESPONSE data matches perfectly!
+2025-02-24 11:26:05,886 - INFO - Table: USER_WORKSPACE 
+2025-02-24 11:26:05,905 - INFO -  MySQL Rows: 569 | PostgreSQL Rows: 569
+2025-02-24 11:26:05,933 - INFO - Table USER_WORKSPACE data matches perfectly!
+2025-02-24 11:26:05,934 - INFO - ========== Comparison Completed ==========

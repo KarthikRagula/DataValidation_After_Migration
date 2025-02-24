@@ -1,21 +1,23 @@
-2025-02-21 16:15:43,352 - INFO - ========== Comparison started ==========
-2025-02-21 16:15:43,366 - INFO - package: mysql.connector.plugins
-2025-02-21 16:15:43,366 - INFO - plugin_name: caching_sha2_password
-2025-02-21 16:15:43,366 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-21 16:15:43,369 - INFO - ✅ Connected to MySQL successfully
-2025-02-21 16:15:43,374 - INFO - ✅ Connected to PostgreSQL successfully
-2025-02-21 16:15:43,394 - INFO - Number of tables in MySQL: 6
-2025-02-21 16:15:43,394 - INFO - Number of tables in PostgreSQL: 2
-2025-02-21 16:15:43,394 - INFO - ✅ No tables are missing in MySQL.
-2025-02-21 16:15:43,394 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-21 16:15:43,394 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-21 16:15:43,394 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: saas_schema_version
-2025-02-21 16:15:43,394 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: new_ent_account
-2025-02-21 16:15:43,394 - INFO - 🔍 Table: project 
-2025-02-21 16:15:43,417 - WARNING - 🔴 Missing not_null in PostgreSQL for table project: {'stale_project'}
-2025-02-21 16:15:43,417 - WARNING - 🔴 Missing not_null in MySQL for table project: {'group_id'}
-2025-02-21 16:15:43,461 - INFO -  MySQL Rows: 16285 | PostgreSQL Rows: 16285
-2025-02-21 16:15:44,263 - INFO - ✅ Table project data matches perfectly!
-2025-02-21 16:15:44,263 - INFO - 🔍 Table: user 
-2025-02-21 16:15:44,266 - WARNING - ❌ Columns present in MySQL but missing in PostgreSQL: ['account_mode', 'created_date', 'display_name', 'email', 'enabled', 'first_name', 'id', 'is_verified', 'last_logged_in_studio_version', 'last_name', 'modified_date', 'organization_id', 'password', 'username']
-2025-02-21 16:15:44,266 - INFO - ========== Comparison Completed ==========
+2025-02-24 10:58:52,340 - INFO - ========== Comparison started ==========
+2025-02-24 10:58:52,344 - INFO - package: mysql.connector.plugins
+2025-02-24 10:58:52,344 - INFO - plugin_name: caching_sha2_password
+2025-02-24 10:58:52,344 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-24 10:58:52,345 - INFO -  Connected to MySQL successfully
+2025-02-24 10:58:52,350 - INFO -  Connected to PostgreSQL successfully
+2025-02-24 10:58:52,361 - INFO - Number of tables in MySQL: 6
+2025-02-24 10:58:52,361 - INFO - Number of tables in PostgreSQL: 2
+2025-02-24 10:58:52,361 - INFO -  No tables are missing in MySQL.
+2025-02-24 10:58:52,361 - ERROR -  Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-24 10:58:52,361 - ERROR -  Table present in MySQL but missing in PostgreSQL: NEW_ENT_ACCOUNT
+2025-02-24 10:58:52,361 - ERROR -  Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-24 10:58:52,361 - ERROR -  Table present in MySQL but missing in PostgreSQL: SAAS_SCHEMA_VERSION
+2025-02-24 10:58:52,361 - INFO - Table: PROJECT 
+2025-02-24 10:58:52,379 - ERROR - Missing not_null in PostgreSQL for table PROJECT: {'stale_project'}
+2025-02-24 10:58:52,379 - ERROR - Missing not_null in MySQL for table PROJECT: {'group_id'}
+2025-02-24 10:58:52,399 - INFO -  MySQL Rows: 16285 | PostgreSQL Rows: 16285
+2025-02-24 10:58:53,194 - INFO -  Table PROJECT data matches perfectly!
+2025-02-24 10:58:53,194 - INFO - Table: USER 
+2025-02-24 10:58:53,204 - ERROR - Missing not_null in PostgreSQL for table USER: {'id', 'enabled'}
+2025-02-24 10:58:53,219 - INFO -  MySQL Rows: 598 | PostgreSQL Rows: 598
+2025-02-24 10:58:53,256 - INFO -  Table USER data matches perfectly!
+2025-02-24 10:58:53,257 - INFO - ========== Comparison Completed ==========

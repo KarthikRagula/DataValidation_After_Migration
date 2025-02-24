@@ -60,3 +60,57 @@ _______________________________________________________
 columnname INT          columnname SERIAL   INTEGER PRIMARY 
 AUTO_INCREMENT                              KEY AUTOINCREMENT
 
+
+
+
+
+
+"""
+mysql_db = 'wm_login_mysql_stage'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_login_stage_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wmstudio_mysql'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_studio_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_edn'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_edn_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_container_services'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_container_services_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_deployment_cloud'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_deployment_cloud_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+
+mysql_db = 'wm_developer_cloud'
+mysql_user = 'karthikragula'
+mysql_pass = 'R.Karthik@04'
+
+postgres_db = 'wm_developer_cloud_postgres'
+postgres_user = 'postgres'
+postgres_pass = 'R.Karthik@04'
+"""

@@ -1,143 +1,162 @@
-2025-02-21 16:16:12,207 - INFO - ========== Comparison started ==========
-2025-02-21 16:16:12,211 - INFO - package: mysql.connector.plugins
-2025-02-21 16:16:12,211 - INFO - plugin_name: caching_sha2_password
-2025-02-21 16:16:12,211 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-21 16:16:12,215 - INFO - ✅ Connected to MySQL successfully
-2025-02-21 16:16:12,220 - INFO - ✅ Connected to PostgreSQL successfully
-2025-02-21 16:16:12,240 - INFO - Number of tables in MySQL: 45
-2025-02-21 16:16:12,240 - INFO - Number of tables in PostgreSQL: 43
-2025-02-21 16:16:12,240 - INFO - ✅ No tables are missing in MySQL.
-2025-02-21 16:16:12,240 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-21 16:16:12,240 - WARNING - ❌ Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-21 16:16:12,240 - INFO - 🔍 Table: qrtz_triggers 
-2025-02-21 16:16:12,277 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
-2025-02-21 16:16:12,281 - INFO - ✅ Table qrtz_triggers data matches perfectly!
-2025-02-21 16:16:12,281 - INFO - 🔍 Table: user_account 
-2025-02-21 16:16:12,316 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
-2025-02-21 16:16:12,400 - INFO - ✅ Table user_account data matches perfectly!
-2025-02-21 16:16:12,400 - INFO - 🔍 Table: container_template_autohealing_info 
-2025-02-21 16:16:12,411 - WARNING - 🔴 Missing not_null in PostgreSQL for table container_template_autohealing_info: {'last_heal_time'}
-2025-02-21 16:16:12,416 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:12,417 - INFO - ✅ Table container_template_autohealing_info data matches perfectly!
-2025-02-21 16:16:12,417 - INFO - 🔍 Table: container_composition_container_vs_health_check 
-2025-02-21 16:16:12,432 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:12,433 - INFO - ✅ Table container_composition_container_vs_health_check data matches perfectly!
-2025-02-21 16:16:12,433 - INFO - 🔍 Table: activity_progress_tracker 
-2025-02-21 16:16:12,518 - INFO -  MySQL Rows: 24953 | PostgreSQL Rows: 24953
-2025-02-21 16:16:13,957 - INFO - ✅ Table activity_progress_tracker data matches perfectly!
-2025-02-21 16:16:13,957 - INFO - 🔍 Table: bridge_info 
-2025-02-21 16:16:13,981 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:13,994 - INFO - ✅ Table bridge_info data matches perfectly!
-2025-02-21 16:16:13,994 - INFO - 🔍 Table: container_composition_template 
-2025-02-21 16:16:14,176 - INFO -  MySQL Rows: 22321 | PostgreSQL Rows: 22321
-2025-02-21 16:16:15,083 - INFO - ✅ Table container_composition_template data matches perfectly!
-2025-02-21 16:16:15,083 - INFO - 🔍 Table: container_composition_operation_series 
-2025-02-21 16:16:15,390 - INFO -  MySQL Rows: 105831 | PostgreSQL Rows: 105831
-2025-02-21 16:16:20,312 - INFO - ✅ Table container_composition_operation_series data matches perfectly!
-2025-02-21 16:16:20,312 - INFO - 🔍 Table: key_pair 
-2025-02-21 16:16:20,330 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
-2025-02-21 16:16:20,361 - INFO - ✅ Table key_pair data matches perfectly!
-2025-02-21 16:16:20,361 - INFO - 🔍 Table: container_exec_status 
-2025-02-21 16:16:20,374 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:20,375 - INFO - ✅ Table container_exec_status data matches perfectly!
-2025-02-21 16:16:20,375 - INFO - 🔍 Table: qrtz_simple_triggers 
-2025-02-21 16:16:20,386 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
-2025-02-21 16:16:20,387 - INFO - ✅ Table qrtz_simple_triggers data matches perfectly!
-2025-02-21 16:16:20,387 - INFO - 🔍 Table: container_composition_container 
-2025-02-21 16:16:20,389 - WARNING - ❌ Columns present in MySQL but missing in PostgreSQL: ['level']
-2025-02-21 16:16:20,389 - INFO - 🔍 Table: container_event_history 
-2025-02-21 16:16:20,513 - INFO -  MySQL Rows: 35502 | PostgreSQL Rows: 35502
-2025-02-21 16:16:22,075 - INFO - ✅ Table container_event_history data matches perfectly!
-2025-02-21 16:16:22,075 - INFO - 🔍 Table: container_template_dependency 
-2025-02-21 16:16:22,096 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:22,108 - INFO - ✅ Table container_template_dependency data matches perfectly!
-2025-02-21 16:16:22,108 - INFO - 🔍 Table: container 
-2025-02-21 16:16:22,122 - INFO -  MySQL Rows: 84 | PostgreSQL Rows: 84
-2025-02-21 16:16:22,129 - INFO - ✅ Table container data matches perfectly!
-2025-02-21 16:16:22,129 - INFO - 🔍 Table: passivation_cache 
-2025-02-21 16:16:22,150 - INFO -  MySQL Rows: 4871 | PostgreSQL Rows: 4871
-2025-02-21 16:16:22,286 - INFO - ✅ Table passivation_cache data matches perfectly!
-2025-02-21 16:16:22,286 - INFO - 🔍 Table: qrtz_scheduler_state 
-2025-02-21 16:16:22,311 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
-2025-02-21 16:16:22,313 - INFO - ✅ Table qrtz_scheduler_state data matches perfectly!
-2025-02-21 16:16:22,313 - INFO - 🔍 Table: container_template 
-2025-02-21 16:16:22,316 - WARNING - ❌ Columns present in MySQL but missing in PostgreSQL: ['position']
-2025-02-21 16:16:22,316 - INFO - 🔍 Table: container_template_action_history 
-2025-02-21 16:16:22,329 - WARNING - 🔴 Missing not_null in MySQL for table container_template_action_history: {'container_composition_id'}
-2025-02-21 16:16:22,374 - INFO -  MySQL Rows: 15422 | PostgreSQL Rows: 15422
-2025-02-21 16:16:23,112 - INFO - ✅ Table container_template_action_history data matches perfectly!
-2025-02-21 16:16:23,112 - INFO - 🔍 Table: container_composition_ipam 
-2025-02-21 16:16:23,135 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,141 - INFO - ✅ Table container_composition_ipam data matches perfectly!
-2025-02-21 16:16:23,141 - INFO - 🔍 Table: dns_server_info 
-2025-02-21 16:16:23,161 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,162 - INFO - ✅ Table dns_server_info data matches perfectly!
-2025-02-21 16:16:23,162 - INFO - 🔍 Table: wm_container_types 
-2025-02-21 16:16:23,187 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
-2025-02-21 16:16:23,190 - INFO - ✅ Table wm_container_types data matches perfectly!
-2025-02-21 16:16:23,190 - INFO - 🔍 Table: container_template_autoscaling_info 
-2025-02-21 16:16:23,205 - WARNING - 🔴 Missing not_null in PostgreSQL for table container_template_autoscaling_info: {'last_action_time'}
-2025-02-21 16:16:23,208 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,209 - INFO - ✅ Table container_template_autoscaling_info data matches perfectly!
-2025-02-21 16:16:23,209 - INFO - 🔍 Table: container_composition_schedule_suggestion 
-2025-02-21 16:16:23,219 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
-2025-02-21 16:16:23,220 - INFO - ✅ Table container_composition_schedule_suggestion data matches perfectly!
-2025-02-21 16:16:23,220 - INFO - 🔍 Table: container_composition_actions 
-2025-02-21 16:16:23,233 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,234 - INFO - ✅ Table container_composition_actions data matches perfectly!
-2025-02-21 16:16:23,234 - INFO - 🔍 Table: qrtz_calendars 
-2025-02-21 16:16:23,244 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,245 - INFO - ✅ Table qrtz_calendars data matches perfectly!
-2025-02-21 16:16:23,245 - INFO - 🔍 Table: qrtz_paused_trigger_grps 
-2025-02-21 16:16:23,254 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,255 - INFO - ✅ Table qrtz_paused_trigger_grps data matches perfectly!
-2025-02-21 16:16:23,255 - INFO - 🔍 Table: qrtz_simprop_triggers 
-2025-02-21 16:16:23,266 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,267 - INFO - ✅ Table qrtz_simprop_triggers data matches perfectly!
-2025-02-21 16:16:23,267 - INFO - 🔍 Table: passivated_container 
-2025-02-21 16:16:23,282 - INFO -  MySQL Rows: 921 | PostgreSQL Rows: 921
-2025-02-21 16:16:23,323 - INFO - ✅ Table passivated_container data matches perfectly!
-2025-02-21 16:16:23,323 - INFO - 🔍 Table: container_composition 
-2025-02-21 16:16:23,331 - WARNING - 🔴 Missing not_null in MySQL for table container_composition: {'name'}
-2025-02-21 16:16:23,338 - INFO -  MySQL Rows: 940 | PostgreSQL Rows: 940
-2025-02-21 16:16:23,405 - INFO - ✅ Table container_composition data matches perfectly!
-2025-02-21 16:16:23,405 - INFO - 🔍 Table: qrtz_blob_triggers 
-2025-02-21 16:16:23,414 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,415 - INFO - ✅ Table qrtz_blob_triggers data matches perfectly!
-2025-02-21 16:16:23,415 - INFO - 🔍 Table: container_rw 
-2025-02-21 16:16:23,428 - INFO -  MySQL Rows: 783 | PostgreSQL Rows: 783
-2025-02-21 16:16:23,461 - INFO - ✅ Table container_rw data matches perfectly!
-2025-02-21 16:16:23,461 - INFO - 🔍 Table: container_volume_attachment 
-2025-02-21 16:16:23,477 - INFO -  MySQL Rows: 2182 | PostgreSQL Rows: 2182
-2025-02-21 16:16:23,527 - INFO - ✅ Table container_volume_attachment data matches perfectly!
-2025-02-21 16:16:23,527 - INFO - 🔍 Table: container_port_mapping 
-2025-02-21 16:16:23,538 - INFO -  MySQL Rows: 352 | PostgreSQL Rows: 352
-2025-02-21 16:16:23,547 - INFO - ✅ Table container_port_mapping data matches perfectly!
-2025-02-21 16:16:23,547 - INFO - 🔍 Table: qrtz_cron_triggers 
-2025-02-21 16:16:23,557 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:23,557 - INFO - ✅ Table qrtz_cron_triggers data matches perfectly!
-2025-02-21 16:16:23,557 - INFO - 🔍 Table: qrtz_locks 
-2025-02-21 16:16:23,567 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
-2025-02-21 16:16:23,567 - INFO - ✅ Table qrtz_locks data matches perfectly!
-2025-02-21 16:16:23,568 - INFO - 🔍 Table: container_volume 
-2025-02-21 16:16:23,600 - INFO -  MySQL Rows: 27013 | PostgreSQL Rows: 27013
-2025-02-21 16:16:24,495 - INFO - ✅ Table container_volume data matches perfectly!
-2025-02-21 16:16:24,495 - INFO - 🔍 Table: wm_shard 
-2025-02-21 16:16:24,521 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
-2025-02-21 16:16:24,528 - INFO - ✅ Table wm_shard data matches perfectly!
-2025-02-21 16:16:24,528 - INFO - 🔍 Table: wm_instance 
-2025-02-21 16:16:24,545 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
-2025-02-21 16:16:24,547 - INFO - ✅ Table wm_instance data matches perfectly!
-2025-02-21 16:16:24,547 - INFO - 🔍 Table: global_ports 
-2025-02-21 16:16:24,561 - INFO -  MySQL Rows: 699 | PostgreSQL Rows: 699
-2025-02-21 16:16:24,581 - INFO - ✅ Table global_ports data matches perfectly!
-2025-02-21 16:16:24,581 - INFO - 🔍 Table: qrtz_job_details 
-2025-02-21 16:16:24,597 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
-2025-02-21 16:16:24,599 - INFO - ✅ Table qrtz_job_details data matches perfectly!
-2025-02-21 16:16:24,599 - INFO - 🔍 Table: health_watch_services 
-2025-02-21 16:16:24,618 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:24,619 - INFO - ✅ Table health_watch_services data matches perfectly!
-2025-02-21 16:16:24,619 - INFO - 🔍 Table: qrtz_fired_triggers 
-2025-02-21 16:16:24,634 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-21 16:16:24,636 - INFO - ✅ Table qrtz_fired_triggers data matches perfectly!
-2025-02-21 16:16:24,636 - INFO - ========== Comparison Completed ==========
+2025-02-24 11:31:07,530 - INFO - ========== Comparison started ==========
+2025-02-24 11:31:07,535 - INFO - package: mysql.connector.plugins
+2025-02-24 11:31:07,536 - INFO - plugin_name: caching_sha2_password
+2025-02-24 11:31:07,536 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-24 11:31:07,539 - INFO -  Connected to MySQL successfully
+2025-02-24 11:31:07,544 - INFO -  Connected to PostgreSQL successfully
+2025-02-24 11:31:07,552 - INFO - Number of tables in MySQL: 45
+2025-02-24 11:31:07,552 - INFO - Number of tables in PostgreSQL: 43
+2025-02-24 11:31:07,552 - INFO -  No tables are missing in MySQL.
+2025-02-24 11:31:07,552 - ERROR -  Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-24 11:31:07,552 - ERROR -  Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-24 11:31:07,552 - INFO - Table: BRIDGE_INFO 
+2025-02-24 11:31:07,572 - ERROR - Missing indexes in PostgreSQL for table BRIDGE_INFO: {'bridge_name_instance_id'}
+2025-02-24 11:31:07,572 - ERROR - Missing indexes in MySQL for table BRIDGE_INFO: {'uk_bridge_info_bridge_name_instance_id'}
+2025-02-24 11:31:07,575 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:07,576 - INFO - Table BRIDGE_INFO data matches perfectly!
+2025-02-24 11:31:07,576 - INFO - Table: CONTAINER_TEMPLATE_ACTION_HISTORY 
+2025-02-24 11:31:07,590 - ERROR - Missing not_null in MySQL for table CONTAINER_TEMPLATE_ACTION_HISTORY: {'container_composition_id'}
+2025-02-24 11:31:07,613 - INFO -  MySQL Rows: 15422 | PostgreSQL Rows: 15422
+2025-02-24 11:31:08,295 - INFO - Table CONTAINER_TEMPLATE_ACTION_HISTORY data matches perfectly!
+2025-02-24 11:31:08,295 - INFO - Table: CONTAINER_TEMPLATE_AUTOHEALING_INFO 
+2025-02-24 11:31:08,305 - ERROR - Missing not_null in PostgreSQL for table CONTAINER_TEMPLATE_AUTOHEALING_INFO: {'last_heal_time'}
+2025-02-24 11:31:08,318 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:08,324 - INFO - Table CONTAINER_TEMPLATE_AUTOHEALING_INFO data matches perfectly!
+2025-02-24 11:31:08,324 - INFO - Table: CONTAINER_VOLUME 
+2025-02-24 11:31:08,344 - INFO -  MySQL Rows: 27013 | PostgreSQL Rows: 27013
+2025-02-24 11:31:09,163 - INFO - Table CONTAINER_VOLUME data matches perfectly!
+2025-02-24 11:31:09,163 - INFO - Table: QRTZ_CRON_TRIGGERS 
+2025-02-24 11:31:09,187 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:09,194 - INFO - Table QRTZ_CRON_TRIGGERS data matches perfectly!
+2025-02-24 11:31:09,194 - INFO - Table: CONTAINER_EVENT_HISTORY 
+2025-02-24 11:31:09,238 - INFO -  MySQL Rows: 35502 | PostgreSQL Rows: 35502
+2025-02-24 11:31:10,696 - INFO - Table CONTAINER_EVENT_HISTORY data matches perfectly!
+2025-02-24 11:31:10,696 - INFO - Table: QRTZ_CALENDARS 
+2025-02-24 11:31:10,718 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:10,731 - INFO - Table QRTZ_CALENDARS data matches perfectly!
+2025-02-24 11:31:10,731 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
+2025-02-24 11:31:10,746 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-24 11:31:10,746 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
+2025-02-24 11:31:10,746 - INFO - Table: QRTZ_TRIGGERS 
+2025-02-24 11:31:10,762 - ERROR -  Column mismatch in index idx_qrtz_t_nft_st for table QRTZ_TRIGGERS.
+2025-02-24 11:31:10,762 - ERROR -  Column mismatch in index idx_qrtz_t_nft_st_misfire for table QRTZ_TRIGGERS.
+2025-02-24 11:31:10,762 - ERROR -  Column mismatch in index idx_qrtz_t_nft_st_misfire_grp for table QRTZ_TRIGGERS.
+2025-02-24 11:31:10,762 - ERROR -  Column mismatch in index idx_qrtz_t_nft_misfire for table QRTZ_TRIGGERS.
+2025-02-24 11:31:10,763 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-24 11:31:10,765 - INFO - Table QRTZ_TRIGGERS data matches perfectly!
+2025-02-24 11:31:10,765 - INFO - Table: CONTAINER_RW 
+2025-02-24 11:31:10,777 - INFO -  MySQL Rows: 783 | PostgreSQL Rows: 783
+2025-02-24 11:31:10,817 - INFO - Table CONTAINER_RW data matches perfectly!
+2025-02-24 11:31:10,817 - INFO - Table: CONTAINER_COMPOSITION_CONTAINER_VS_HEALTH_CHECK 
+2025-02-24 11:31:10,828 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:10,829 - INFO - Table CONTAINER_COMPOSITION_CONTAINER_VS_HEALTH_CHECK data matches perfectly!
+2025-02-24 11:31:10,829 - INFO - Table: CONTAINER 
+2025-02-24 11:31:10,840 - INFO -  MySQL Rows: 84 | PostgreSQL Rows: 84
+2025-02-24 11:31:10,846 - INFO - Table CONTAINER data matches perfectly!
+2025-02-24 11:31:10,847 - INFO - Table: CONTAINER_COMPOSITION_SCHEDULE_SUGGESTION 
+2025-02-24 11:31:10,857 - ERROR - Missing indexes in PostgreSQL for table CONTAINER_COMPOSITION_SCHEDULE_SUGGESTION: {'container_composition_id'}
+2025-02-24 11:31:10,857 - ERROR - Missing indexes in MySQL for table CONTAINER_COMPOSITION_SCHEDULE_SUGGESTION: {'uk_cont_id_composition_id'}
+2025-02-24 11:31:10,858 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-24 11:31:10,859 - INFO - Table CONTAINER_COMPOSITION_SCHEDULE_SUGGESTION data matches perfectly!
+2025-02-24 11:31:10,860 - INFO - Table: CONTAINER_COMPOSITION_TEMPLATE 
+2025-02-24 11:31:10,889 - INFO -  MySQL Rows: 22321 | PostgreSQL Rows: 22321
+2025-02-24 11:31:11,782 - INFO - Table CONTAINER_COMPOSITION_TEMPLATE data matches perfectly!
+2025-02-24 11:31:11,784 - INFO - Table: CONTAINER_COMPOSITION_IPAM 
+2025-02-24 11:31:11,808 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:11,816 - INFO - Table CONTAINER_COMPOSITION_IPAM data matches perfectly!
+2025-02-24 11:31:11,817 - INFO - Table: PASSIVATION_CACHE 
+2025-02-24 11:31:11,833 - INFO -  MySQL Rows: 4871 | PostgreSQL Rows: 4871
+2025-02-24 11:31:11,963 - INFO - Table PASSIVATION_CACHE data matches perfectly!
+2025-02-24 11:31:11,963 - INFO - Table: QRTZ_BLOB_TRIGGERS 
+2025-02-24 11:31:11,973 - ERROR - Missing indexes in PostgreSQL for table QRTZ_BLOB_TRIGGERS: {'sched_name'}
+2025-02-24 11:31:11,985 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:11,987 - INFO - Table QRTZ_BLOB_TRIGGERS data matches perfectly!
+2025-02-24 11:31:11,987 - INFO - Table: QRTZ_JOB_DETAILS 
+2025-02-24 11:31:12,004 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-24 11:31:12,005 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
+2025-02-24 11:31:12,005 - INFO - Table: HEALTH_WATCH_SERVICES 
+2025-02-24 11:31:12,017 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:12,018 - INFO - Table HEALTH_WATCH_SERVICES data matches perfectly!
+2025-02-24 11:31:12,018 - INFO - Table: CONTAINER_TEMPLATE_DEPENDENCY 
+2025-02-24 11:31:12,031 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:12,032 - INFO - Table CONTAINER_TEMPLATE_DEPENDENCY data matches perfectly!
+2025-02-24 11:31:12,032 - INFO - Table: WM_INSTANCE 
+2025-02-24 11:31:12,044 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-24 11:31:12,046 - INFO - Table WM_INSTANCE data matches perfectly!
+2025-02-24 11:31:12,046 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
+2025-02-24 11:31:12,059 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:12,060 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
+2025-02-24 11:31:12,060 - INFO - Table: CONTAINER_COMPOSITION_OPERATION_SERIES 
+2025-02-24 11:31:12,070 - ERROR - Missing indexes in PostgreSQL for table CONTAINER_COMPOSITION_OPERATION_SERIES: {'container_composition_operation_series_id'}
+2025-02-24 11:31:12,070 - ERROR - Missing indexes in MySQL for table CONTAINER_COMPOSITION_OPERATION_SERIES: {'uk_series_comp_cont_id'}
+2025-02-24 11:31:12,218 - INFO -  MySQL Rows: 105831 | PostgreSQL Rows: 105831
+2025-02-24 11:31:16,733 - INFO - Table CONTAINER_COMPOSITION_OPERATION_SERIES data matches perfectly!
+2025-02-24 11:31:16,733 - INFO - Table: CONTAINER_COMPOSITION 
+2025-02-24 11:31:16,744 - ERROR - Missing not_null in MySQL for table CONTAINER_COMPOSITION: {'name'}
+2025-02-24 11:31:16,749 - INFO -  MySQL Rows: 940 | PostgreSQL Rows: 940
+2025-02-24 11:31:16,845 - INFO - Table CONTAINER_COMPOSITION data matches perfectly!
+2025-02-24 11:31:16,845 - INFO - Table: USER_ACCOUNT 
+2025-02-24 11:31:16,857 - ERROR - Missing indexes in PostgreSQL for table USER_ACCOUNT: {'index_user_account_email_id', 'index_user_account_enterprise_id'}
+2025-02-24 11:31:16,860 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
+2025-02-24 11:31:16,938 - INFO - Table USER_ACCOUNT data matches perfectly!
+2025-02-24 11:31:16,938 - INFO - Table: WM_SHARD 
+2025-02-24 11:31:16,952 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-24 11:31:16,954 - INFO - Table WM_SHARD data matches perfectly!
+2025-02-24 11:31:16,954 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
+2025-02-24 11:31:16,969 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:16,970 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
+2025-02-24 11:31:16,971 - INFO - Table: CONTAINER_TEMPLATE_AUTOSCALING_INFO 
+2025-02-24 11:31:16,984 - ERROR - Missing not_null in PostgreSQL for table CONTAINER_TEMPLATE_AUTOSCALING_INFO: {'last_action_time'}
+2025-02-24 11:31:16,988 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:16,990 - INFO - Table CONTAINER_TEMPLATE_AUTOSCALING_INFO data matches perfectly!
+2025-02-24 11:31:16,990 - INFO - Table: CONTAINER_COMPOSITION_ACTIONS 
+2025-02-24 11:31:17,005 - ERROR - Missing indexes in PostgreSQL for table CONTAINER_COMPOSITION_ACTIONS: {'container_composition_id'}
+2025-02-24 11:31:17,005 - ERROR - Missing indexes in MySQL for table CONTAINER_COMPOSITION_ACTIONS: {'uk_container_composition_actions_container_composition_id_templ'}
+2025-02-24 11:31:17,007 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:17,008 - INFO - Table CONTAINER_COMPOSITION_ACTIONS data matches perfectly!
+2025-02-24 11:31:17,008 - INFO - Table: PASSIVATED_CONTAINER 
+2025-02-24 11:31:17,027 - INFO -  MySQL Rows: 921 | PostgreSQL Rows: 921
+2025-02-24 11:31:17,071 - INFO - Table PASSIVATED_CONTAINER data matches perfectly!
+2025-02-24 11:31:17,072 - INFO - Table: QRTZ_SCHEDULER_STATE 
+2025-02-24 11:31:17,085 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-24 11:31:17,087 - INFO - Table QRTZ_SCHEDULER_STATE data matches perfectly!
+2025-02-24 11:31:17,087 - INFO - Table: CONTAINER_EXEC_STATUS 
+2025-02-24 11:31:17,106 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:17,107 - INFO - Table CONTAINER_EXEC_STATUS data matches perfectly!
+2025-02-24 11:31:17,107 - INFO - Table: CONTAINER_COMPOSITION_CONTAINER 
+2025-02-24 11:31:17,110 - ERROR -  Columns present in MySQL but missing in PostgreSQL: ['LEVEL']
+2025-02-24 11:31:17,110 - INFO - Table: DNS_SERVER_INFO 
+2025-02-24 11:31:17,121 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:17,122 - INFO - Table DNS_SERVER_INFO data matches perfectly!
+2025-02-24 11:31:17,122 - INFO - Table: QRTZ_LOCKS 
+2025-02-24 11:31:17,135 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-24 11:31:17,136 - INFO - Table QRTZ_LOCKS data matches perfectly!
+2025-02-24 11:31:17,136 - INFO - Table: CONTAINER_TEMPLATE 
+2025-02-24 11:31:17,138 - ERROR -  Columns present in MySQL but missing in PostgreSQL: ['POSITION']
+2025-02-24 11:31:17,138 - INFO - Table: KEY_PAIR 
+2025-02-24 11:31:17,149 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-24 11:31:17,150 - INFO - Table KEY_PAIR data matches perfectly!
+2025-02-24 11:31:17,150 - INFO - Table: CONTAINER_VOLUME_ATTACHMENT 
+2025-02-24 11:31:17,165 - INFO -  MySQL Rows: 2182 | PostgreSQL Rows: 2182
+2025-02-24 11:31:17,214 - INFO - Table CONTAINER_VOLUME_ATTACHMENT data matches perfectly!
+2025-02-24 11:31:17,214 - INFO - Table: WM_CONTAINER_TYPES 
+2025-02-24 11:31:17,226 - ERROR - Missing indexes in MySQL for table WM_CONTAINER_TYPES: {'container_type_name'}
+2025-02-24 11:31:17,228 - INFO -  MySQL Rows: 9 | PostgreSQL Rows: 9
+2025-02-24 11:31:17,229 - INFO - Table WM_CONTAINER_TYPES data matches perfectly!
+2025-02-24 11:31:17,229 - INFO - Table: QRTZ_FIRED_TRIGGERS 
+2025-02-24 11:31:17,241 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 11:31:17,242 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
+2025-02-24 11:31:17,242 - INFO - Table: ACTIVITY_PROGRESS_TRACKER 
+2025-02-24 11:31:17,265 - INFO -  MySQL Rows: 24953 | PostgreSQL Rows: 24953
+2025-02-24 11:31:18,651 - INFO - Table ACTIVITY_PROGRESS_TRACKER data matches perfectly!
+2025-02-24 11:31:18,651 - INFO - Table: CONTAINER_PORT_MAPPING 
+2025-02-24 11:31:18,664 - ERROR - Missing indexes in PostgreSQL for table CONTAINER_PORT_MAPPING: {'container_port_mapping_uk'}
+2025-02-24 11:31:18,664 - ERROR - Missing indexes in MySQL for table CONTAINER_PORT_MAPPING: {'uk_container_container_port_mapping_instance_id_external_type'}
+2025-02-24 11:31:18,675 - INFO -  MySQL Rows: 352 | PostgreSQL Rows: 352
+2025-02-24 11:31:18,696 - INFO - Table CONTAINER_PORT_MAPPING data matches perfectly!
+2025-02-24 11:31:18,696 - INFO - Table: GLOBAL_PORTS 
+2025-02-24 11:31:18,707 - ERROR - Missing indexes in PostgreSQL for table GLOBAL_PORTS: {'uk_global_ports'}
+2025-02-24 11:31:18,707 - ERROR - Missing indexes in MySQL for table GLOBAL_PORTS: {'uk_global_ports_port_type_port_number'}
+2025-02-24 11:31:18,708 - INFO -  MySQL Rows: 699 | PostgreSQL Rows: 699
+2025-02-24 11:31:18,720 - INFO - Table GLOBAL_PORTS data matches perfectly!
+2025-02-24 11:31:18,721 - INFO - ========== Comparison Completed ==========
