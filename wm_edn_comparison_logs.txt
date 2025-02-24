@@ -1,0 +1,162 @@
+2025-02-24 12:31:47,797 - INFO - ========== Comparison started ==========
+2025-02-24 12:31:47,801 - INFO - package: mysql.connector.plugins
+2025-02-24 12:31:47,801 - INFO - plugin_name: caching_sha2_password
+2025-02-24 12:31:47,801 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-24 12:31:47,814 - INFO -  Connected to MySQL successfully
+2025-02-24 12:31:47,820 - INFO -  Connected to PostgreSQL successfully
+2025-02-24 12:31:47,825 - INFO - Number of tables in MySQL: 61
+2025-02-24 12:31:47,825 - INFO - Number of tables in PostgreSQL: 54
+2025-02-24 12:31:47,825 - INFO - No tables are missing in MySQL.
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: NEW_ENT_ACCOUNT
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: USER_ACCOUNT_25FEB
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: TEM_PROJECT_USER_MAPPING
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: USER_ACCOUNT_EXTENSION_OLD
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-24 12:31:47,825 - ERROR - Table present in MySQL but missing in PostgreSQL: TEMP_APP_DEPLOYMENT_TARGET
+2025-02-24 12:31:47,825 - INFO - Table: ARTIFACT_CATEGORY 
+2025-02-24 12:31:47,842 - ERROR - Missing not_null in PostgreSQL for table ARTIFACT_CATEGORY: {'created_by'}
+2025-02-24 12:31:47,852 - INFO -  MySQL Rows: 48 | PostgreSQL Rows: 48
+2025-02-24 12:31:47,858 - INFO - Table ARTIFACT_CATEGORY data matches perfectly!
+2025-02-24 12:31:47,858 - INFO - Table: ARTIFACT_MARKETPLACE_MAPPING 
+2025-02-24 12:31:47,876 - INFO -  MySQL Rows: 44 | PostgreSQL Rows: 44
+2025-02-24 12:31:47,879 - INFO - Table ARTIFACT_MARKETPLACE_MAPPING data matches perfectly!
+2025-02-24 12:31:47,879 - INFO - Table: ARTIFACT_PUBLISHER 
+2025-02-24 12:31:47,894 - INFO -  MySQL Rows: 88 | PostgreSQL Rows: 88
+2025-02-24 12:31:47,896 - INFO - Table ARTIFACT_PUBLISHER data matches perfectly!
+2025-02-24 12:31:47,896 - INFO - Table: ARTIFACT_REVISION 
+2025-02-24 12:31:47,950 - INFO -  MySQL Rows: 14027 | PostgreSQL Rows: 14027
+2025-02-24 12:31:48,769 - INFO - Table ARTIFACT_REVISION data matches perfectly!
+2025-02-24 12:31:48,772 - INFO - Table: VCS_ACCOUNT_INFO 
+2025-02-24 12:31:48,799 - INFO -  MySQL Rows: 363 | PostgreSQL Rows: 363
+2025-02-24 12:31:48,826 - WARNING - 
+ 10 rows in PostgreSQL are missing for table VCS_ACCOUNT_INFO:
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| VCS_ACCOUNT_ID   | VCS_ACCOUNT_TYPE   | BASE_URL     |   IS_GLOBAL  | USER_NAME    | PASSWORD     | HOST         |   PORT       | PROTOCOL     |   IS_PRIMARY |   IS_SYSTEM  | NAME         |   ENABLED    | ACCESS_TOKEN   | VCS_VERSION   | PROPERTIES   | ENTERPRISE_ID   | DEFAULT_BRANCH   | STUDIO_PIPELINE_BRANCHES   |   DEVELOPER_KEYS_ENABLED |   DELETE_REPO_ENABLED |   IS_DELETED |   ATOMIC_PUSH_ENABLED |   MR_FLOW_ENABLED |   MR_AUTO_CREATE | MR_DEV_BRANCH_PATTERN   |
++==================+====================+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+================+===============+==============+=================+==================+============================+==========================+=======================+==============+=======================+===================+==================+=========================+
+| vcs-f96d1ff7-d   | GIT_HUB            | https://ap   |   1          | amair2578k   | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_am   |   1          | ghp_WzDyy3iC   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   1                      |   1                   |   0          |   1                   |   1               |   0              | dev-{EMAIL_PREFIX}/{R   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-fe4fb15e-3   | GIT_HUB            | https://ap   |   1          | Pramati12    | ghp_oocxWC   | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_Pr   |   1          | ghp_oocxWCm4   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   0                      |   1                   |   0          |   1                   |   0               |   0              | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-c3ce62c9-c   | GIT_HUB            | https://ap   |   1          | Pramati12    | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_Pr   |   1          | ghp_LdK5yylX   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   1                      |   1                   |   0          |   1                   |   1               |   0              | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-22942045-9   | GIT_HUB            | https://ap   |   1          | amair2578k   | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_am   |   1          | ghp_TE8TqUi7   | None          | {"GITHUB_T   | ent1268973520   | main             | Demo,Live                  |   0                      |   1                   |   1          |   1                   |   0               |   0              | None                    |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-0ee89a0b-1   | GIT_HUB            | https://ap   |   1          | Pramati12    | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_Pr   |   1          | ghp_JIYIKYgf   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   1                      |   1                   |   0          |   1                   |   0               |   0              | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-3624f053-d   | GIT_HUB            | https://ap   |   1          | amair2578k   | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_am   |   1          | ghp_TE8TqUi7   | None          | {"GITHUB_T   | ent1268973520   | main             | Demo,Live                  |   1                      |   0                   |   0          |   1                   |   0               |   0              | None                    |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-d9421a79-f   | GIT_HUB            | https://ap   |   1          | amair2578k   | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_am   |   1          | ghp_WzDyy3iC   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   0                      |   1                   |   0          |   1                   |   0               |   0              | None                    |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-fbb11607-9   | GIT_HUB            | https://ap   |   1          | Pramati12    | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_Pr   |   1          | ghp_eRe4S1w4   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   0                      |   1                   |   1          |   1                   |   0               |   0              | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-222097c9-6   | GIT_HUB            | https://ap   |   1          | Pramati12    | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_Pr   |   1          | ghp_jSnHqtTI   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   1                      |   1                   |   0          |   1                   |   1               |   0              | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-4eb2f53c-0   | GIT_HUB            | https://ap   |   1          | Pramati12    | None         | api.github   |   -1         | https        |   0          |   0          | GIT_HUB_Pr   |   1          | ghp_dHIduG6B   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  |   0                      |   1                   |   1          |   1                   |   0               |   0              | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+========================================================================================================================================================================================================
+2025-02-24 12:31:48,828 - WARNING - 
+ 10 rows in MySQL are missing for table VCS_ACCOUNT_INFO:
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| VCS_ACCOUNT_ID   | VCS_ACCOUNT_TYPE   | BASE_URL     | IS_GLOBAL    | USER_NAME    | PASSWORD     | HOST         |   PORT       | PROTOCOL     | IS_PRIMARY   | IS_SYSTEM    | NAME         | ENABLED      | ACCESS_TOKEN   | VCS_VERSION   | PROPERTIES   | ENTERPRISE_ID   | DEFAULT_BRANCH   | STUDIO_PIPELINE_BRANCHES   | DEVELOPER_KEYS_ENABLED   | DELETE_REPO_ENABLED   | IS_DELETED   | ATOMIC_PUSH_ENABLED   | MR_FLOW_ENABLED   | MR_AUTO_CREATE   | MR_DEV_BRANCH_PATTERN   |
++==================+====================+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+================+===============+==============+=================+==================+============================+==========================+=======================+==============+=======================+===================+==================+=========================+
+| vcs-222097c9-6   | GIT_HUB            | https://ap   | True         | Pramati12    | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_Pr   | True         | ghp_jSnHqtTI   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | True                     | True                  | False        | True                  | True              | False            | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-3624f053-d   | GIT_HUB            | https://ap   | True         | amair2578k   | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_am   | True         | ghp_TE8TqUi7   | None          | {"GITHUB_T   | ent1268973520   | main             | Demo,Live                  | True                     | False                 | False        | True                  | False             | False            | None                    |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-f96d1ff7-d   | GIT_HUB            | https://ap   | True         | amair2578k   | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_am   | True         | ghp_WzDyy3iC   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | True                     | True                  | False        | True                  | True              | False            | dev-{EMAIL_PREFIX}/{R   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-fbb11607-9   | GIT_HUB            | https://ap   | True         | Pramati12    | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_Pr   | True         | ghp_eRe4S1w4   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | False                    | True                  | True         | True                  | False             | False            | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-22942045-9   | GIT_HUB            | https://ap   | True         | amair2578k   | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_am   | True         | ghp_TE8TqUi7   | None          | {"GITHUB_T   | ent1268973520   | main             | Demo,Live                  | False                    | True                  | True         | True                  | False             | False            | None                    |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-fe4fb15e-3   | GIT_HUB            | https://ap   | True         | Pramati12    | ghp_oocxWC   | api.github   |   -1         | https        | False        | False        | GIT_HUB_Pr   | True         | ghp_oocxWCm4   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | False                    | True                  | False        | True                  | False             | False            | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-0ee89a0b-1   | GIT_HUB            | https://ap   | True         | Pramati12    | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_Pr   | True         | ghp_JIYIKYgf   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | True                     | True                  | False        | True                  | False             | False            | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-c3ce62c9-c   | GIT_HUB            | https://ap   | True         | Pramati12    | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_Pr   | True         | ghp_LdK5yylX   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | True                     | True                  | False        | True                  | True              | False            | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-d9421a79-f   | GIT_HUB            | https://ap   | True         | amair2578k   | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_am   | True         | ghp_WzDyy3iC   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | False                    | True                  | False        | True                  | False             | False            | None                    |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+| vcs-4eb2f53c-0   | GIT_HUB            | https://ap   | True         | Pramati12    | None         | api.github   |   -1         | https        | False        | False        | GIT_HUB_Pr   | True         | ghp_dHIduG6B   | None          | {"GITHUB_T   | ent12689762ee   | main             | Demo,Live                  | False                    | True                  | True         | True                  | False             | False            | dev-{EMAIL_PREFIX}-{T   |
++------------------+--------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+----------------+---------------+--------------+-----------------+------------------+----------------------------+--------------------------+-----------------------+--------------+-----------------------+-------------------+------------------+-------------------------+
+========================================================================================================================================================================================================
+2025-02-24 12:31:48,829 - INFO - Table: PROJECT 
+2025-02-24 12:31:48,842 - ERROR - Missing indexes in PostgreSQL for table PROJECT: {'idx_project_project_key'}
+2025-02-24 12:31:51,851 - INFO -  MySQL Rows: 1455500 | PostgreSQL Rows: 1455500
+2025-02-24 12:55:12,247 - ERROR - Error comparing rows for table PROJECT: 1038 (HY001): Out of sort memory, consider increasing server sort buffer size
+Traceback (most recent call last):
+  File "compare_db.py", line 146, in compare_rows
+    mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table} ORDER BY {', '.join(mysql_columns_original)};")
+  File "/home/karthikr_700073/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 537, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/karthikr_700073/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 399, in _handle_result
+    self._handle_resultset()
+  File "/home/karthikr_700073/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 997, in _handle_resultset
+    (self._rows, eof) = self._connection.get_rows()
+  File "/home/karthikr_700073/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 712, in get_rows
+    raise err
+  File "/home/karthikr_700073/.local/lib/python3.8/site-packages/mysql/connector/connection.py", line 707, in get_rows
+    rows = self._protocol.read_text_result(
+  File "/home/karthikr_700073/.local/lib/python3.8/site-packages/mysql/connector/protocol.py", line 659, in read_text_result
+    raise get_exception(packet)
+mysql.connector.errors.DatabaseError: 1038 (HY001): Out of sort memory, consider increasing server sort buffer size
+
+2025-02-24 12:55:12,259 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
+2025-02-24 12:55:12,397 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 12:55:12,403 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
+2025-02-24 12:55:12,403 - INFO - Table: USER_VCS_MAPPING 
+2025-02-24 12:55:12,433 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 12:55:12,434 - INFO - Table USER_VCS_MAPPING data matches perfectly!
+2025-02-24 12:55:12,434 - INFO - Table: ARTIFACT_IMPORT_ITEM 
+2025-02-24 12:55:12,458 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 12:55:12,460 - INFO - Table ARTIFACT_IMPORT_ITEM data matches perfectly!
+2025-02-24 12:55:12,460 - INFO - Table: ACTIVITY_PROGRESS_TRACKER 
+2025-02-24 12:55:12,487 - INFO -  MySQL Rows: 786 | PostgreSQL Rows: 786
+2025-02-24 12:55:12,605 - INFO - Table ACTIVITY_PROGRESS_TRACKER data matches perfectly!
+2025-02-24 12:55:12,606 - INFO - Table: USER_ACCOUNT_EXTENSION 
+2025-02-24 12:55:12,621 - ERROR - Missing not_null in PostgreSQL for table USER_ACCOUNT_EXTENSION: {'last_cleanup_time'}
+2025-02-24 12:55:12,631 - INFO -  MySQL Rows: 642 | PostgreSQL Rows: 642
+2025-02-24 12:55:12,659 - INFO - Table USER_ACCOUNT_EXTENSION data matches perfectly!
+2025-02-24 12:55:12,660 - INFO - Table: QRTZ_CALENDARS 
+2025-02-24 12:55:12,680 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 12:55:12,681 - INFO - Table QRTZ_CALENDARS data matches perfectly!
+2025-02-24 12:55:12,681 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
+2025-02-24 12:55:12,702 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-24 12:55:12,703 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
+2025-02-24 12:55:12,703 - INFO - Table: CORE_UPGRADE_REMEMBER_ME 
+2025-02-24 12:55:12,724 - INFO -  MySQL Rows: 29 | PostgreSQL Rows: 29
+2025-02-24 12:55:12,726 - INFO - Table CORE_UPGRADE_REMEMBER_ME data matches perfectly!
+2025-02-24 12:55:12,726 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
+2025-02-24 12:55:12,747 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-24 12:55:12,749 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
+2025-02-24 12:55:12,749 - INFO - Table: PROJECT_BACKUP 
+2025-02-24 12:55:12,783 - INFO -  MySQL Rows: 822 | PostgreSQL Rows: 822
+2025-02-24 12:55:13,102 - INFO - Table PROJECT_BACKUP data matches perfectly!
+2025-02-24 12:55:13,103 - INFO - Table: QRTZ_JOB_DETAILS 
+2025-02-24 12:55:13,128 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-24 12:55:13,131 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
+2025-02-24 12:55:13,131 - INFO - Table: NOTIFICATION 
+2025-02-24 12:55:13,193 - INFO -  MySQL Rows: 22925 | PostgreSQL Rows: 22925
+2025-02-24 12:55:15,115 - INFO - Table NOTIFICATION data matches perfectly!
+2025-02-24 12:55:15,120 - INFO - Table: MERGE_REQUEST 
+2025-02-24 12:55:15,153 - INFO -  MySQL Rows: 300 | PostgreSQL Rows: 300
+2025-02-24 12:55:15,171 - INFO - Table MERGE_REQUEST data matches perfectly!
+2025-02-24 12:55:15,172 - INFO - Table: CLEANUP_JOB_STAT 
+2025-02-24 12:55:15,200 - INFO -  MySQL Rows: 1424 | PostgreSQL Rows: 1424
+2025-02-24 12:55:15,260 - INFO - Table CLEANUP_JOB_STAT data matches perfectly!
+2025-02-24 12:55:15,260 - INFO - Table: PRODUCT_NOTIFICATION 
+2025-02-24 12:55:15,289 - INFO -  MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-24 12:55:15,291 - INFO - Table PRODUCT_NOTIFICATION data matches perfectly!
+2025-02-24 12:55:15,291 - INFO - Table: ARTIFACT_FILES 
+2025-02-24 12:55:15,319 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-24 12:55:15,321 - INFO - Table ARTIFACT_FILES data matches perfectly!
+2025-02-24 12:55:15,321 - INFO - Table: NOTIFICATION_USER_MAPPING 
+2025-02-24 12:55:15,363 - INFO -  MySQL Rows: 17835 | PostgreSQL Rows: 17835
+2025-02-24 12:55:15,934 - INFO - Table NOTIFICATION_USER_MAPPING data matches perfectly!
+2025-02-24 12:55:15,936 - INFO - Table: ARTIFACT_DEPENDENCY 
+2025-02-24 12:55:16,022 - INFO -  MySQL Rows: 356 | PostgreSQL Rows: 356
+2025-02-24 12:55:16,042 - INFO - Table ARTIFACT_DEPENDENCY data matches perfectly!
+2025-02-24 12:55:16,042 - INFO - Table: PROJECT_USER_MAPPING 
+2025-02-24 12:55:16,069 - ERROR - Missing indexes in PostgreSQL for table PROJECT_USER_MAPPING: {'fk_project_user_mapping_enterprise_enterprise_id'}
+2025-02-24 12:55:17,164 - INFO -  MySQL Rows: 1448683 | PostgreSQL Rows: 1448683
