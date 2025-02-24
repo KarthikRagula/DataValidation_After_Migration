@@ -413,11 +413,11 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             
 def main():
             
-    mysql_db = 'wm_deployment_cloud'
+    mysql_db = 'wm_edn'
     mysql_user = 'karthikragula'
     mysql_pass = 'R.Karthik@04'
 
-    postgres_db = 'wm_deployment_cloud_postgres'
+    postgres_db = 'wm_edn_postgres'
     postgres_user = 'postgres'
     postgres_pass = 'R.Karthik@04'
 
