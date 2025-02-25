@@ -19,7 +19,7 @@ This script compares table structures and data between MySQL and PostgreSQL data
 
 Install dependencies using:
 ```sh
-pip install mysql-connector-python psycopg2
+pip install mysql-connector-python psycopg2 tabulate colorama
 ```
 
 ## Configuration
