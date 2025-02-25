@@ -150,21 +150,21 @@ def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_col
             logging.error(f" Row count mismatch in table {table}: MySQL ({mysql_row_count}) vs PostgreSQL ({postgres_row_count})")
             return 
 
-        mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table} ORDER BY {', '.join(mysql_columns_original)};")
-        postgres_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {postgres_table} ORDER BY {', '.join(mysql_columns_original)};")
+        mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table};")
+        postgres_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {postgres_table};")
 
-        mysql_hash_map = {generate_row_hash(row): row for row in mysql_cursor}
-        postgres_hash_map = {generate_row_hash(row): row for row in postgres_cursor}
+        mysql_rows = [serialize_row(row) for row in mysql_cursor]
+        postgres_rows = [serialize_row(row) for row in postgres_cursor]
 
-        missing_in_postgres = mysql_hash_map.keys() - postgres_hash_map.keys()
-        missing_in_mysql = postgres_hash_map.keys() - mysql_hash_map.keys()
+        missing_in_postgres = [row for row in mysql_rows if row not in postgres_rows]
+        missing_in_mysql = [row for row in postgres_rows if row not in mysql_rows]
 
         if missing_in_postgres:
-            print_missing_rows(missing_in_postgres, mysql_hash_map, "PostgreSQL", table, mysql_columns_original)
+            print_missing_rows1(missing_in_postgres, "PostgreSQL", table, mysql_columns_original)
 
         if missing_in_mysql:
-            print_missing_rows(missing_in_mysql, postgres_hash_map, "MySQL", table, mysql_columns_original)
-
+            print_missing_rows1(missing_in_mysql, "MySQL", table, mysql_columns_original)
+            
         if not missing_in_postgres and not missing_in_mysql:
             logging.info(f"Table {table} data matches perfectly!")
 
@@ -315,25 +315,47 @@ def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns
     log_message = f"\n {len(missing_hashes)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
     logging.warning(log_message)
 
+DELIMITER = "|^|"
+
+def serialize_row(row):
+    return DELIMITER.join(normalize_value(value) for value in row)
+
+def deserialize_row(row_str):
+    return tuple(None if value == "NULL" else value for value in row_str.split(DELIMITER))
+
+def print_missing_rows1(missing_rows, source_db, table, column_names):
+    if not missing_rows:
+        return
+    formatted_rows = [
+        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else value for value in deserialize_row(row)]
+        for row in missing_rows
+    ]
+    table_str = tabulate(formatted_rows, headers=column_names, tablefmt="grid")
+    log_message = f"\n {len(missing_rows)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
+    logging.warning(log_message)
+
 def normalize_value(value):
-    if isinstance(value, bool):
-        return str(int(value))
-    elif isinstance(value, int):
-        return str(value)
+    if value is None:
+        return "NULL"
+    elif isinstance(value, bool):
+        return "1" if value else "0"  
+    elif isinstance(value, int) or isinstance(value, float):
+        return str(value)  
+    elif isinstance(value, datetime):
+        return value.strftime('%Y-%m-%d %H:%M:%S')  
+    elif isinstance(value, bytes) or isinstance(value, memoryview):
+        return normalize_binary_data(value) 
     elif isinstance(value, str):
-        value = value.strip() 
-        if value.upper() in ("TRUE", "FALSE"):
-            return "1" if value.upper() == "TRUE" else "0"
-        return value
+        value = value.strip()
+        if value.upper() in ("TRUE", "FALSE"):  
+            return "1" if value.upper() == "TRUE" else "0"  
+        return value  
     return str(value) 
 
 def normalize_binary_data(data):
-    if isinstance(data, bytes):
-        return data.hex()
-    elif isinstance(data, memoryview):
-        return data.tobytes().hex()
-    else:
-        raise ValueError("Unsupported data type for binary conversion")
+    if isinstance(data, (bytes, memoryview)):
+        return data.hex() if data else "NULL"
+    raise ValueError(f"Unsupported binary data type: {type(data)}")
 
 def generate_row_hash(row):
     hasher = hashlib.blake2b(digest_size=8)
@@ -417,14 +439,15 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
             
 def main():
-    mysql_db = 'wm_deployment_cloud'
+                
+    mysql_db = 'wm_container_services'
     mysql_user = 'karthikragula'
     mysql_pass = 'R.Karthik@04'
 
-    postgres_db = 'wm_deployment_cloud_postgres'
+    postgres_db = 'wm_container_services_postgres'
     postgres_user = 'postgres'
     postgres_pass = 'R.Karthik@04'
-
+    
     setup_logging(mysql_db)
     
     logging.info("========== Comparison started ==========")
