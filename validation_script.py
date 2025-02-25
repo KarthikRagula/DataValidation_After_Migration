@@ -7,6 +7,7 @@ from tabulate import tabulate
 from datetime import datetime
 import sys
 from colorama import init, Fore, Style
+import psutil
 
 class ColorFormatter(logging.Formatter):
     COLORS = {
@@ -21,6 +22,10 @@ class ColorFormatter(logging.Formatter):
         if record.levelno == logging.INFO and "data matches perfectly!" in record.msg:
             return f"{self.COLORS['GREEN']}{log_msg}{self.COLORS['RESET']}"
         return f"{color}{log_msg}{self.COLORS['RESET']}"
+
+def get_memory_usage():
+    process = psutil.Process()
+    return process.memory_info().rss / (1024 * 1024)
 
 def connect_mysql(host, user, password, database):
     return mysql.connector.connect(host=host, user=user, password=password, database=database)
@@ -121,8 +126,10 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
             mysql_indexes = get_mysql_indexes(mysql_cursor, table, mysql_db)
             postgres_indexes = get_postgres_indexes(postgres_cursor, matching_table)
             compare_indexes(mysql_indexes, postgres_indexes, table)
-
+            before = get_memory_usage()
             compare_rows(mysql_cursor, postgres_cursor,table, matching_table, mysql_columns_original)
+            after = get_memory_usage()
+            print(f"Memory used: {after - before:.2f} MB")
             
     except Exception as e:
         logging.error(f"Error comparing columns: {e}")
@@ -146,11 +153,8 @@ def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_col
         mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table} ORDER BY {', '.join(mysql_columns_original)};")
         postgres_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {postgres_table} ORDER BY {', '.join(mysql_columns_original)};")
 
-        mysql_data = mysql_cursor.fetchall()
-        postgres_data = postgres_cursor.fetchall()
-
-        mysql_hash_map = {generate_row_hash(row): row for row in mysql_data}
-        postgres_hash_map = {generate_row_hash(row): row for row in postgres_data}
+        mysql_hash_map = {generate_row_hash(row): row for row in mysql_cursor}
+        postgres_hash_map = {generate_row_hash(row): row for row in postgres_cursor}
 
         missing_in_postgres = mysql_hash_map.keys() - postgres_hash_map.keys()
         missing_in_mysql = postgres_hash_map.keys() - mysql_hash_map.keys()
@@ -223,7 +227,6 @@ def get_mysql_constraints(mysql_cursor, table, mysql_db):
     return constraints
 
 def get_postgres_constraints(postgres_cursor, table):
-    """Fetch constraints from PostgreSQL while handling case sensitivity properly"""
     constraints = {
         "primary_key": set(),
         "foreign_keys": set(),
@@ -314,31 +317,33 @@ def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns
 
 def normalize_value(value):
     if isinstance(value, bool):
-        return int(value)
+        return str(int(value))
     elif isinstance(value, int):
+        return str(value)
+    elif isinstance(value, str):
+        value = value.strip() 
+        if value.upper() in ("TRUE", "FALSE"):
+            return "1" if value.upper() == "TRUE" else "0"
         return value
-    elif value == 'TRUE' or value == 'FALSE':
-        return True if value == 'TRUE' else False
-    return value
+    return str(value) 
 
 def normalize_binary_data(data):
     if isinstance(data, bytes):
-        return data
+        return data.hex()
     elif isinstance(data, memoryview):
-        return data.tobytes()
+        return data.tobytes().hex()
     else:
         raise ValueError("Unsupported data type for binary conversion")
 
 def generate_row_hash(row):
-    normalized_row = []
+    hasher = hashlib.blake2b(digest_size=8)
     for value in row:
         if isinstance(value, (bytes, memoryview)):
             normalized_value = normalize_binary_data(value)
         else:
-            normalized_value = str(normalize_value(value))
-        normalized_row.append(normalized_value)
-    row_string = ''.join([str(v) for v in normalized_row])
-    return hashlib.sha256(row_string.encode('utf-8')).hexdigest()
+            normalized_value = normalize_value(value) 
+        hasher.update(normalized_value.encode('utf-8'))
+    return hasher.hexdigest()
 
 def get_mysql_indexes(mysql_cursor, table, mysql_db):
     mysql_cursor.execute(
@@ -412,12 +417,11 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
             
 def main():
-            
-    mysql_db = 'wm_edn'
+    mysql_db = 'wm_deployment_cloud'
     mysql_user = 'karthikragula'
     mysql_pass = 'R.Karthik@04'
 
-    postgres_db = 'wm_edn_postgres'
+    postgres_db = 'wm_deployment_cloud_postgres'
     postgres_user = 'postgres'
     postgres_pass = 'R.Karthik@04'
 
