@@ -1,13 +1,20 @@
 import mysql.connector
 import psycopg2
 import logging
-import hashlib
 import traceback
 from tabulate import tabulate
 from datetime import datetime
 import sys
 from colorama import init, Fore, Style
 import psutil
+import base64
+import time
+import concurrent.futures
+import zstandard as zstd
+
+DELIMITER = "|^|"
+compressor = zstd.ZstdCompressor(level=3)
+decompressor = zstd.ZstdDecompressor()
 
 class ColorFormatter(logging.Formatter):
     COLORS = {
@@ -119,6 +126,9 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
                 logging.error(f"Error fetching column names for table {table}: {e}\n{traceback.format_exc()}")
                 continue
             
+            before_memory = get_memory_usage()
+            start_time = time.time()
+
             mysql_constraints = get_mysql_constraints(mysql_cursor, table, mysql_db)
             postgres_constraints = get_postgres_constraints(postgres_cursor, matching_table)
             compare_constraints(mysql_constraints, postgres_constraints, table)
@@ -126,50 +136,76 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
             mysql_indexes = get_mysql_indexes(mysql_cursor, table, mysql_db)
             postgres_indexes = get_postgres_indexes(postgres_cursor, matching_table)
             compare_indexes(mysql_indexes, postgres_indexes, table)
-            before = get_memory_usage()
-            compare_rows(mysql_cursor, postgres_cursor,table, matching_table, mysql_columns_original)
-            after = get_memory_usage()
-            print(f"Memory used: {after - before:.2f} MB")
-            
+
+            compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_columns_original)
+
+            end_time = time.time()
+            after_memory = get_memory_usage()
+
+            memory_used = after_memory - before_memory
+            time_taken = end_time - start_time
+
+            print(f"Memory used: {memory_used:.2f} MB | Time taken: {time_taken:.2f} seconds")          
     except Exception as e:
         logging.error(f"Error comparing columns: {e}")
         exit(1)
-        
-def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_columns_original):
+
+def serialize_row_compressed(row):
+    compressor = zstd.ZstdCompressor(level=3) 
+    try:
+        serialized = DELIMITER.join(
+            normalize_binary_data(value) if isinstance(value, (bytes, memoryview)) else normalize_value(value)
+            for value in row
+        )
+        serialized = serialized.encode("utf-8", "replace")
+        return compressor.compress(serialized)
+    except Exception as e:
+        logging.error(f"Serialization error: {e}")
+        logging.error(f"Row data before compression: {row}")
+        raise
+
+def deserialize_row_compressed(compressed_row):
+    decompressed = decompressor.decompress(compressed_row).decode()
+    return tuple(None if value == "NULL" else value for value in decompressed.split(DELIMITER))
+
+def fetch_mysql_data(cursor, table, columns):
+    cursor.execute(f"SELECT {', '.join(columns)} FROM {table};")
+    return {serialize_row_compressed(row) for row in cursor}
+
+def fetch_postgres_data(cursor, table, columns):
+    cursor.execute(f"SELECT {', '.join(columns)} FROM {table};")
+    return {serialize_row_compressed(row) for row in cursor}
+
+def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, columns):
     try:
         mysql_cursor.execute(f"SELECT COUNT(*) FROM {table};")
         mysql_row_count = mysql_cursor.fetchone()[0]
 
         postgres_table = f'"{matching_table}"' if not matching_table.islower() else matching_table
+
         postgres_cursor.execute(f"SELECT COUNT(*) FROM {postgres_table};")
         postgres_row_count = postgres_cursor.fetchone()[0]
-
-        logging.info(f" MySQL Rows: {mysql_row_count} | PostgreSQL Rows: {postgres_row_count}")
-
-        if mysql_row_count != postgres_row_count:
-            logging.error(f" Row count mismatch in table {table}: MySQL ({mysql_row_count}) vs PostgreSQL ({postgres_row_count})")
-            return 
-
-        mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table};")
-        postgres_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {postgres_table};")
-
-        mysql_rows = [serialize_row(row) for row in mysql_cursor]
-        postgres_rows = [serialize_row(row) for row in postgres_cursor]
-
-        missing_in_postgres = [row for row in mysql_rows if row not in postgres_rows]
-        missing_in_mysql = [row for row in postgres_rows if row not in mysql_rows]
-
+        logging.info(f"MySQL Rows: {mysql_row_count} | PostgreSQL Rows: {postgres_row_count}")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+            future_mysql = executor.submit(fetch_mysql_data, mysql_cursor, table, columns)
+            future_postgres = executor.submit(fetch_postgres_data, postgres_cursor, postgres_table, columns)
+            mysql_rows = future_mysql.result()
+            postgres_rows = future_postgres.result()
+        missing_in_postgres = mysql_rows - postgres_rows
+        missing_in_mysql = postgres_rows - mysql_rows
         if missing_in_postgres:
-            print_missing_rows1(missing_in_postgres, "PostgreSQL", table, mysql_columns_original)
-
+            print_missing_rows(missing_in_postgres, "PostgreSQL", table, columns)
         if missing_in_mysql:
-            print_missing_rows1(missing_in_mysql, "MySQL", table, mysql_columns_original)
-            
+            print_missing_rows(missing_in_mysql, "MySQL", table, columns)
         if not missing_in_postgres and not missing_in_mysql:
             logging.info(f"Table {table} data matches perfectly!")
-
     except Exception as e:
-        logging.error(f"Error comparing rows for table {table}: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error comparing rows for table {table}: {e}")
+
+def normalize_binary_data(value):
+    if isinstance(value, memoryview):  
+        value = value.tobytes()  # Convert memoryview to bytes
+    return base64.b64encode(value).decode("utf-8")  # Encode bytes to Base64
 
 def get_mysql_constraints(mysql_cursor, table, mysql_db):
     constraints = {
@@ -298,37 +334,14 @@ def compare_constraints(mysql_constraints, postgres_constraints, table_name):
     if missing_in_mysql:
         logging.error(f"Missing {key} in MySQL for table {table_name}: {missing_in_mysql}")
 
-def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns):
-    if not missing_hashes:
-        return
-    missing_rows = [hash_map[hash_value] for hash_value in missing_hashes]
-    formatted_rows = [
-        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else value for value in row]
-        for row in missing_rows
-    ]
-    column_widths = [max(len(col), 10) for col in mysql_columns]  
-    formatted_headers = [col.ljust(width) for col, width in zip(mysql_columns, column_widths)]
-    formatted_rows = [
-        [str(value).ljust(width)[:width] for value, width in zip(row, column_widths)] for row in formatted_rows
-    ]
-    table_str = tabulate(formatted_rows, headers=formatted_headers, tablefmt="grid")
-    log_message = f"\n {len(missing_hashes)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
-    logging.warning(log_message)
-
-DELIMITER = "|^|"
-
-def serialize_row(row):
-    return DELIMITER.join(normalize_value(value) for value in row)
-
-def deserialize_row(row_str):
-    return tuple(None if value == "NULL" else value for value in row_str.split(DELIMITER))
-
-def print_missing_rows1(missing_rows, source_db, table, column_names):
+def print_missing_rows(missing_rows, source_db, table, column_names):
+    """Print missing rows in a formatted table view."""
     if not missing_rows:
         return
+    decoded_rows = [deserialize_row_compressed(row) for row in missing_rows]
     formatted_rows = [
-        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else value for value in deserialize_row(row)]
-        for row in missing_rows
+        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else (value if value is not None else "NULL") for value in row]
+        for row in decoded_rows
     ]
     table_str = tabulate(formatted_rows, headers=column_names, tablefmt="grid")
     log_message = f"\n {len(missing_rows)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
@@ -352,21 +365,6 @@ def normalize_value(value):
         return value  
     return str(value) 
 
-def normalize_binary_data(data):
-    if isinstance(data, (bytes, memoryview)):
-        return data.hex() if data else "NULL"
-    raise ValueError(f"Unsupported binary data type: {type(data)}")
-
-def generate_row_hash(row):
-    hasher = hashlib.blake2b(digest_size=8)
-    for value in row:
-        if isinstance(value, (bytes, memoryview)):
-            normalized_value = normalize_binary_data(value)
-        else:
-            normalized_value = normalize_value(value) 
-        hasher.update(normalized_value.encode('utf-8'))
-    return hasher.hexdigest()
-
 def get_mysql_indexes(mysql_cursor, table, mysql_db):
     mysql_cursor.execute(
         """
@@ -383,7 +381,6 @@ def get_mysql_indexes(mysql_cursor, table, mysql_db):
         )
         """, (mysql_db, table, mysql_db, table)
     )
-    
     indexes = {}
     for index_name, column_name, non_unique in mysql_cursor.fetchall():
         index_name = index_name.lower()
@@ -439,15 +436,13 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
             
 def main():
-                
-    mysql_db = 'wm_container_services'
+    mysql_db = 'wm_edn'
     mysql_user = 'karthikragula'
     mysql_pass = 'R.Karthik@04'
 
-    postgres_db = 'wm_container_services_postgres'
+    postgres_db = 'wm_edn_postgres'
     postgres_user = 'postgres'
     postgres_pass = 'R.Karthik@04'
-    
     setup_logging(mysql_db)
     
     logging.info("========== Comparison started ==========")
@@ -476,4 +471,3 @@ def main():
     logging.info("========== Comparison Completed ==========")
 if __name__ == "__main__":
     main()
-
