@@ -478,7 +478,7 @@ def main():
         )
         mysql_cursor = mysql_conn.cursor(buffered=True)
         logging.info("Connected to MySQL successfully")
-    except mysql.connector.Error as err:
+    except Exception as err:
         logging.error(f"MySQL connection error: {err}")
         exit(1)
 
@@ -488,7 +488,7 @@ def main():
         )
         postgres_cursor = postgres_conn.cursor()
         logging.info("Connected to PostgreSQL successfully")
-    except psycopg2.Error as err:
+    except Exception as err:
         logging.error(f"PostgreSQL connection error: {err}")
         exit(1)
 
