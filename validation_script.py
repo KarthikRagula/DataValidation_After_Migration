@@ -7,6 +7,8 @@ from tabulate import tabulate
 from datetime import datetime
 import sys
 from colorama import init, Fore, Style
+import argparse
+import configparser
 
 class ColorFormatter(logging.Formatter):
     COLORS = {
@@ -22,11 +24,23 @@ class ColorFormatter(logging.Formatter):
             return f"{self.COLORS['GREEN']}{log_msg}{self.COLORS['RESET']}"
         return f"{color}{log_msg}{self.COLORS['RESET']}"
 
-def connect_mysql(host, user, password, database):
-    return mysql.connector.connect(host=host, user=user, password=password, database=database)
+def connect_mysql(host, user, password, database, port):
+    return mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database,
+        port=port
+    )
 
-def connect_postgres(host, user, password, database):
-    return psycopg2.connect(host=host, user=user, password=password, dbname=database)
+def connect_postgres(host, user, password, database, port):
+    return psycopg2.connect(
+        host=host,
+        user=user,
+        password=password,
+        dbname=database,
+        port=port
+    )
 
 def setup_logging(mysql_db):
     log_file = f"{mysql_db}_comparison_logs.txt"
@@ -412,32 +426,47 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
             
 def main():
-    mysql_db = 'wm_login_mysql_stage'
-    mysql_user = 'karthikragula'
-    mysql_pass = 'R.Karthik@04'
+    config = configparser.ConfigParser()
+    config.read('config.ini')
 
-    postgres_db = 'wm_login_stage_postgres'
-    postgres_user = 'postgres'
-    postgres_pass = 'R.Karthik@04'
-    setup_logging(mysql_db)
+    mysql_host = config['MySQL']['host']
+    mysql_port = int(config['MySQL']['port'])
+    
+    postgres_host = config['PostgreSQL']['host']
+    postgres_port = int(config['PostgreSQL']['port'])
+
+    parser = argparse.ArgumentParser(description="Compare MySQL and PostgreSQL databases.")
+    parser.add_argument("--mysql_db", required=True, help="MySQL database name")
+    parser.add_argument("--mysql_user", required=True, help="MySQL username")
+    parser.add_argument("--mysql_pass", required=True, help="MySQL password")
+    
+    parser.add_argument("--postgres_db", required=True, help="PostgreSQL database name")
+    parser.add_argument("--postgres_user", required=True, help="PostgreSQL username")
+    parser.add_argument("--postgres_pass", required=True, help="PostgreSQL password")
+
+    args = parser.parse_args()
+
+    setup_logging(args.mysql_db)
     
     logging.info("========== Comparison started ==========")
+    
     try:
-        mysql_conn = mysql_conn = connect_mysql('localhost', mysql_user, mysql_pass, mysql_db)
+        mysql_conn = connect_mysql(mysql_host, args.mysql_user, args.mysql_pass, args.mysql_db, mysql_port)
         mysql_cursor = mysql_conn.cursor(buffered=True)
         logging.info(" Connected to MySQL successfully")
     except mysql.connector.Error as err:
         logging.error(f" MySQL connection error: {err}")
         exit(1)
+
     try:
-        postgres_conn = connect_postgres('localhost', postgres_user, postgres_pass, postgres_db)
+        postgres_conn = connect_postgres(postgres_host, args.postgres_user, args.postgres_pass, args.postgres_db, postgres_port)
         postgres_cursor = postgres_conn.cursor()
         logging.info(" Connected to PostgreSQL successfully")
     except psycopg2.Error as err:
         logging.error(f" PostgreSQL connection error: {err}")
         exit(1)
 
-    fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db)
+    fetch_and_compare_tables(mysql_cursor, postgres_cursor, args.mysql_db)
     
     mysql_cursor.close()
     mysql_conn.close()
