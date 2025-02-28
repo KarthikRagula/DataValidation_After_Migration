@@ -1,0 +1,316 @@
+2025-02-28 15:47:42,543 - INFO - Loading config from: /tmp/_MEIhlIuE9/config.ini
+2025-02-28 15:47:42,545 - INFO - ========== Comparison started ==========
+2025-02-28 15:47:42,557 - INFO - package: mysql.connector.plugins
+2025-02-28 15:47:42,557 - INFO - plugin_name: caching_sha2_password
+2025-02-28 15:47:42,557 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-28 15:47:42,559 - INFO - Connected to MySQL successfully
+2025-02-28 15:47:42,569 - INFO - Connected to PostgreSQL successfully
+2025-02-28 15:47:42,587 - INFO - Number of tables in MySQL: 26
+2025-02-28 15:47:42,588 - INFO - Number of tables in PostgreSQL: 24
+2025-02-28 15:47:42,588 - INFO - No tables are missing in MySQL.
+2025-02-28 15:47:42,588 - ERROR - Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-28 15:47:42,588 - ERROR - Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-28 15:47:42,588 - INFO - Table: CONTAINER_COMPOSITION_LAST_ACCESS_TIME 
+2025-02-28 15:47:42,629 - INFO -  MySQL Rows: 11 | PostgreSQL Rows: 11
+2025-02-28 15:47:42,632 - INFO - Table CONTAINER_COMPOSITION_LAST_ACCESS_TIME data matches perfectly!
+2025-02-28 15:47:42,632 - INFO - Table: QRTZ_JOB_DETAILS 
+2025-02-28 15:47:42,658 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:47:42,660 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
+2025-02-28 15:47:42,661 - INFO - Table: USER_WORKSPACE 
+2025-02-28 15:47:42,695 - INFO -  MySQL Rows: 569 | PostgreSQL Rows: 569
+2025-02-28 15:47:42,745 - INFO - Table USER_WORKSPACE data matches perfectly!
+2025-02-28 15:47:42,745 - INFO - Table: LB_INSTANCE 
+2025-02-28 15:47:42,776 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:47:42,778 - INFO - Table LB_INSTANCE data matches perfectly!
+2025-02-28 15:47:42,778 - INFO - Table: LB_ENTRIES 
+2025-02-28 15:47:48,429 - INFO -  MySQL Rows: 7809131 | PostgreSQL Rows: 7809131
+2025-02-28 15:48:06,348 - INFO - Table PROJECT_PROPERTIES data matches perfectly!
+2025-02-28 15:48:06,471 - INFO - Table: ARTIFACT_MARKETPLACE_MAPPING 
+2025-02-28 15:48:06,579 - INFO -  MySQL Rows: 44 | PostgreSQL Rows: 44
+2025-02-28 15:48:06,582 - INFO - Table ARTIFACT_MARKETPLACE_MAPPING data matches perfectly!
+2025-02-28 15:48:06,582 - INFO - Table: PRODUCT_NOTIFICATION 
+2025-02-28 15:48:06,621 - INFO -  MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-28 15:48:06,624 - INFO - Table PRODUCT_NOTIFICATION data matches perfectly!
+2025-02-28 15:48:06,624 - INFO - Table: ARTIFACT_PUBLISHER 
+2025-02-28 15:48:06,655 - INFO -  MySQL Rows: 88 | PostgreSQL Rows: 88
+2025-02-28 15:48:06,660 - INFO - Table ARTIFACT_PUBLISHER data matches perfectly!
+2025-02-28 15:48:06,660 - INFO - Table: CORE_UPGRADE_REMEMBER_ME 
+2025-02-28 15:48:06,695 - INFO -  MySQL Rows: 29 | PostgreSQL Rows: 29
+2025-02-28 15:48:06,697 - INFO - Table CORE_UPGRADE_REMEMBER_ME data matches perfectly!
+2025-02-28 15:48:06,697 - INFO - Table: VCS_SLUG_MAPPING 
+2025-02-28 15:48:06,739 - INFO -  MySQL Rows: 1545 | PostgreSQL Rows: 1545
+2025-02-28 15:48:06,825 - WARNING - 
+ 10 rows in PostgreSQL are missing for table VCS_SLUG_MAPPING:
++---------------+------------------+-------------------+-------------------------+
+| VCS_SLUG_ID   | VCS_ACCOUNT_ID   | ENTERPRISE_SLUG   | VCS_CUSTOM_PROPERTIES   |
++===============+==================+===================+=========================+
+| vs-18f055e7   | vcs-22942045-9   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f13c3c   | vcs-f96d1ff7-d   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190e3f03   | vcs-4eb2f53c-0   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190e88ef   | vcs-fe4fb15e-3   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f05626   | vcs-3624f053-d   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190d9b67   | vcs-fbb11607-9   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190e8a76   | vcs-222097c9-6   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190d9c4d   | vcs-0ee89a0b-1   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f13ccb   | vcs-d9421a79-f   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190de0ba   | vcs-c3ce62c9-c   | first-org-amair   | None                    |
++---------------+------------------+-------------------+-------------------------+
+========================================================================================================================================================================================================
+2025-02-28 15:48:06,827 - WARNING - 
+ 10 rows in MySQL are missing for table VCS_SLUG_MAPPING:
++---------------+------------------+-------------------+-------------------------+
+| VCS_SLUG_ID   | VCS_ACCOUNT_ID   | ENTERPRISE_SLUG   | VCS_CUSTOM_PROPERTIES   |
++===============+==================+===================+=========================+
+| vs-190de0ba   | vcs-c3ce62c9-c   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f055e7   | vcs-22942045-9   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190d9b67   | vcs-fbb11607-9   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f13ccb   | vcs-d9421a79-f   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190e3f03   | vcs-4eb2f53c-0   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190e88ef   | vcs-fe4fb15e-3   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190e8a76   | vcs-222097c9-6   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-190d9c4d   | vcs-0ee89a0b-1   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f13c3c   | vcs-f96d1ff7-d   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+| vs-18f05626   | vcs-3624f053-d   | first-org-postg   | None                    |
++---------------+------------------+-------------------+-------------------------+
+========================================================================================================================================================================================================
+2025-02-28 15:48:06,828 - INFO - Table: ARTIFACT_VERSION 
+2025-02-28 15:48:07,313 - INFO -  MySQL Rows: 13738 | PostgreSQL Rows: 13738
+2025-02-28 15:48:09,320 - INFO - Table ARTIFACT_VERSION data matches perfectly!
+2025-02-28 15:48:09,326 - INFO - Table: ARTIFACT_DEPENDENCY 
+2025-02-28 15:48:09,367 - INFO -  MySQL Rows: 356 | PostgreSQL Rows: 356
+2025-02-28 15:48:09,389 - INFO - Table ARTIFACT_DEPENDENCY data matches perfectly!
+2025-02-28 15:48:09,389 - INFO - Table: ARTIFACT_METADATA 
+2025-02-28 15:48:09,474 - INFO -  MySQL Rows: 47704 | PostgreSQL Rows: 47704
+2025-02-28 15:48:14,616 - INFO - Table ARTIFACT_METADATA data matches perfectly!
+2025-02-28 15:48:14,630 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
+2025-02-28 15:48:14,672 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-28 15:48:14,673 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
+2025-02-28 15:48:14,673 - INFO - Table: NOTIFICATION 
+2025-02-28 15:48:14,721 - INFO -  MySQL Rows: 22925 | PostgreSQL Rows: 22925
+2025-02-28 15:48:16,612 - INFO - Table NOTIFICATION data matches perfectly!
+2025-02-28 15:48:16,618 - INFO - Table: ACTIVITY_PROGRESS_TRACKER 
+2025-02-28 15:48:16,659 - INFO -  MySQL Rows: 786 | PostgreSQL Rows: 786
+2025-02-28 15:48:16,785 - INFO - Table ACTIVITY_PROGRESS_TRACKER data matches perfectly!
+2025-02-28 15:48:16,786 - INFO - Table: CLEANUP_JOB_ACCOUNT_STAT 
+2025-02-28 15:48:16,826 - INFO -  MySQL Rows: 3846 | PostgreSQL Rows: 3846
+2025-02-28 15:48:16,986 - INFO - Table CLEANUP_JOB_ACCOUNT_STAT data matches perfectly!
+2025-02-28 15:48:16,987 - INFO - Table: ARTIFACT_CATEGORY 
+2025-02-28 15:48:17,011 - ERROR - Missing not_null in PostgreSQL for table ARTIFACT_CATEGORY: {'created_by'}
+2025-02-28 15:48:17,025 - INFO -  MySQL Rows: 48 | PostgreSQL Rows: 48
+2025-02-28 15:48:17,031 - INFO - Table ARTIFACT_CATEGORY data matches perfectly!
+2025-02-28 15:48:17,031 - INFO - Table: USER_ACCOUNT 
+2025-02-28 15:48:17,099 - INFO -  MySQL Rows: 2057 | PostgreSQL Rows: 2057
+2025-02-28 15:48:17,263 - INFO - Table USER_ACCOUNT data matches perfectly!
+2025-02-28 15:48:17,264 - INFO - Table: USER_ACCOUNT_EXTENSION 
+2025-02-28 15:48:17,288 - ERROR - Missing not_null in PostgreSQL for table USER_ACCOUNT_EXTENSION: {'last_cleanup_time'}
+2025-02-28 15:48:17,298 - INFO -  MySQL Rows: 642 | PostgreSQL Rows: 642
+2025-02-28 15:48:17,337 - INFO - Table USER_ACCOUNT_EXTENSION data matches perfectly!
+2025-02-28 15:48:17,337 - INFO - Table: CLEANUP_JOB_ACCOUNT 
+2025-02-28 15:48:17,367 - INFO -  MySQL Rows: 1833 | PostgreSQL Rows: 1833
+2025-02-28 15:48:17,496 - INFO - Table CLEANUP_JOB_ACCOUNT data matches perfectly!
+2025-02-28 15:48:17,497 - INFO - Table: CLEANUP_JOB_ACCOUNT_MODULE 
+2025-02-28 15:48:17,539 - INFO -  MySQL Rows: 5430 | PostgreSQL Rows: 5430
+2025-02-28 15:48:17,801 - INFO - Table CLEANUP_JOB_ACCOUNT_MODULE data matches perfectly!
+2025-02-28 15:48:17,802 - INFO - Table: CLEANUP_PROJECTS 
+2025-02-28 15:48:17,841 - INFO -  MySQL Rows: 2604 | PostgreSQL Rows: 2604
+2025-02-28 15:48:17,947 - INFO - Table CLEANUP_PROJECTS data matches perfectly!
+2025-02-28 15:48:17,948 - INFO - Table: NOTIFICATION_USER_MAPPING 
+2025-02-28 15:48:17,995 - INFO -  MySQL Rows: 17835 | PostgreSQL Rows: 17835
+2025-02-28 15:48:18,564 - INFO - Table NOTIFICATION_USER_MAPPING data matches perfectly!
+2025-02-28 15:48:18,566 - INFO - Table: QRTZ_CRON_TRIGGERS 
+2025-02-28 15:48:18,600 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:18,601 - INFO - Table QRTZ_CRON_TRIGGERS data matches perfectly!
+2025-02-28 15:48:18,601 - INFO - Table: PROJECT_USER_MAPPING 
+2025-02-28 15:48:18,633 - ERROR - Missing indexes in PostgreSQL for table PROJECT_USER_MAPPING: {'fk_project_user_mapping_enterprise_enterprise_id'}
+2025-02-28 15:48:19,695 - INFO -  MySQL Rows: 1448683 | PostgreSQL Rows: 1448683
+2025-02-28 15:48:48,906 - INFO - Table LB_ENTRIES data matches perfectly!
+2025-02-28 15:48:49,473 - INFO - Table: AZURE_CREDENTIAL 
+2025-02-28 15:48:50,115 - INFO -  MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-28 15:48:50,116 - INFO - Table AZURE_CREDENTIAL data matches perfectly!
+2025-02-28 15:48:50,117 - INFO - Table: PIPELINE_TEMPLATE_PHASE 
+2025-02-28 15:48:50,139 - ERROR - Missing not_null in PostgreSQL for table PIPELINE_TEMPLATE_PHASE: {'created_at'}
+2025-02-28 15:48:50,149 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-28 15:48:50,152 - INFO - Table PIPELINE_TEMPLATE_PHASE data matches perfectly!
+2025-02-28 15:48:50,152 - INFO - Table: DOCKER_IMAGE_REGISTRY 
+2025-02-28 15:48:50,182 - INFO -  MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-28 15:48:50,186 - INFO - Table DOCKER_IMAGE_REGISTRY data matches perfectly!
+2025-02-28 15:48:50,187 - INFO - Table: REGISTRY_DEPLOYMENT_TARGET 
+2025-02-28 15:48:50,218 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:50,219 - INFO - Table REGISTRY_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-28 15:48:50,220 - INFO - Table: QRTZ_TRIGGERS 
+2025-02-28 15:48:50,265 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:48:50,267 - INFO - Table QRTZ_TRIGGERS data matches perfectly!
+2025-02-28 15:48:50,267 - INFO - Table: QRTZ_JOB_DETAILS 
+2025-02-28 15:48:50,300 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:48:50,302 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
+2025-02-28 15:48:50,302 - INFO - Table: K8S_APP_CONFIG 
+2025-02-28 15:48:50,331 - INFO -  MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-28 15:48:50,335 - INFO - Table K8S_APP_CONFIG data matches perfectly!
+2025-02-28 15:48:50,336 - INFO - Table: CONTAINER 
+2025-02-28 15:48:50,341 - ERROR - Columns present in PostgreSQL but missing in MySQL: ['hibernation_enabled']
+2025-02-28 15:48:50,341 - INFO - Table: K8S_USER 
+2025-02-28 15:48:50,371 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:50,373 - INFO - Table K8S_USER data matches perfectly!
+2025-02-28 15:48:50,373 - INFO - Table: PIPELINE_PHASE_HOOK_EXECUTION 
+2025-02-28 15:48:50,405 - INFO -  MySQL Rows: 285 | PostgreSQL Rows: 285
+2025-02-28 15:48:50,433 - INFO - Table PIPELINE_PHASE_HOOK_EXECUTION data matches perfectly!
+2025-02-28 15:48:50,434 - INFO - Table: QRTZ_FIRED_TRIGGERS 
+2025-02-28 15:48:50,469 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:50,470 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
+2025-02-28 15:48:50,470 - INFO - Table: AWS_DEPLOYMENT_ALLOWED_REGION 
+2025-02-28 15:48:50,501 - INFO -  MySQL Rows: 17 | PostgreSQL Rows: 17
+2025-02-28 15:48:50,503 - INFO - Table AWS_DEPLOYMENT_ALLOWED_REGION data matches perfectly!
+2025-02-28 15:48:50,503 - INFO - Table: APP_DEPLOYMENTS 
+2025-02-28 15:48:50,536 - INFO -  MySQL Rows: 1239 | PostgreSQL Rows: 1239
+2025-02-28 15:48:50,695 - INFO - Table APP_DEPLOYMENTS data matches perfectly!
+2025-02-28 15:48:50,696 - INFO - Table: K8S_DEPLOYMENT_TARGET 
+2025-02-28 15:48:50,731 - INFO -  MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-28 15:48:50,735 - INFO - Table K8S_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-28 15:48:50,735 - INFO - Table: AZURE_DEPLOYMENT_ALLOWED_REGION 
+2025-02-28 15:48:50,766 - INFO -  MySQL Rows: 5 | PostgreSQL Rows: 5
+2025-02-28 15:48:50,767 - INFO - Table AZURE_DEPLOYMENT_ALLOWED_REGION data matches perfectly!
+2025-02-28 15:48:50,767 - INFO - Table: QRTZ_LOCKS 
+2025-02-28 15:48:50,797 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-28 15:48:50,798 - INFO - Table QRTZ_LOCKS data matches perfectly!
+2025-02-28 15:48:50,799 - INFO - Table: AZURE_INSTANCE_DEPLOYMENT_TARGET 
+2025-02-28 15:48:50,831 - INFO -  MySQL Rows: 7 | PostgreSQL Rows: 7
+2025-02-28 15:48:50,834 - INFO - Table AZURE_INSTANCE_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-28 15:48:50,835 - INFO - Table: APP_PIPELINE_VERSION 
+2025-02-28 15:48:50,854 - ERROR - Missing not_null in PostgreSQL for table APP_PIPELINE_VERSION: {'created_at'}
+2025-02-28 15:48:50,867 - INFO -  MySQL Rows: 2701 | PostgreSQL Rows: 2701
+2025-02-28 15:48:51,131 - INFO - Table APP_PIPELINE_VERSION data matches perfectly!
+2025-02-28 15:48:51,133 - INFO - Table: GCLOUD_DEPLOYMENT_ALLOWED_REGION 
+2025-02-28 15:48:51,168 - INFO -  MySQL Rows: 12 | PostgreSQL Rows: 12
+2025-02-28 15:48:51,170 - INFO - Table GCLOUD_DEPLOYMENT_ALLOWED_REGION data matches perfectly!
+2025-02-28 15:48:51,170 - INFO - Table: TRUSTED_CERTIFICATE 
+2025-02-28 15:48:51,205 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:51,207 - INFO - Table TRUSTED_CERTIFICATE data matches perfectly!
+2025-02-28 15:48:51,207 - INFO - Table: APP_DEPLOYMENT_PROFILE 
+2025-02-28 15:48:51,462 - INFO -  MySQL Rows: 78797 | PostgreSQL Rows: 78797
+2025-02-28 15:48:58,230 - INFO - Table APP_DEPLOYMENT_PROFILE data matches perfectly!
+2025-02-28 15:48:58,255 - INFO - Table: FILE_META 
+2025-02-28 15:48:58,316 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:48:58,317 - INFO - Table FILE_META data matches perfectly!
+2025-02-28 15:48:58,318 - INFO - Table: DEPLOYMENT_TARGET_SSH_ACCESS 
+2025-02-28 15:48:58,351 - INFO -  MySQL Rows: 37 | PostgreSQL Rows: 37
+2025-02-28 15:48:58,358 - INFO - Table DEPLOYMENT_TARGET_SSH_ACCESS data matches perfectly!
+2025-02-28 15:48:58,359 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
+2025-02-28 15:48:58,390 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:58,392 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
+2025-02-28 15:48:58,392 - INFO - Table: GCLOUD_REGION_ZONE_MAPPING 
+2025-02-28 15:48:58,428 - INFO -  MySQL Rows: 36 | PostgreSQL Rows: 36
+2025-02-28 15:48:58,431 - INFO - Table GCLOUD_REGION_ZONE_MAPPING data matches perfectly!
+2025-02-28 15:48:58,432 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
+2025-02-28 15:48:58,466 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:58,468 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
+2025-02-28 15:48:58,468 - INFO - Table: K8S_CONTEXT 
+2025-02-28 15:48:58,501 - ERROR - Missing indexes in PostgreSQL for table K8S_CONTEXT: {'uq_k8s_context_nam'}
+2025-02-28 15:48:58,501 - ERROR - Missing indexes in MySQL for table K8S_CONTEXT: {'k8s_context_name_uq'}
+2025-02-28 15:48:58,505 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:58,507 - INFO - Table K8S_CONTEXT data matches perfectly!
+2025-02-28 15:48:58,507 - INFO - Table: K8S_CLUSTER_CONFIG 
+2025-02-28 15:48:58,543 - INFO -  MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-28 15:48:58,549 - INFO - Table K8S_CLUSTER_CONFIG data matches perfectly!
+2025-02-28 15:48:58,549 - INFO - Table: QRTZ_BLOB_TRIGGERS 
+2025-02-28 15:48:58,577 - ERROR - Missing indexes in PostgreSQL for table QRTZ_BLOB_TRIGGERS: {'sched_name'}
+2025-02-28 15:48:58,581 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:48:58,582 - INFO - Table QRTZ_BLOB_TRIGGERS data matches perfectly!
+2025-02-28 15:48:58,591 - INFO - ========== Comparison Completed ==========
+2025-02-28 15:50:43,430 - INFO - Table PROJECT_USER_MAPPING data matches perfectly!
+2025-02-28 15:50:43,968 - INFO - Table: QRTZ_FIRED_TRIGGERS 
+2025-02-28 15:50:44,546 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:50:44,548 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
+2025-02-28 15:50:44,548 - INFO - Table: ARTIFACT 
+2025-02-28 15:50:44,581 - INFO -  MySQL Rows: 8047 | PostgreSQL Rows: 8047
+2025-02-28 15:50:45,242 - INFO - Table ARTIFACT data matches perfectly!
+2025-02-28 15:50:45,244 - INFO - Table: QRTZ_SCHEDULER_STATE 
+2025-02-28 15:50:45,278 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-28 15:50:45,279 - INFO - Table QRTZ_SCHEDULER_STATE data matches perfectly!
+2025-02-28 15:50:45,280 - INFO - Table: USER_VCS_MAPPING 
+2025-02-28 15:50:45,308 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:50:45,310 - INFO - Table USER_VCS_MAPPING data matches perfectly!
+2025-02-28 15:50:45,310 - INFO - Table: PRODUCT_NOTIFICATION_USER_MAPPING 
+2025-02-28 15:50:45,331 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:50:45,332 - INFO - Table PRODUCT_NOTIFICATION_USER_MAPPING data matches perfectly!
+2025-02-28 15:50:45,333 - INFO - Table: USER_VCS_CREDENTIALS_INFO 
+2025-02-28 15:50:45,355 - INFO -  MySQL Rows: 64 | PostgreSQL Rows: 64
+2025-02-28 15:50:45,358 - INFO - Table USER_VCS_CREDENTIALS_INFO data matches perfectly!
+2025-02-28 15:50:45,374 - INFO - ========== Comparison Completed ==========
+2025-02-28 15:53:16,918 - INFO - Table LB_ENTRIES data matches perfectly!
+2025-02-28 15:53:18,148 - INFO - Table: ACTIVITY_PROGRESS_TRACKER 
+2025-02-28 15:53:19,791 - ERROR - Missing indexes in PostgreSQL for table ACTIVITY_PROGRESS_TRACKER: {'index_activity_progress_tracker_tenant_id'}
+2025-02-28 15:53:19,797 - INFO -  MySQL Rows: 66 | PostgreSQL Rows: 66
+2025-02-28 15:53:19,805 - INFO - Table ACTIVITY_PROGRESS_TRACKER data matches perfectly!
+2025-02-28 15:53:19,805 - INFO - Table: LB_ENTRY_LOG 
+2025-02-28 15:53:20,256 - INFO -  MySQL Rows: 1570410 | PostgreSQL Rows: 1570410
+2025-02-28 15:54:24,728 - INFO - Table LB_ENTRY_LOG data matches perfectly!
+2025-02-28 15:54:24,995 - INFO - Table: QRTZ_FIRED_TRIGGERS 
+2025-02-28 15:54:25,202 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,203 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
+2025-02-28 15:54:25,203 - INFO - Table: QRTZ_LOCKS 
+2025-02-28 15:54:25,225 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
+2025-02-28 15:54:25,227 - INFO - Table QRTZ_LOCKS data matches perfectly!
+2025-02-28 15:54:25,227 - INFO - Table: QRTZ_BLOB_TRIGGERS 
+2025-02-28 15:54:25,252 - ERROR - Missing indexes in PostgreSQL for table QRTZ_BLOB_TRIGGERS: {'sched_name'}
+2025-02-28 15:54:25,255 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,257 - INFO - Table QRTZ_BLOB_TRIGGERS data matches perfectly!
+2025-02-28 15:54:25,257 - INFO - Table: USER_CONTAINER_COMPOSITION 
+2025-02-28 15:54:25,277 - INFO -  MySQL Rows: 443 | PostgreSQL Rows: 443
+2025-02-28 15:54:25,295 - INFO - Table USER_CONTAINER_COMPOSITION data matches perfectly!
+2025-02-28 15:54:25,296 - INFO - Table: K8S_VOLUMES 
+2025-02-28 15:54:25,313 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,314 - INFO - Table K8S_VOLUMES data matches perfectly!
+2025-02-28 15:54:25,314 - INFO - Table: USER_POD_PROVISION_RESPONSE 
+2025-02-28 15:54:25,332 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,333 - INFO - Table USER_POD_PROVISION_RESPONSE data matches perfectly!
+2025-02-28 15:54:25,333 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
+2025-02-28 15:54:25,349 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,350 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
+2025-02-28 15:54:25,350 - INFO - Table: USER_ACCOUNT 
+2025-02-28 15:54:25,372 - INFO -  MySQL Rows: 1426 | PostgreSQL Rows: 1426
+2025-02-28 15:54:25,450 - INFO - Table USER_ACCOUNT data matches perfectly!
+2025-02-28 15:54:25,451 - INFO - Table: WM_CLUSTER 
+2025-02-28 15:54:25,469 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:54:25,471 - INFO - Table WM_CLUSTER data matches perfectly!
+2025-02-28 15:54:25,471 - INFO - Table: QRTZ_CRON_TRIGGERS 
+2025-02-28 15:54:25,490 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,491 - INFO - Table QRTZ_CRON_TRIGGERS data matches perfectly!
+2025-02-28 15:54:25,491 - INFO - Table: K8S_USER_WORKSPACE 
+2025-02-28 15:54:25,494 - ERROR - Columns present in PostgreSQL but missing in MySQL: ['created_at', 'last_modified_at']
+2025-02-28 15:54:25,494 - INFO - Table: REMOTE_STUDIO_META 
+2025-02-28 15:54:25,512 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,513 - INFO - Table REMOTE_STUDIO_META data matches perfectly!
+2025-02-28 15:54:25,513 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
+2025-02-28 15:54:25,529 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,530 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
+2025-02-28 15:54:25,530 - INFO - Table: QRTZ_TRIGGERS 
+2025-02-28 15:54:25,548 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:54:25,550 - INFO - Table QRTZ_TRIGGERS data matches perfectly!
+2025-02-28 15:54:25,550 - INFO - Table: QRTZ_SCHEDULER_STATE 
+2025-02-28 15:54:25,565 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-28 15:54:25,565 - INFO - Table QRTZ_SCHEDULER_STATE data matches perfectly!
+2025-02-28 15:54:25,565 - INFO - Table: QRTZ_CALENDARS 
+2025-02-28 15:54:25,581 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 15:54:25,582 - INFO - Table QRTZ_CALENDARS data matches perfectly!
+2025-02-28 15:54:25,582 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
+2025-02-28 15:54:25,602 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-28 15:54:25,603 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
+2025-02-28 15:54:25,604 - INFO - ========== Comparison Completed ==========
