@@ -9,50 +9,8 @@ import sys
 from colorama import init, Fore, Style
 import argparse
 import configparser
-
-class ColorFormatter(logging.Formatter):
-    COLORS = {
-        logging.ERROR: "\033[91m",#RED
-        logging.WARNING: "\033[93m",#YELLOW
-        "GREEN": "\033[92m",
-        "RESET": "\033[0m"
-    }
-    def format(self, record):
-        log_msg = super().format(record)
-        color = self.COLORS.get(record.levelno, "")
-        if record.levelno == logging.INFO and "data matches perfectly!" in record.msg:
-            return f"{self.COLORS['GREEN']}{log_msg}{self.COLORS['RESET']}"
-        return f"{color}{log_msg}{self.COLORS['RESET']}"
-
-def connect_mysql(host, user, password, database, port):
-    return mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database,
-        port=port
-    )
-
-def connect_postgres(host, user, password, database, port):
-    return psycopg2.connect(
-        host=host,
-        user=user,
-        password=password,
-        dbname=database,
-        port=port
-    )
-
-def setup_logging(mysql_db):
-    log_file = f"{mysql_db}_comparison_logs.txt"
-    open(log_file, "w").close()
-
-    file_handler = logging.FileHandler(log_file)
-    file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
-    
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setFormatter(ColorFormatter("%(asctime)s - %(levelname)s - %(message)s"))
-    
-    logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
+import os
+import sys
 
 def fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db):
     try:
@@ -424,55 +382,124 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Column mismatch in index {index_name} for table {table_name}.")
         if mysql_index["unique"] != postgres_index["unique"]:
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
-            
-def main():
-    config = configparser.ConfigParser()
-    config.read('config.ini')
 
-    mysql_host = config['MySQL']['host']
-    mysql_port = int(config['MySQL']['port'])
+class ColorFormatter(logging.Formatter):
+    COLORS = {
+        logging.ERROR: "\033[91m",#RED--Error
+        logging.WARNING: "\033[93m",#YELLOW--Missing Values
+        "GREEN": "\033[92m",
+        "RESET": "\033[0m"
+    }
+    def format(self, record):
+        log_msg = super().format(record)
+        color = self.COLORS.get(record.levelno, "")
+        if record.levelno == logging.INFO and "data matches perfectly!" in record.msg:
+            return f"{self.COLORS['GREEN']}{log_msg}{self.COLORS['RESET']}"
+        return f"{color}{log_msg}{self.COLORS['RESET']}"
     
-    postgres_host = config['PostgreSQL']['host']
-    postgres_port = int(config['PostgreSQL']['port'])
+def get_config_path():
+    if getattr(sys, 'frozen', False): 
+        base_path = sys._MEIPASS 
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, "config.ini")
+
+def connect_mysql(host, user, password, database, port):
+    return mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database,
+        port=port
+    )
+
+def connect_postgres(host, user, password, database, port):
+    return psycopg2.connect(
+        host=host,
+        user=user,
+        password=password,
+        dbname=database,
+        port=port
+    )
+
+def setup_logging():
+    log_file = f"comparision_logs.txt"
+    open(log_file, "w").close()
+
+    file_handler = logging.FileHandler(log_file)
+    file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+    
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(ColorFormatter("%(asctime)s - %(levelname)s - %(message)s"))
+    
+    logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
+
+def main():
+    config_path = get_config_path()
+    setup_logging() 
+    if not os.path.exists(config_path):
+        logging.error(f"config.ini not found at {config_path}")
+        sys.exit(1)
+
+    logging.info(f"Loading config from: {config_path}")
+
+    config = configparser.ConfigParser()
+    config.read(config_path)
+
+    if "MySQL" not in config or "PostgreSQL" not in config:
+        logging.error("Missing [MySQL] or [PostgreSQL] section in config.ini")
+        sys.exit(1)
+
+    try:
+        mysql_host = config['MySQL']['host']
+        mysql_port = int(config['MySQL']['port'])
+        postgres_host = config['PostgreSQL']['host']
+        postgres_port = int(config['PostgreSQL']['port'])
+    except KeyError as e:
+        logging.error(f"Missing key in config.ini: {e}")
+        sys.exit(1)
 
     parser = argparse.ArgumentParser(description="Compare MySQL and PostgreSQL databases.")
     parser.add_argument("--mysql_db", required=True, help="MySQL database name")
     parser.add_argument("--mysql_user", required=True, help="MySQL username")
     parser.add_argument("--mysql_pass", required=True, help="MySQL password")
-    
+
     parser.add_argument("--postgres_db", required=True, help="PostgreSQL database name")
     parser.add_argument("--postgres_user", required=True, help="PostgreSQL username")
     parser.add_argument("--postgres_pass", required=True, help="PostgreSQL password")
 
     args = parser.parse_args()
 
-    setup_logging(args.mysql_db)
-    
     logging.info("========== Comparison started ==========")
-    
+
     try:
-        mysql_conn = connect_mysql(mysql_host, args.mysql_user, args.mysql_pass, args.mysql_db, mysql_port)
+        mysql_conn = mysql.connector.connect(
+            host=mysql_host, user=args.mysql_user, password=args.mysql_pass, database=args.mysql_db, port=mysql_port
+        )
         mysql_cursor = mysql_conn.cursor(buffered=True)
-        logging.info(" Connected to MySQL successfully")
+        logging.info("Connected to MySQL successfully")
     except mysql.connector.Error as err:
-        logging.error(f" MySQL connection error: {err}")
+        logging.error(f"MySQL connection error: {err}")
         exit(1)
 
     try:
-        postgres_conn = connect_postgres(postgres_host, args.postgres_user, args.postgres_pass, args.postgres_db, postgres_port)
+        postgres_conn = psycopg2.connect(
+            host=postgres_host, user=args.postgres_user, password=args.postgres_pass, database=args.postgres_db, port=postgres_port
+        )
         postgres_cursor = postgres_conn.cursor()
-        logging.info(" Connected to PostgreSQL successfully")
+        logging.info("Connected to PostgreSQL successfully")
     except psycopg2.Error as err:
-        logging.error(f" PostgreSQL connection error: {err}")
+        logging.error(f"PostgreSQL connection error: {err}")
         exit(1)
 
     fetch_and_compare_tables(mysql_cursor, postgres_cursor, args.mysql_db)
-    
+
     mysql_cursor.close()
     mysql_conn.close()
     postgres_cursor.close()
     postgres_conn.close()
 
     logging.info("========== Comparison Completed ==========")
+
 if __name__ == "__main__":
     main()
