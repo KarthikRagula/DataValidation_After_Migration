@@ -1,142 +1,25 @@
-2025-02-24 16:04:28,732 - INFO - ========== Comparison started ==========
-2025-02-24 16:04:28,742 - INFO - package: mysql.connector.plugins
-2025-02-24 16:04:28,742 - INFO - plugin_name: caching_sha2_password
-2025-02-24 16:04:28,742 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-24 16:04:28,745 - INFO -  Connected to MySQL successfully
-2025-02-24 16:04:28,752 - INFO -  Connected to PostgreSQL successfully
-2025-02-24 16:04:28,762 - INFO - Number of tables in MySQL: 61
-2025-02-24 16:04:28,762 - INFO - Number of tables in PostgreSQL: 54
-2025-02-24 16:04:28,762 - INFO - No tables are missing in MySQL.
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: USER_ACCOUNT_25FEB
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: TEM_PROJECT_USER_MAPPING
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: TEMP_APP_DEPLOYMENT_TARGET
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: USER_ACCOUNT_EXTENSION_OLD
-2025-02-24 16:04:28,763 - ERROR - Table present in MySQL but missing in PostgreSQL: NEW_ENT_ACCOUNT
-2025-02-24 16:04:28,763 - INFO - Table: ARTIFACT_CATEGORY 
-2025-02-24 16:04:28,779 - ERROR - Missing not_null in PostgreSQL for table ARTIFACT_CATEGORY: {'created_by'}
-2025-02-24 16:04:28,783 - INFO -  MySQL Rows: 48 | PostgreSQL Rows: 48
-2025-02-24 16:04:28,786 - INFO - Table ARTIFACT_CATEGORY data matches perfectly!
-2025-02-24 16:04:28,786 - INFO - Table: USER_VCS_CREDENTIALS_INFO 
-2025-02-24 16:04:28,798 - INFO -  MySQL Rows: 64 | PostgreSQL Rows: 64
-2025-02-24 16:04:28,801 - INFO - Table USER_VCS_CREDENTIALS_INFO data matches perfectly!
-2025-02-24 16:04:28,801 - INFO - Table: ARTIFACT 
-2025-02-24 16:04:28,818 - INFO -  MySQL Rows: 8047 | PostgreSQL Rows: 8047
-2025-02-24 16:04:29,489 - INFO - Table ARTIFACT data matches perfectly!
-2025-02-24 16:04:29,491 - INFO - Table: QRTZ_FIRED_TRIGGERS 
-2025-02-24 16:04:29,506 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 16:04:29,508 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
-2025-02-24 16:04:29,508 - INFO - Table: QRTZ_TRIGGERS 
-2025-02-24 16:04:29,522 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
-2025-02-24 16:04:29,524 - INFO - Table QRTZ_TRIGGERS data matches perfectly!
-2025-02-24 16:04:29,524 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
-2025-02-24 16:04:29,536 - INFO -  MySQL Rows: 4 | PostgreSQL Rows: 4
-2025-02-24 16:04:29,537 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
-2025-02-24 16:04:29,537 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
-2025-02-24 16:04:29,546 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 16:04:29,547 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
-2025-02-24 16:04:29,547 - INFO - Table: CLEANUP_PROJECTS 
-2025-02-24 16:04:29,561 - INFO -  MySQL Rows: 2604 | PostgreSQL Rows: 2604
-2025-02-24 16:04:29,611 - INFO - Table CLEANUP_PROJECTS data matches perfectly!
-2025-02-24 16:04:29,611 - INFO - Table: ENT_TOOLS_AUTH_CONFIG 
-2025-02-24 16:04:29,634 - INFO -  MySQL Rows: 19 | PostgreSQL Rows: 19
-2025-02-24 16:04:29,636 - INFO - Table ENT_TOOLS_AUTH_CONFIG data matches perfectly!
-2025-02-24 16:04:29,636 - INFO - Table: QRTZ_BLOB_TRIGGERS 
-2025-02-24 16:04:29,648 - ERROR - Missing indexes in PostgreSQL for table QRTZ_BLOB_TRIGGERS: {'sched_name'}
-2025-02-24 16:04:29,649 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 16:04:29,649 - INFO - Table QRTZ_BLOB_TRIGGERS data matches perfectly!
-2025-02-24 16:04:29,649 - INFO - Table: VCS_SLUG_MAPPING 
-2025-02-24 16:04:29,661 - INFO -  MySQL Rows: 1545 | PostgreSQL Rows: 1545
-2025-02-24 16:04:29,694 - WARNING - 
- 10 rows in PostgreSQL are missing for table VCS_SLUG_MAPPING:
-+---------------+------------------+-------------------+-------------------------+
-| VCS_SLUG_ID   | VCS_ACCOUNT_ID   | ENTERPRISE_SLUG   | VCS_CUSTOM_PROPERTIES   |
-+===============+==================+===================+=========================+
-| vs-190e88ef   | vcs-fe4fb15e-3   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f055e7   | vcs-22942045-9   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190d9c4d   | vcs-0ee89a0b-1   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190e8a76   | vcs-222097c9-6   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f13ccb   | vcs-d9421a79-f   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190de0ba   | vcs-c3ce62c9-c   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190d9b67   | vcs-fbb11607-9   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f13c3c   | vcs-f96d1ff7-d   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f05626   | vcs-3624f053-d   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190e3f03   | vcs-4eb2f53c-0   | first-org-amair   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-========================================================================================================================================================================================================
-2025-02-24 16:04:29,694 - WARNING - 
- 10 rows in MySQL are missing for table VCS_SLUG_MAPPING:
-+---------------+------------------+-------------------+-------------------------+
-| VCS_SLUG_ID   | VCS_ACCOUNT_ID   | ENTERPRISE_SLUG   | VCS_CUSTOM_PROPERTIES   |
-+===============+==================+===================+=========================+
-| vs-18f055e7   | vcs-22942045-9   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f13c3c   | vcs-f96d1ff7-d   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190e8a76   | vcs-222097c9-6   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190de0ba   | vcs-c3ce62c9-c   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190d9c4d   | vcs-0ee89a0b-1   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f13ccb   | vcs-d9421a79-f   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-18f05626   | vcs-3624f053-d   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190e88ef   | vcs-fe4fb15e-3   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190d9b67   | vcs-fbb11607-9   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-| vs-190e3f03   | vcs-4eb2f53c-0   | first-org-postg   | None                    |
-+---------------+------------------+-------------------+-------------------------+
-========================================================================================================================================================================================================
-2025-02-24 16:04:29,694 - INFO - Table: PROJECT_ARTIFACT_MAPPING 
-2025-02-24 16:04:29,714 - INFO -  MySQL Rows: 3423 | PostgreSQL Rows: 3423
-2025-02-24 16:04:29,808 - INFO - Table PROJECT_ARTIFACT_MAPPING data matches perfectly!
-2025-02-24 16:04:29,808 - INFO - Table: PROJECT_PROPERTIES 
-2025-02-24 16:04:29,873 - INFO -  MySQL Rows: 590494 | PostgreSQL Rows: 590494
-2025-02-24 16:04:39,962 - INFO - Table PROJECT_PROPERTIES data matches perfectly!
-2025-02-24 16:04:40,016 - INFO - Table: ARTIFACT_MARKETPLACE_MAPPING 
-2025-02-24 16:04:40,062 - INFO -  MySQL Rows: 44 | PostgreSQL Rows: 44
-2025-02-24 16:04:40,065 - INFO - Table ARTIFACT_MARKETPLACE_MAPPING data matches perfectly!
-2025-02-24 16:04:40,065 - INFO - Table: NOTIFICATION 
-2025-02-24 16:04:40,102 - INFO -  MySQL Rows: 22925 | PostgreSQL Rows: 22925
-2025-02-24 16:04:40,833 - INFO - Table NOTIFICATION data matches perfectly!
-2025-02-24 16:04:40,837 - INFO - Table: ARTIFACT_IMPORT 
-2025-02-24 16:04:40,854 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 16:04:40,855 - INFO - Table ARTIFACT_IMPORT data matches perfectly!
-2025-02-24 16:04:40,855 - INFO - Table: NOTIFICATION_USER_MAPPING 
-2025-02-24 16:04:40,871 - INFO -  MySQL Rows: 17835 | PostgreSQL Rows: 17835
-2025-02-24 16:04:41,155 - INFO - Table NOTIFICATION_USER_MAPPING data matches perfectly!
-2025-02-24 16:04:41,157 - INFO - Table: USER_ACCOUNT_EXTENSION 
-2025-02-24 16:04:41,168 - ERROR - Missing not_null in PostgreSQL for table USER_ACCOUNT_EXTENSION: {'last_cleanup_time'}
-2025-02-24 16:04:41,174 - INFO -  MySQL Rows: 642 | PostgreSQL Rows: 642
-2025-02-24 16:04:41,193 - INFO - Table USER_ACCOUNT_EXTENSION data matches perfectly!
-2025-02-24 16:04:41,193 - INFO - Table: QRTZ_CRON_TRIGGERS 
-2025-02-24 16:04:41,208 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 16:04:41,208 - INFO - Table QRTZ_CRON_TRIGGERS data matches perfectly!
-2025-02-24 16:04:41,209 - INFO - Table: CLEANUP_JOB_ACCOUNT_STAT 
-2025-02-24 16:04:41,227 - INFO -  MySQL Rows: 3846 | PostgreSQL Rows: 3846
-2025-02-24 16:04:41,327 - INFO - Table CLEANUP_JOB_ACCOUNT_STAT data matches perfectly!
-2025-02-24 16:04:41,327 - INFO - Table: PRODUCT_NOTIFICATION_USER_MAPPING 
-2025-02-24 16:04:41,344 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 16:04:41,345 - INFO - Table PRODUCT_NOTIFICATION_USER_MAPPING data matches perfectly!
-2025-02-24 16:04:41,345 - INFO - Table: CLEANUP_JOB_ACCOUNT_MODULE 
-2025-02-24 16:04:41,368 - INFO -  MySQL Rows: 5430 | PostgreSQL Rows: 5430
-2025-02-24 16:04:41,518 - INFO - Table CLEANUP_JOB_ACCOUNT_MODULE data matches perfectly!
-2025-02-24 16:04:41,518 - INFO - Table: ARTIFACT_FILES 
-2025-02-24 16:04:41,536 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-24 16:04:41,536 - INFO - Table ARTIFACT_FILES data matches perfectly!
-2025-02-24 16:04:41,536 - INFO - Table: PROJECT 
-2025-02-24 16:04:41,557 - ERROR - Missing indexes in PostgreSQL for table PROJECT: {'idx_project_project_key'}
-2025-02-24 16:04:42,711 - INFO -  MySQL Rows: 1455500 | PostgreSQL Rows: 1455500
+2025-02-28 12:32:05,743 - INFO - ========== Comparison started ==========
+2025-02-28 12:32:05,749 - INFO - package: mysql.connector.plugins
+2025-02-28 12:32:05,750 - INFO - plugin_name: caching_sha2_password
+2025-02-28 12:32:05,750 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-28 12:32:05,752 - INFO -  Connected to MySQL successfully
+2025-02-28 12:32:05,757 - INFO -  Connected to PostgreSQL successfully
+2025-02-28 12:32:05,764 - INFO - Number of tables in MySQL: 61
+2025-02-28 12:32:05,765 - INFO - Number of tables in PostgreSQL: 54
+2025-02-28 12:32:05,765 - INFO - No tables are missing in MySQL.
+2025-02-28 12:32:05,765 - ERROR - Table present in MySQL but missing in PostgreSQL: USER_ACCOUNT_25FEB
+2025-02-28 12:32:05,765 - ERROR - Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-28 12:32:05,765 - ERROR - Table present in MySQL but missing in PostgreSQL: USER_ACCOUNT_EXTENSION_OLD
+2025-02-28 12:32:05,765 - ERROR - Table present in MySQL but missing in PostgreSQL: TEMP_APP_DEPLOYMENT_TARGET
+2025-02-28 12:32:05,766 - ERROR - Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-28 12:32:05,766 - ERROR - Table present in MySQL but missing in PostgreSQL: NEW_ENT_ACCOUNT
+2025-02-28 12:32:05,766 - ERROR - Table present in MySQL but missing in PostgreSQL: TEM_PROJECT_USER_MAPPING
+2025-02-28 12:32:05,766 - INFO - Table: CORE_UPGRADE_REMEMBER_ME 
+2025-02-28 12:32:05,787 - INFO - MySQL Rows: 29 | PostgreSQL Rows: 29
+2025-02-28 12:32:05,790 - INFO - Table CORE_UPGRADE_REMEMBER_ME data matches perfectly!
+2025-02-28 12:32:05,792 - INFO - Table: QRTZ_CALENDARS 
+2025-02-28 12:32:05,808 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-28 12:32:05,808 - INFO - Table QRTZ_CALENDARS data matches perfectly!
+2025-02-28 12:32:05,809 - INFO - Table: PROJECT_USER_MAPPING 
+2025-02-28 12:32:05,825 - ERROR - Missing indexes in PostgreSQL for table PROJECT_USER_MAPPING: {'fk_project_user_mapping_enterprise_enterprise_id'}
+2025-02-28 12:32:06,059 - INFO - MySQL Rows: 1448683 | PostgreSQL Rows: 1448683

@@ -1,27 +1,174 @@
-2025-02-24 14:38:05,898 - INFO - ========== Comparison started ==========
-2025-02-24 14:38:05,908 - INFO - package: mysql.connector.plugins
-2025-02-24 14:38:05,908 - INFO - plugin_name: caching_sha2_password
-2025-02-24 14:38:05,908 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
-2025-02-24 14:38:05,913 - INFO -  Connected to MySQL successfully
-2025-02-24 14:38:05,918 - INFO -  Connected to PostgreSQL successfully
-2025-02-24 14:38:05,927 - INFO - Number of tables in MySQL: 59
-2025-02-24 14:38:05,927 - INFO - Number of tables in PostgreSQL: 57
-2025-02-24 14:38:05,927 - INFO - No tables are missing in MySQL.
-2025-02-24 14:38:05,927 - ERROR - Table present in MySQL but missing in PostgreSQL: schema_version
-2025-02-24 14:38:05,927 - ERROR - Table present in MySQL but missing in PostgreSQL: flyway_schema_history
-2025-02-24 14:38:05,927 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
-2025-02-24 14:38:05,950 - INFO -  MySQL Rows: 0 | PostgreSQL Rows: 0
-2025-02-24 14:38:05,951 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
-2025-02-24 14:38:05,951 - INFO - Table: APP_PIPELINE_PHASE 
-2025-02-24 14:38:05,961 - ERROR - Missing not_null in PostgreSQL for table APP_PIPELINE_PHASE: {'created_at'}
-2025-02-24 14:38:05,965 - INFO -  MySQL Rows: 570 | PostgreSQL Rows: 570
-2025-02-24 14:38:06,050 - INFO - Table APP_PIPELINE_PHASE data matches perfectly!
-2025-02-24 14:38:06,051 - INFO - Table: QRTZ_JOB_DETAILS 
-2025-02-24 14:38:06,064 - INFO -  MySQL Rows: 1 | PostgreSQL Rows: 1
-2025-02-24 14:38:06,065 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
-2025-02-24 14:38:06,065 - INFO - Table: PIPELINE_TEMPLATE_PHASE 
-2025-02-24 14:38:06,074 - ERROR - Missing not_null in PostgreSQL for table PIPELINE_TEMPLATE_PHASE: {'created_at'}
-2025-02-24 14:38:06,079 - INFO -  MySQL Rows: 2 | PostgreSQL Rows: 2
-2025-02-24 14:38:06,081 - INFO - Table PIPELINE_TEMPLATE_PHASE data matches perfectly!
-2025-02-24 14:38:06,081 - INFO - Table: LB_ENTRIES 
-2025-02-24 14:38:07,413 - INFO -  MySQL Rows: 1822654 | PostgreSQL Rows: 1822654
+2025-02-27 17:24:25,041 - INFO - ========== Comparison started ==========
+2025-02-27 17:24:25,049 - INFO - package: mysql.connector.plugins
+2025-02-27 17:24:25,049 - INFO - plugin_name: caching_sha2_password
+2025-02-27 17:24:25,049 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-02-27 17:24:25,054 - INFO -  Connected to MySQL successfully
+2025-02-27 17:24:25,061 - INFO -  Connected to PostgreSQL successfully
+2025-02-27 17:24:25,068 - INFO - Number of tables in MySQL: 59
+2025-02-27 17:24:25,068 - INFO - Number of tables in PostgreSQL: 57
+2025-02-27 17:24:25,068 - INFO - No tables are missing in MySQL.
+2025-02-27 17:24:25,068 - ERROR - Table present in MySQL but missing in PostgreSQL: schema_version
+2025-02-27 17:24:25,069 - ERROR - Table present in MySQL but missing in PostgreSQL: flyway_schema_history
+2025-02-27 17:24:25,069 - INFO - Table: PIPELINE_TEMPLATE 
+2025-02-27 17:24:25,086 - ERROR - Missing not_null in PostgreSQL for table PIPELINE_TEMPLATE: {'created_at'}
+2025-02-27 17:24:25,094 - INFO - MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-27 17:24:25,096 - INFO - Table PIPELINE_TEMPLATE data matches perfectly!
+2025-02-27 17:24:25,097 - INFO - Table: DOCKER_IMAGE_REGISTRY 
+2025-02-27 17:24:25,116 - INFO - MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-27 17:24:25,121 - INFO - Table DOCKER_IMAGE_REGISTRY data matches perfectly!
+2025-02-27 17:24:25,122 - INFO - Table: APP_PIPELINE_VERSION 
+2025-02-27 17:24:25,133 - ERROR - Missing not_null in PostgreSQL for table APP_PIPELINE_VERSION: {'created_at'}
+2025-02-27 17:24:25,142 - INFO - MySQL Rows: 2701 | PostgreSQL Rows: 2701
+2025-02-27 17:24:25,602 - INFO - Table APP_PIPELINE_VERSION data matches perfectly!
+2025-02-27 17:24:25,603 - INFO - Table: FILE_META 
+2025-02-27 17:24:25,619 - INFO - MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-27 17:24:25,621 - INFO - Table FILE_META data matches perfectly!
+2025-02-27 17:24:25,621 - INFO - Table: PIPELINE_TEMPLATE_PHASE 
+2025-02-27 17:24:25,633 - ERROR - Missing not_null in PostgreSQL for table PIPELINE_TEMPLATE_PHASE: {'created_at'}
+2025-02-27 17:24:25,638 - INFO - MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-27 17:24:25,640 - INFO - Table PIPELINE_TEMPLATE_PHASE data matches perfectly!
+2025-02-27 17:24:25,641 - INFO - Table: LB_ENTRY_LOG 
+2025-02-27 17:24:25,728 - INFO - MySQL Rows: 265825 | PostgreSQL Rows: 265825
+2025-02-27 17:24:56,237 - INFO - Table LB_ENTRY_LOG data matches perfectly!
+2025-02-27 17:24:56,237 - INFO - Table: QRTZ_SIMPLE_TRIGGERS 
+2025-02-27 17:24:56,295 - INFO - MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-27 17:24:56,296 - INFO - Table QRTZ_SIMPLE_TRIGGERS data matches perfectly!
+2025-02-27 17:24:56,296 - INFO - Table: WMCLOUD_DEPLOYMENT_TARGET 
+2025-02-27 17:24:56,312 - INFO - MySQL Rows: 465 | PostgreSQL Rows: 465
+2025-02-27 17:24:56,373 - INFO - Table WMCLOUD_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-27 17:24:56,374 - INFO - Table: K8S_DEPLOYMENT_TARGET 
+2025-02-27 17:24:56,390 - INFO - MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-27 17:24:56,396 - INFO - Table K8S_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-27 17:24:56,396 - INFO - Table: K8S_CLUSTER 
+2025-02-27 17:24:56,408 - ERROR - Missing not_null in MySQL for table K8S_CLUSTER: {'cluster_server_ca_crt'}
+2025-02-27 17:24:56,412 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,414 - INFO - Table K8S_CLUSTER data matches perfectly!
+2025-02-27 17:24:56,414 - INFO - Table: AWS_DEPLOYMENT_ALLOWED_REGION 
+2025-02-27 17:24:56,430 - INFO - MySQL Rows: 17 | PostgreSQL Rows: 17
+2025-02-27 17:24:56,432 - INFO - Table AWS_DEPLOYMENT_ALLOWED_REGION data matches perfectly!
+2025-02-27 17:24:56,432 - INFO - Table: QRTZ_FIRED_TRIGGERS 
+2025-02-27 17:24:56,449 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,450 - INFO - Table QRTZ_FIRED_TRIGGERS data matches perfectly!
+2025-02-27 17:24:56,450 - INFO - Table: K8S_USER 
+2025-02-27 17:24:56,465 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,466 - INFO - Table K8S_USER data matches perfectly!
+2025-02-27 17:24:56,467 - INFO - Table: DIGITAL_OCEAN_CREDENTIALS 
+2025-02-27 17:24:56,483 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,484 - INFO - Table DIGITAL_OCEAN_CREDENTIALS data matches perfectly!
+2025-02-27 17:24:56,484 - INFO - Table: LB_INSTANCE 
+2025-02-27 17:24:56,500 - INFO - MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-27 17:24:56,502 - INFO - Table LB_INSTANCE data matches perfectly!
+2025-02-27 17:24:56,503 - INFO - Table: QRTZ_SIMPROP_TRIGGERS 
+2025-02-27 17:24:56,519 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,521 - INFO - Table QRTZ_SIMPROP_TRIGGERS data matches perfectly!
+2025-02-27 17:24:56,521 - INFO - Table: AZURE_SOURCE_STORAGE_ACCOUNT 
+2025-02-27 17:24:56,538 - INFO - MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-27 17:24:56,540 - INFO - Table AZURE_SOURCE_STORAGE_ACCOUNT data matches perfectly!
+2025-02-27 17:24:56,541 - INFO - Table: REGISTRY_DEPLOYMENT_TARGET 
+2025-02-27 17:24:56,557 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,559 - INFO - Table REGISTRY_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-27 17:24:56,559 - INFO - Table: QRTZ_BLOB_TRIGGERS 
+2025-02-27 17:24:56,573 - ERROR - Missing indexes in PostgreSQL for table QRTZ_BLOB_TRIGGERS: {'sched_name'}
+2025-02-27 17:24:56,575 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,576 - INFO - Table QRTZ_BLOB_TRIGGERS data matches perfectly!
+2025-02-27 17:24:56,577 - INFO - Table: QRTZ_CRON_TRIGGERS 
+2025-02-27 17:24:56,592 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,593 - INFO - Table QRTZ_CRON_TRIGGERS data matches perfectly!
+2025-02-27 17:24:56,594 - INFO - Table: GCLOUD_REGION_ZONE_MAPPING 
+2025-02-27 17:24:56,609 - INFO - MySQL Rows: 36 | PostgreSQL Rows: 36
+2025-02-27 17:24:56,613 - INFO - Table GCLOUD_REGION_ZONE_MAPPING data matches perfectly!
+2025-02-27 17:24:56,613 - INFO - Table: CONTAINER_COMPOSITION_LAST_ACCESS_TIME 
+2025-02-27 17:24:56,628 - INFO - MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-27 17:24:56,629 - INFO - Table CONTAINER_COMPOSITION_LAST_ACCESS_TIME data matches perfectly!
+2025-02-27 17:24:56,630 - INFO - Table: USER_CONTAINER_COMPOSITION 
+2025-02-27 17:24:56,644 - INFO - MySQL Rows: 566 | PostgreSQL Rows: 566
+2025-02-27 17:24:56,722 - WARNING - 
+ 1 rows in MySQL are missing for table USER_CONTAINER_COMPOSITION:
++-------------------------+---------------------------------------+-------------------------------------+----------+-------------------+-----------------------+---------------------+---------------------+
+| TENANT_ID               | CONTAINER_COMPOSITION_ID              | CONTAINER_COMPOSITION_TEMPLATE_ID   | STATUS   | LB_ENTRY_STATUS   |   HIBERNATION_ENABLED | CREATED_AT          | LAST_MODIFIED_AT    |
++=========================+=======================================+=====================================+==========+===================+=======================+=====================+=====================+
+| 1d4ec7d2131.143be20baf8 | comp-404fe8dbb0ed9564483a3db383ed4a97 | wm-studio-1-6                       | up       | DELETED           |                     1 | 2016-12-09 16:24:17 | 2025-02-27 16:22:50 |
++-------------------------+---------------------------------------+-------------------------------------+----------+-------------------+-----------------------+---------------------+---------------------+
+========================================================================================================================================================================================================
+2025-02-27 17:24:56,723 - WARNING - 
+ 1 rows in POSTGRES are missing for table USER_CONTAINER_COMPOSITION:
++-------------------------+---------------------------------------+-------------------------------------+----------+-------------------+-----------------------+---------------------+---------------------+
+| TENANT_ID               | CONTAINER_COMPOSITION_ID              | CONTAINER_COMPOSITION_TEMPLATE_ID   | STATUS   | LB_ENTRY_STATUS   |   HIBERNATION_ENABLED | CREATED_AT          | LAST_MODIFIED_AT    |
++=========================+=======================================+=====================================+==========+===================+=======================+=====================+=====================+
+| 1d4ec7d2131.143be20baf8 | comp-404fe8dbb0ed9564483a3db383ed4a97 | wm-studio-1-6                       | up       | DELETED           |                     1 | 2016-12-09 16:24:17 | 2017-12-15 00:02:00 |
++-------------------------+---------------------------------------+-------------------------------------+----------+-------------------+-----------------------+---------------------+---------------------+
+========================================================================================================================================================================================================
+2025-02-27 17:24:56,723 - INFO - Table: QRTZ_TRIGGERS 
+2025-02-27 17:24:56,745 - INFO - MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-27 17:24:56,747 - INFO - Table QRTZ_TRIGGERS data matches perfectly!
+2025-02-27 17:24:56,747 - INFO - Table: DOMAIN_CERTIFICATE 
+2025-02-27 17:24:56,763 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,764 - INFO - Table DOMAIN_CERTIFICATE data matches perfectly!
+2025-02-27 17:24:56,764 - INFO - Table: DEPLOYMENT_TARGET_SSH_ACCESS 
+2025-02-27 17:24:56,780 - INFO - MySQL Rows: 37 | PostgreSQL Rows: 37
+2025-02-27 17:24:56,789 - INFO - Table DEPLOYMENT_TARGET_SSH_ACCESS data matches perfectly!
+2025-02-27 17:24:56,789 - INFO - Table: GCLOUD_INSTANCE_DEPLOYMENT_TARGET 
+2025-02-27 17:24:56,806 - INFO - MySQL Rows: 8 | PostgreSQL Rows: 8
+2025-02-27 17:24:56,810 - INFO - Table GCLOUD_INSTANCE_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-27 17:24:56,810 - INFO - Table: AZURE_CREDENTIAL 
+2025-02-27 17:24:56,825 - INFO - MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-27 17:24:56,827 - INFO - Table AZURE_CREDENTIAL data matches perfectly!
+2025-02-27 17:24:56,827 - INFO - Table: KEY_PAIR 
+2025-02-27 17:24:56,843 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:24:56,844 - INFO - Table KEY_PAIR data matches perfectly!
+2025-02-27 17:24:56,844 - INFO - Table: AZURE_RESOURCE 
+2025-02-27 17:24:56,860 - INFO - MySQL Rows: 11 | PostgreSQL Rows: 11
+2025-02-27 17:24:56,864 - INFO - Table AZURE_RESOURCE data matches perfectly!
+2025-02-27 17:24:56,864 - INFO - Table: QRTZ_JOB_DETAILS 
+2025-02-27 17:24:56,880 - INFO - MySQL Rows: 1 | PostgreSQL Rows: 1
+2025-02-27 17:24:56,881 - INFO - Table QRTZ_JOB_DETAILS data matches perfectly!
+2025-02-27 17:24:56,882 - INFO - Table: AZURE_INSTANCE_DEPLOYMENT_TARGET 
+2025-02-27 17:24:56,899 - INFO - MySQL Rows: 7 | PostgreSQL Rows: 7
+2025-02-27 17:24:56,904 - INFO - Table AZURE_INSTANCE_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-27 17:24:56,905 - INFO - Table: APP_DEPLOYMENTS 
+2025-02-27 17:24:56,924 - INFO - MySQL Rows: 1239 | PostgreSQL Rows: 1239
+2025-02-27 17:24:57,177 - INFO - Table APP_DEPLOYMENTS data matches perfectly!
+2025-02-27 17:24:57,178 - INFO - Table: QRTZ_SCHEDULER_STATE 
+2025-02-27 17:24:57,203 - INFO - MySQL Rows: 2 | PostgreSQL Rows: 2
+2025-02-27 17:24:57,205 - INFO - Table QRTZ_SCHEDULER_STATE data matches perfectly!
+2025-02-27 17:24:57,205 - INFO - Table: WM_CLUSTER 
+2025-02-27 17:24:57,224 - INFO - MySQL Rows: 3 | PostgreSQL Rows: 3
+2025-02-27 17:24:57,226 - INFO - Table WM_CLUSTER data matches perfectly!
+2025-02-27 17:24:57,227 - INFO - Table: K8S_CLUSTER_CONFIG 
+2025-02-27 17:24:57,242 - INFO - MySQL Rows: 14 | PostgreSQL Rows: 14
+2025-02-27 17:24:57,248 - INFO - Table K8S_CLUSTER_CONFIG data matches perfectly!
+2025-02-27 17:24:57,248 - INFO - Table: USER_ACCOUNT 
+2025-02-27 17:24:57,265 - ERROR - Missing indexes in MySQL for table USER_ACCOUNT: {'idx_user_account_email_id'}
+2025-02-27 17:24:57,269 - INFO - MySQL Rows: 1278 | PostgreSQL Rows: 1278
+2025-02-27 17:24:57,508 - INFO - Table USER_ACCOUNT data matches perfectly!
+2025-02-27 17:24:57,509 - INFO - Table: ACTIVITY_PROGRESS_TRACKER 
+2025-02-27 17:24:57,591 - INFO - MySQL Rows: 110127 | PostgreSQL Rows: 110127
+2025-02-27 17:25:18,810 - INFO - Table ACTIVITY_PROGRESS_TRACKER data matches perfectly!
+2025-02-27 17:25:18,810 - INFO - Table: CC_CLIENT_CONTAINER_COMPOSITION 
+2025-02-27 17:25:18,859 - ERROR - Missing not_null in PostgreSQL for table CC_CLIENT_CONTAINER_COMPOSITION: {'created_at'}
+2025-02-27 17:25:18,862 - ERROR - Missing indexes in PostgreSQL for table CC_CLIENT_CONTAINER_COMPOSITION: {'uk_cc_client_container_id'}
+2025-02-27 17:25:18,862 - ERROR - Missing indexes in MySQL for table CC_CLIENT_CONTAINER_COMPOSITION: {'uk_cc_client_container_composition'}
+2025-02-27 17:25:18,876 - INFO - MySQL Rows: 2517 | PostgreSQL Rows: 2517
+2025-02-27 17:25:19,245 - INFO - Table CC_CLIENT_CONTAINER_COMPOSITION data matches perfectly!
+2025-02-27 17:25:19,246 - INFO - Table: APP_PIPELINE 
+2025-02-27 17:25:19,258 - ERROR - Missing not_null in PostgreSQL for table APP_PIPELINE: {'created_at'}
+2025-02-27 17:25:19,274 - INFO - MySQL Rows: 1028 | PostgreSQL Rows: 1028
+2025-02-27 17:25:19,402 - INFO - Table APP_PIPELINE data matches perfectly!
+2025-02-27 17:25:19,403 - INFO - Table: GCLOUD_DEPLOYMENT_ALLOWED_REGION 
+2025-02-27 17:25:19,428 - INFO - MySQL Rows: 12 | PostgreSQL Rows: 12
+2025-02-27 17:25:19,430 - INFO - Table GCLOUD_DEPLOYMENT_ALLOWED_REGION data matches perfectly!
+2025-02-27 17:25:19,430 - INFO - Table: QRTZ_PAUSED_TRIGGER_GRPS 
+2025-02-27 17:25:19,446 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:25:19,447 - INFO - Table QRTZ_PAUSED_TRIGGER_GRPS data matches perfectly!
+2025-02-27 17:25:19,448 - INFO - Table: CONTAINER 
+2025-02-27 17:25:19,450 - ERROR - Columns present in PostgreSQL but missing in MySQL: ['hibernation_enabled']
+2025-02-27 17:25:19,451 - INFO - Table: K8S_CONTEXT 
+2025-02-27 17:25:19,465 - ERROR - Missing indexes in PostgreSQL for table K8S_CONTEXT: {'uq_k8s_context_nam'}
+2025-02-27 17:25:19,465 - ERROR - Missing indexes in MySQL for table K8S_CONTEXT: {'k8s_context_name_uq'}
+2025-02-27 17:25:19,467 - INFO - MySQL Rows: 0 | PostgreSQL Rows: 0
+2025-02-27 17:25:19,468 - INFO - Table K8S_CONTEXT data matches perfectly!
+2025-02-27 17:25:19,468 - INFO - Table: AWS_INSTANCE_DEPLOYMENT_TARGET 
+2025-02-27 17:25:19,485 - INFO - MySQL Rows: 19 | PostgreSQL Rows: 19
+2025-02-27 17:25:19,493 - INFO - Table AWS_INSTANCE_DEPLOYMENT_TARGET data matches perfectly!
+2025-02-27 17:25:19,494 - INFO - Table: LB_ENTRIES 
+2025-02-27 17:25:20,504 - INFO - MySQL Rows: 1822654 | PostgreSQL Rows: 1822654
