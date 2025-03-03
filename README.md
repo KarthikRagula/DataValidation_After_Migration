@@ -1,24 +1,32 @@
-# Database Comparison Script
+# Database Validation Script
 
-## Overview
-This script compares table structures and data between MySQL and PostgreSQL databases. It helps identify missing tables, differences in column structures, row count mismatches, and data inconsistencies.
+## Description
+This script compares the structure and data between MySQL and PostgreSQL databases. It checks for missing tables, column mismatches, row count differences, and data inconsistencies.
 
-## Features
-- Connects to both MySQL and PostgreSQL databases.
-- Fetches table names and identifies missing tables.
-- Compares column structures for common tables.
-- Checks row count mismatches.
-- Uses hashing to detect missing or mismatched rows.
-- Logs results and prints missing row details in a formatted table.
-- Compares indexes for each table in both databases.
+## Prerequisites
+- Linux OS
+- Python 3.8+
+- MySQL and PostgreSQL databases
+- Required Python libraries: `mysql-connector-python`, `psycopg2`, `tabulate`, `colorama`, `psutil`, `zstandard`, `python-dotenv`
 
-The script will output differences between the two databases and log the results in a file.
+## Installation
+1. Install `venv` if not already installed:
+   ```sh
+   sudo apt install python3.8-venv
+   ```
+2. Create and activate a virtual environment:
+   ```sh
+   python3 -m venv myenv
+   source myenv/bin/activate
+   ```
+3. Install dependencies:
+   ```sh
+   pip install mysql-connector-python psycopg2 tabulate colorama psutil zstandard dotenv
+   ```
 
-
-### Configuration
-Ensure `.env` contains the necessary database credentials:
-
-```
+## Configuration
+Create a `.env` file in the same directory as the script with the following content:
+```ini
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=username
@@ -30,31 +38,39 @@ POSTGRESQL_USER=username
 POSTGRESQL_PASSWORD=password
 ```
 
-## Building Executable
-To package the script as a standalone executable using PyInstaller:
+## Running the Script
+Run the script using:
 ```sh
-pip install pyinstaller
-pyinstaller --onefile validation_script.py
+python3 validation_script.py --mysql_db wm_login_mysql_stage --postgres_db wm_login_stage_postgres
 ```
 
-This will generate an executable in the `dist` folder.
-
-## Usage
-1. Build manually by downloading the code or Download the `validation_script` file from the `dist` folder.
-2. Place a `.env` file in the same directory as the script.
-3. Run the script using the following format:
+## Packaging as Executable
+1. Install PyInstaller:
    ```sh
-   ./validation_script --mysql_db MYSQL_DB --postgres_db POSTGRES_DB
+   pip install pyinstaller
+   ```
+2. Create a standalone executable:
+   ```sh
+   pyinstaller --onefile --add-data ".env:." validation_script.py
+   ```
+3. Navigate to the `dist` folder and run the packaged script:
+   ```sh
+   cd dist
+   ./validation_script --mysql_db wm_login_mysql_stage --postgres_db wm_login_stage_postgres
    ```
 
-## Troubleshooting
-If you encounter a permission error, run the following command to grant execution permission:
-   ```sh
-   chmod +x validation_script
-   ```
+### If Any Errors Occur
+If the script fails to execute due to permission issues, grant execute permission:
+```sh
+chmod +x validation_script
+```
 
 ## Logging
 The script logs the validation process to `comparison_logs.txt`. If any issues arise, check the log file for details.
 
+## License
+This project is licensed under the MIT License.
+
 ## Author
 Karthik Ragula
+
