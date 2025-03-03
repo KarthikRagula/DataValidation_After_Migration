@@ -1,18 +1,38 @@
 import mysql.connector
 import psycopg2
 import logging
-import hashlib
 import traceback
 from tabulate import tabulate
 from datetime import datetime
 import sys
 from colorama import init, Fore, Style
+import psutil
+import base64
+import time
+import zstandard as zstd
 import argparse
 import os
-import sys
-import time
-import tracemalloc
 from dotenv import load_dotenv
+
+DELIMITER = "|^|"
+compressor = zstd.ZstdCompressor(level=3)
+decompressor = zstd.ZstdDecompressor()
+
+def get_memory_usage():
+    process = psutil.Process()
+    return process.memory_info().rss / (1024 * 1024)
+
+def setup_logging(mysql_db):
+    log_file = f"{mysql_db}_comparison_logs.txt"
+    open(log_file, "w").close()
+
+    file_handler = logging.FileHandler(log_file)
+    file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+    
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(ColorFormatter("%(asctime)s - %(levelname)s - %(message)s"))
+    
+    logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
 
 def fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db):
     try:
@@ -49,7 +69,7 @@ def fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db):
         fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tables_original, postgres_tables_original)
     except Exception as e:
         logging.error(f"Error fetching table names: {e}")
-        sys.exit(1)
+        exit(1)
 
 def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tables_original, postgres_tables_original):
     try:
@@ -88,7 +108,7 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
                 logging.error(f"Error fetching column names for table {table}: {e}\n{traceback.format_exc()}")
                 continue
             
-            tracemalloc.start()
+            before_memory = get_memory_usage()
             start_time = time.time()
 
             mysql_constraints = get_mysql_constraints(mysql_cursor, table, mysql_db)
@@ -99,58 +119,105 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
             postgres_indexes = get_postgres_indexes(postgres_cursor, matching_table)
             compare_indexes(mysql_indexes, postgres_indexes, table)
 
-            compare_rows(mysql_cursor, postgres_cursor,table, matching_table, mysql_columns_original)
-            
+            compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_columns_original)
+
             end_time = time.time()
-            current_mem, peak_mem = tracemalloc.get_traced_memory()
-            tracemalloc.stop()
+            after_memory = get_memory_usage()
 
-            logging.info(f"Execution Time: {end_time - start_time:.4f} seconds")
-            logging.info(f"Memory Used: {current_mem / (1024 * 1024):.2f} MB")
-            logging.info(f"Peak Memory Usage: {peak_mem / (1024 * 1024):.2f} MB")
+            memory_used = after_memory - before_memory
+            time_taken = end_time - start_time
 
+            print(f"Memory used: {memory_used:.2f} MB | Time taken: {time_taken:.2f} seconds")          
     except Exception as e:
         logging.error(f"Error comparing columns: {e}")
-        sys.exit(1)
-        
-def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_columns_original):
+        exit(1)
+
+def serialize_row_compressed(row):
+    compressor = zstd.ZstdCompressor(level=3) 
+    try:
+        serialized = DELIMITER.join(
+            normalize_binary_data(value) if isinstance(value, (bytes, memoryview)) else normalize_value(value)
+            for value in row
+        )
+        serialized = serialized.encode("utf-8", "replace")
+        return compressor.compress(serialized)
+    except Exception as e:
+        logging.error(f"Serialization error: {e}")
+        logging.error(f"Row data before compression: {row}")
+        raise
+
+def deserialize_row_compressed(compressed_row):
+    decompressed = decompressor.decompress(compressed_row).decode()
+    return tuple(None if value == "NULL" else value for value in decompressed.split(DELIMITER))
+
+def fetch_mysql_data(cursor, table, columns):
+    cursor.execute(f"SELECT {', '.join(columns)} FROM {table};")
+    return {serialize_row_compressed(row) for row in cursor}
+
+def fetch_postgres_data(cursor, table, columns):
+    cursor.execute(f"SELECT {', '.join(columns)} FROM {table};")
+    return {serialize_row_compressed(row) for row in cursor}
+
+def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, columns):
     try:
         mysql_cursor.execute(f"SELECT COUNT(*) FROM {table};")
         mysql_row_count = mysql_cursor.fetchone()[0]
 
         postgres_table = f'"{matching_table}"' if not matching_table.islower() else matching_table
+
         postgres_cursor.execute(f"SELECT COUNT(*) FROM {postgres_table};")
         postgres_row_count = postgres_cursor.fetchone()[0]
-
-        logging.info(f" MySQL Rows: {mysql_row_count} | PostgreSQL Rows: {postgres_row_count}")
-
-        if mysql_row_count != postgres_row_count:
-            logging.error(f" Row count mismatch in table {table}: MySQL ({mysql_row_count}) vs PostgreSQL ({postgres_row_count})")
-            return 
+        logging.info(f"MySQL Rows: {mysql_row_count} | PostgreSQL Rows: {postgres_row_count}")
         
-        mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table};")
-        postgres_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {postgres_table};")
+        mysql_rows = fetch_mysql_data(mysql_cursor, table, columns)
+        postgres_rows = fetch_postgres_data(postgres_cursor, postgres_table, columns)
 
-        mysql_data = mysql_cursor.fetchall()
-        postgres_data = postgres_cursor.fetchall()
-
-        mysql_hash_map = {generate_row_hash(row): row for row in mysql_data}
-        postgres_hash_map = {generate_row_hash(row): row for row in postgres_data}
-
-        missing_in_postgres = mysql_hash_map.keys() - postgres_hash_map.keys()
-        missing_in_mysql = postgres_hash_map.keys() - mysql_hash_map.keys()
-
+        missing_in_postgres = mysql_rows - postgres_rows
+        missing_in_mysql = postgres_rows - mysql_rows
         if missing_in_postgres:
-            print_missing_rows(missing_in_postgres, mysql_hash_map, "PostgreSQL", table, mysql_columns_original)
-
+            print_missing_rows(missing_in_postgres, "PostgreSQL", table, columns)
         if missing_in_mysql:
-            print_missing_rows(missing_in_mysql, postgres_hash_map, "MySQL", table, mysql_columns_original)
-
+            print_missing_rows(missing_in_mysql, "MySQL", table, columns)
         if not missing_in_postgres and not missing_in_mysql:
             logging.info(f"Table {table} data matches perfectly!")
 
     except Exception as e:
-        logging.error(f"Error comparing rows for table {table}: {e}\n{traceback.format_exc()}")
+        logging.error(f"Error comparing rows for table {table}: {e}")
+
+def normalize_binary_data(value):
+    if isinstance(value, memoryview):  
+        value = value.tobytes() 
+    return base64.b64encode(value).decode("utf-8") 
+
+def normalize_value(value):
+    if value is None:
+        return "NULL"
+    elif isinstance(value, bool):
+        return "1" if value else "0"  
+    elif isinstance(value, int) or isinstance(value, float):
+        return str(value)  
+    elif isinstance(value, datetime):
+        return value.strftime('%Y-%m-%d %H:%M:%S')  
+    elif isinstance(value, bytes) or isinstance(value, memoryview):
+        return normalize_binary_data(value) 
+    elif isinstance(value, str):
+        value = value.strip()
+        if value.upper() in ("TRUE", "FALSE"):  
+            return "1" if value.upper() == "TRUE" else "0"  
+        return value  
+    return str(value) 
+
+def print_missing_rows(missing_rows, source_db, table, column_names):
+    if not missing_rows:
+        return
+    decoded_rows = [deserialize_row_compressed(row) for row in missing_rows]
+    formatted_rows = [
+        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else (value if value is not None else "NULL") for value in row]
+        for row in decoded_rows
+    ]
+    table_str = tabulate(formatted_rows, headers=column_names, tablefmt="grid")
+    log_message = f"\n {len(missing_rows)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
+    logging.warning(log_message)
 
 def get_mysql_constraints(mysql_cursor, table, mysql_db):
     constraints = {
@@ -208,7 +275,6 @@ def get_mysql_constraints(mysql_cursor, table, mysql_db):
     return constraints
 
 def get_postgres_constraints(postgres_cursor, table):
-    """Fetch constraints from PostgreSQL while handling case sensitivity properly"""
     constraints = {
         "primary_key": set(),
         "foreign_keys": set(),
@@ -280,51 +346,6 @@ def compare_constraints(mysql_constraints, postgres_constraints, table_name):
     if missing_in_mysql:
         logging.error(f"Missing {key} in MySQL for table {table_name}: {missing_in_mysql}")
 
-def print_missing_rows(missing_hashes, hash_map, source_db, table, mysql_columns):
-    if not missing_hashes:
-        return
-    missing_rows = [hash_map[hash_value] for hash_value in missing_hashes]
-    formatted_rows = [
-        [value.strftime('%Y-%m-%d %H:%M:%S') if isinstance(value, datetime) else value for value in row]
-        for row in missing_rows
-    ]
-    column_widths = [max(len(col), 10) for col in mysql_columns]  
-    formatted_headers = [col.ljust(width) for col, width in zip(mysql_columns, column_widths)]
-    formatted_rows = [
-        [str(value).ljust(width)[:width] for value, width in zip(row, column_widths)] for row in formatted_rows
-    ]
-    table_str = tabulate(formatted_rows, headers=formatted_headers, tablefmt="grid")
-    log_message = f"\n {len(missing_hashes)} rows in {source_db} are missing for table {table}:\n{table_str}\n" + "=" * 200
-    logging.warning(log_message)
-
-def normalize_value(value):
-    if isinstance(value, bool):
-        return int(value)
-    elif isinstance(value, int):
-        return value
-    elif value == 'TRUE' or value == 'FALSE':
-        return True if value == 'TRUE' else False
-    return value
-
-def normalize_binary_data(data):
-    if isinstance(data, bytes):
-        return data
-    elif isinstance(data, memoryview):
-        return data.tobytes()
-    else:
-        raise ValueError("Unsupported data type for binary conversion")
-
-def generate_row_hash(row):
-    normalized_row = []
-    for value in row:
-        if isinstance(value, (bytes, memoryview)):
-            normalized_value = normalize_binary_data(value)
-        else:
-            normalized_value = str(normalize_value(value))
-        normalized_row.append(normalized_value)
-    row_string = ''.join([str(v) for v in normalized_row])
-    return hashlib.sha256(row_string.encode('utf-8')).hexdigest()
-
 def get_mysql_indexes(mysql_cursor, table, mysql_db):
     mysql_cursor.execute(
         """
@@ -341,7 +362,6 @@ def get_mysql_indexes(mysql_cursor, table, mysql_db):
         )
         """, (mysql_db, table, mysql_db, table)
     )
-    
     indexes = {}
     for index_name, column_name, non_unique in mysql_cursor.fetchall():
         index_name = index_name.lower()
@@ -395,7 +415,7 @@ def compare_indexes(mysql_indexes, postgres_indexes, table_name):
             logging.error(f" Column mismatch in index {index_name} for table {table_name}.")
         if mysql_index["unique"] != postgres_index["unique"]:
             logging.error(f" Uniqueness mismatch in index {index_name} for table {table_name}.")
-
+            
 class ColorFormatter(logging.Formatter):
     COLORS = {
         logging.ERROR: "\033[91m",#RED--Error
