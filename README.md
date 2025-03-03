@@ -15,6 +15,21 @@ This script compares table structures and data between MySQL and PostgreSQL data
 The script will output differences between the two databases and log the results in a file.
 
 
+### Configuration
+Ensure `.env` contains the necessary database credentials:
+
+```
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=username
+MYSQL_PASSWORD=password
+
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=username
+POSTGRES_PASSWORD=password
+```
+
 ## Building Executable
 To package the script as a standalone executable using PyInstaller:
 ```sh
@@ -31,21 +46,6 @@ This will generate an executable in the `dist` folder.
    ```sh
    ./validation_script --mysql_db MYSQL_DB --postgres_db POSTGRES_DB
    ```
-
-### Configuration
-Ensure `.env` contains the necessary database credentials:
-
-```
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=username
-MYSQL_PASSWORD=password
-
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_USER=username
-POSTGRES_PASSWORD=password
-```
 
 ## Troubleshooting
 If you encounter a permission error, run the following command to grant execution permission:
