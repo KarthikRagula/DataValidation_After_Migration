@@ -104,11 +104,10 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
             end_time = time.time()
             current_mem, peak_mem = tracemalloc.get_traced_memory()
             tracemalloc.stop()
-            
-            print(f"Execution Time: {end_time - start_time:.4f} seconds")
-            print(f"Memory Used: {current_mem / (1024 * 1024):.2f} MB")
-            print(f"Peak Memory Usage: {peak_mem / (1024 * 1024):.2f} MB")
 
+            logging.info(f"Execution Time: {end_time - start_time:.4f} seconds")
+            logging.info(f"Memory Used: {current_mem / (1024 * 1024):.2f} MB")
+            logging.info(f"Peak Memory Usage: {peak_mem / (1024 * 1024):.2f} MB")
 
     except Exception as e:
         logging.error(f"Error comparing columns: {e}")
