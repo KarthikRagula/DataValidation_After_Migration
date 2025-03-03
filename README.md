@@ -25,7 +25,7 @@ pyinstaller --onefile validation_script.py
 This will generate an executable in the `dist` folder.
 
 ## Usage
-1. Build manually from the code or Download the `validation_script` file from the `dist` folder.
+1. Build manually by downloading the code or Download the `validation_script` file from the `dist` folder.
 2. Place a `.env` file in the same directory as the script.
 3. Run the script using the following format:
    ```sh
