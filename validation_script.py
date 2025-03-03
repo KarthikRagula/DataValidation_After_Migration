@@ -449,8 +449,8 @@ def main():
 
         postgres_host = os.getenv("POSTGRESQL_HOST")
         postgres_port = int(os.getenv("POSTGRESQL_PORT", 5432))
-        postgres_user = os.getenv("POSTGRES_USER")
-        postgres_password = os.getenv("POSTGRES_PASSWORD")
+        postgres_user = os.getenv("POSTGRESQL_USER")
+        postgres_password = os.getenv("POSTGRESQL_PASSWORD")
 
         if not all([mysql_host, mysql_port, mysql_user, mysql_password, postgres_host, postgres_port, postgres_user, postgres_password]):
             raise ValueError("Missing required environment variables in .env file")
