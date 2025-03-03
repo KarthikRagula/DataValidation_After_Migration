@@ -14,13 +14,38 @@ This script compares table structures and data between MySQL and PostgreSQL data
 
 The script will output differences between the two databases and log the results in a file.
 
+
+## Building Executable
+To package the script as a standalone executable using PyInstaller:
+```sh
+pip install pyinstaller
+pyinstaller --onefile validation_script.py
+```
+
+This will generate an executable in the `dist` folder.
+
 ## Usage
-1. Download the `validation_script` file from the `dist` folder.
-2. Run the script using the following format:
+1. Build manually from the code or Download the `validation_script` file from the `dist` folder.
+2. Place a `.env` file in the same directory as the script.
+3. Run the script using the following format:
    ```sh
-   ./validation_script --mysql_db MYSQL_DB --mysql_user MYSQL_USER --mysql_pass MYSQL_PASS \
-                      --postgres_db POSTGRES_DB --postgres_user POSTGRES_USER --postgres_pass POSTGRES_PASS
+   ./validation_script --mysql_db MYSQL_DB --postgres_db POSTGRES_DB
    ```
+
+### Configuration
+Ensure `.env` contains the necessary database credentials:
+
+```
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=username
+MYSQL_PASSWORD=password
+
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=username
+POSTGRES_PASSWORD=password
+```
 
 ## Troubleshooting
 If you encounter a permission error, run the following command to grant execution permission:
@@ -28,3 +53,8 @@ If you encounter a permission error, run the following command to grant executio
    chmod +x validation_script
    ```
 
+## Logging
+The script logs the validation process to `comparison_logs.txt`. If any issues arise, check the log file for details.
+
+## Author
+Karthik Ragula
