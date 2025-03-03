@@ -1,1 +1,0 @@
-2025-03-03 14:13:05,571 - ERROR - .env file not found at /home/karthikr_700073/Downloads/DataValidation_After_Migration/.env
