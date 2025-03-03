@@ -8,9 +8,9 @@ from datetime import datetime
 import sys
 from colorama import init, Fore, Style
 import argparse
-import configparser
 import os
 import sys
+from dotenv import load_dotenv
 
 def fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db):
     try:
@@ -47,7 +47,7 @@ def fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db):
         fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tables_original, postgres_tables_original)
     except Exception as e:
         logging.error(f"Error fetching table names: {e}")
-        exit(1)
+        sys.exit(1)
 
 def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tables_original, postgres_tables_original):
     try:
@@ -98,7 +98,7 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
             
     except Exception as e:
         logging.error(f"Error comparing columns: {e}")
-        exit(1)
+        sys.exit(1)
         
 def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_columns_original):
     try:
@@ -397,76 +397,58 @@ class ColorFormatter(logging.Formatter):
             return f"{self.COLORS['GREEN']}{log_msg}{self.COLORS['RESET']}"
         return f"{color}{log_msg}{self.COLORS['RESET']}"
     
-def get_config_path():
-    if getattr(sys, 'frozen', False): 
-        base_path = sys._MEIPASS 
-    else:
-        base_path = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(base_path, "config.ini")
-
-def connect_mysql(host, user, password, database, port):
-    return mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database,
-        port=port
-    )
-
-def connect_postgres(host, user, password, database, port):
-    return psycopg2.connect(
-        host=host,
-        user=user,
-        password=password,
-        dbname=database,
-        port=port
-    )
-
 def setup_logging():
-    log_file = f"comparision_logs.txt"
+    log_file = "comparison_logs.txt"
     open(log_file, "w").close()
 
     file_handler = logging.FileHandler(log_file)
     file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
-    
+
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(ColorFormatter("%(asctime)s - %(levelname)s - %(message)s"))
-    
+
     logging.basicConfig(level=logging.INFO, handlers=[file_handler, console_handler])
 
+def get_env_path():
+    if getattr(sys, 'frozen', False): 
+        base_path = os.path.dirname(sys.executable) 
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__)) 
+    return os.path.join(base_path, ".env")
+
+def load_env():
+    env_path = get_env_path()
+
+    if not os.path.exists(env_path):
+        logging.error(f".env file not found at {env_path}")
+        sys.exit(1)
+    load_dotenv(env_path)
+    logging.info(f"Loaded environment variables from {env_path}")
+
 def main():
-    config_path = get_config_path()
-    setup_logging() 
-    if not os.path.exists(config_path):
-        logging.error(f"config.ini not found at {config_path}")
-        sys.exit(1)
-
-    logging.info(f"Loading config from: {config_path}")
-
-    config = configparser.ConfigParser()
-    config.read(config_path)
-
-    if "MySQL" not in config or "PostgreSQL" not in config:
-        logging.error("Missing [MySQL] or [PostgreSQL] section in config.ini")
-        sys.exit(1)
-
+    setup_logging()
+    load_env() 
     try:
-        mysql_host = config['MySQL']['host']
-        mysql_port = int(config['MySQL']['port'])
-        postgres_host = config['PostgreSQL']['host']
-        postgres_port = int(config['PostgreSQL']['port'])
-    except KeyError as e:
-        logging.error(f"Missing key in config.ini: {e}")
+        mysql_host = os.getenv("MYSQL_HOST")
+        mysql_port = int(os.getenv("MYSQL_PORT", 3306))
+        mysql_user = os.getenv("MYSQL_USER")
+        mysql_password = os.getenv("MYSQL_PASSWORD")
+
+        postgres_host = os.getenv("POSTGRESQL_HOST")
+        postgres_port = int(os.getenv("POSTGRESQL_PORT", 5432))
+        postgres_user = os.getenv("POSTGRES_USER")
+        postgres_password = os.getenv("POSTGRES_PASSWORD")
+
+        if not all([mysql_host, mysql_port, mysql_user, mysql_password, postgres_host, postgres_port, postgres_user, postgres_password]):
+            raise ValueError("Missing required environment variables in .env file")
+
+    except Exception as e:
+        logging.error(f"Error loading environment variables: {e}")
         sys.exit(1)
 
     parser = argparse.ArgumentParser(description="Compare MySQL and PostgreSQL databases.")
     parser.add_argument("--mysql_db", required=True, help="MySQL database name")
-    parser.add_argument("--mysql_user", required=True, help="MySQL username")
-    parser.add_argument("--mysql_pass", required=True, help="MySQL password")
-
     parser.add_argument("--postgres_db", required=True, help="PostgreSQL database name")
-    parser.add_argument("--postgres_user", required=True, help="PostgreSQL username")
-    parser.add_argument("--postgres_pass", required=True, help="PostgreSQL password")
 
     args = parser.parse_args()
 
@@ -474,23 +456,23 @@ def main():
 
     try:
         mysql_conn = mysql.connector.connect(
-            host=mysql_host, user=args.mysql_user, password=args.mysql_pass, database=args.mysql_db, port=mysql_port
+            host=mysql_host, user=mysql_user, password=mysql_password, database=args.mysql_db, port=mysql_port
         )
         mysql_cursor = mysql_conn.cursor(buffered=True)
         logging.info("Connected to MySQL successfully")
     except Exception as err:
         logging.error(f"MySQL connection error: {err}")
-        exit(1)
+        sys.exit(1)
 
     try:
         postgres_conn = psycopg2.connect(
-            host=postgres_host, user=args.postgres_user, password=args.postgres_pass, database=args.postgres_db, port=postgres_port
+            host=postgres_host, user=postgres_user, password=postgres_password, database=args.postgres_db, port=postgres_port
         )
         postgres_cursor = postgres_conn.cursor()
         logging.info("Connected to PostgreSQL successfully")
     except Exception as err:
         logging.error(f"PostgreSQL connection error: {err}")
-        exit(1)
+        sys.exit(1)
 
     fetch_and_compare_tables(mysql_cursor, postgres_cursor, args.mysql_db)
 
