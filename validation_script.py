@@ -10,6 +10,8 @@ from colorama import init, Fore, Style
 import argparse
 import os
 import sys
+import time
+import tracemalloc
 from dotenv import load_dotenv
 
 def fetch_and_compare_tables(mysql_cursor, postgres_cursor, mysql_db):
@@ -86,6 +88,9 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
                 logging.error(f"Error fetching column names for table {table}: {e}\n{traceback.format_exc()}")
                 continue
             
+            tracemalloc.start()
+            start_time = time.time()
+
             mysql_constraints = get_mysql_constraints(mysql_cursor, table, mysql_db)
             postgres_constraints = get_postgres_constraints(postgres_cursor, matching_table)
             compare_constraints(mysql_constraints, postgres_constraints, table)
@@ -96,6 +101,15 @@ def fetch_and_compare_columns(mysql_cursor, postgres_cursor, mysql_db, mysql_tab
 
             compare_rows(mysql_cursor, postgres_cursor,table, matching_table, mysql_columns_original)
             
+            end_time = time.time()
+            current_mem, peak_mem = tracemalloc.get_traced_memory()
+            tracemalloc.stop()
+            
+            print(f"Execution Time: {end_time - start_time:.4f} seconds")
+            print(f"Memory Used: {current_mem / (1024 * 1024):.2f} MB")
+            print(f"Peak Memory Usage: {peak_mem / (1024 * 1024):.2f} MB")
+
+
     except Exception as e:
         logging.error(f"Error comparing columns: {e}")
         sys.exit(1)
@@ -114,7 +128,7 @@ def compare_rows(mysql_cursor, postgres_cursor, table, matching_table, mysql_col
         if mysql_row_count != postgres_row_count:
             logging.error(f" Row count mismatch in table {table}: MySQL ({mysql_row_count}) vs PostgreSQL ({postgres_row_count})")
             return 
-
+        
         mysql_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {table};")
         postgres_cursor.execute(f"SELECT {', '.join(mysql_columns_original)} FROM {postgres_table};")
 
@@ -421,7 +435,7 @@ def load_env():
 
     if not os.path.exists(env_path):
         logging.error(f".env file not found at {env_path}")
-        sys.exit(1)
+        exit(1)
     load_dotenv(env_path)
     logging.info(f"Loaded environment variables from {env_path}")
 
