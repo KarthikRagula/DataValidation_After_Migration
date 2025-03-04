@@ -1,1 +1,0 @@
-2025-03-04 11:15:23,460 - INFO - Loaded environment variables from /home/karthikr_700073/Downloads/DataValidation_After_Migration/.env
