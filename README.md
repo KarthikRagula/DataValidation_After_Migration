@@ -93,7 +93,7 @@ pip list
 Run your script to confirm everything is set up properly:
 
 ```sh
-python your_script.py
+python3 your_script.py
 ```
 
 ## **Summary**
