@@ -90,6 +90,20 @@ After installation, check if the packages are installed correctly:
 ```sh
 pip list
 ```
+
+### **Step 6: Add .env file**
+```
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=username
+MYSQL_PASSWORD=password
+
+POSTGRESQL_HOST=localhost
+POSTGRESQL_PORT=5432
+POSTGRESQL_USER=username
+POSTGRESQL_PASSWORD=password
+```
+
 Run your script to confirm everything is set up properly:
 
 ```sh
