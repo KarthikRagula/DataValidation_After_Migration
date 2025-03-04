@@ -1,76 +1,109 @@
-# Database Validation Script
+# Moving a Python Virtual Environment to Another Computer (Linux)
 
-## Description
-This script compares the structure and data between MySQL and PostgreSQL databases. It checks for missing tables, column mismatches, row count differences, and data inconsistencies.
+This guide explains how to transfer a Python virtual environment from one Linux computer to another by recreating it properly.
 
-## Prerequisites
-- Linux OS
-- Python 3.8+
-- MySQL and PostgreSQL databases
-- Required Python libraries: `mysql-connector-python`, `psycopg2`, `tabulate`, `colorama`, `psutil`, `zstandard`, `python-dotenv`
+## **Steps to Perform on the Original Computer**
 
-## Installation
-1. Install `venv` if not already installed:
-   ```sh
-   sudo apt install python3.8-venv
-   ```
-2. Create and activate a virtual environment:
-   ```sh
-   python3 -m venv myenv
-   source myenv/bin/activate
-   ```
-3. Install dependencies:
-   ```sh
-   pip install mysql-connector-python psycopg2 tabulate colorama psutil zstandard dotenv
-   ```
+### **Step 1: Install Virtualenv (if not already installed)**
+Ensure that `virtualenv` is installed:
 
-## Configuration
-Create a `.env` file in the same directory as the script with the following content:
-```ini
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=username
-MYSQL_PASSWORD=password
-
-POSTGRESQL_HOST=localhost
-POSTGRESQL_PORT=5432
-POSTGRESQL_USER=username
-POSTGRESQL_PASSWORD=password
-```
-
-## Running the Script
-Run the script using:
 ```sh
-python3 validation_script.py --mysql_db wm_login_mysql_stage --postgres_db wm_login_stage_postgres
+pip install virtualenv
 ```
 
-## Packaging as Executable
-1. Install PyInstaller:
-   ```sh
-   pip install pyinstaller
-   ```
-2. Create a standalone executable:
-   ```sh
-   pyinstaller --onefile --add-data ".env:." validation_script.py
-   ```
-3. Navigate to the `dist` folder and run the packaged script:
-   ```sh
-   cd dist
-   ./validation_script --mysql_db wm_login_mysql_stage --postgres_db wm_login_stage_postgres
-   ```
+### **Step 2: Create a Virtual Environment**
+Navigate to your project directory and create a new virtual environment:
 
-### If Any Errors Occur
-If the script fails to execute due to permission issues, grant execute permission:
 ```sh
-chmod +x validation_script
+virtualenv venv
 ```
 
-## Logging
-The script logs the validation process to `comparison_logs.txt`. If any issues arise, check the log file for details.
+### **Step 3: Activate the Virtual Environment**
+Before installing packages, activate the virtual environment:
 
-## License
-This project is licensed under the MIT License.
+```sh
+source venv/bin/activate
+```
 
-## Author
-Karthik Ragula
+### **Step 4: Install Required Packages**
+Install your project's dependencies:
+
+```sh
+pip install <your-packages>
+```
+
+### **Step 5: Export Installed Packages**
+Create a `requirements.txt` file that contains all installed Python packages:
+
+```sh
+pip freeze > requirements.txt
+```
+
+### **Step 6: Transfer the `requirements.txt` File**
+Move the `requirements.txt` file and any necessary project files to the new Linux computer using one of the following methods:
+- **USB drive**
+- **Email**
+- **Cloud storage** (Google Drive, Dropbox, etc.)
+- **File transfer tools** (e.g., SCP, FTP)
+
+---
+
+## **Steps to Perform on the New Computer**
+
+### **Step 1: Install Python and Virtualenv**
+Ensure Python is installed by checking its version:
+
+```sh
+python3 --version
+```
+
+If `virtualenv` is not installed, install it:
+
+```sh
+pip install virtualenv
+```
+
+### **Step 2: Create a New Virtual Environment**
+Navigate to your project directory and create a new virtual environment:
+
+```sh
+virtualenv venv
+```
+
+### **Step 3: Activate the New Virtual Environment**
+Activate the new virtual environment before installing dependencies:
+
+```sh
+source venv/bin/activate
+```
+
+### **Step 4: Install Dependencies in the New Virtual Environment**
+Use the `requirements.txt` file to install all dependencies:
+
+```sh
+pip install -r requirements.txt
+```
+
+### **Step 5: Verify Everything Works**
+After installation, check if the packages are installed correctly:
+
+```sh
+pip list
+```
+Run your script to confirm everything is set up properly:
+
+```sh
+python your_script.py
+```
+
+## **Summary**
+By following these steps:
+1. **On the original computer:** Create and activate a virtual environment, install packages, and export dependencies.
+2. **Transfer** the `requirements.txt` file and project files to the new Linux computer.
+3. **On the new computer:** Install Python and `virtualenv`, create a new virtual environment, activate it, and install dependencies.
+
+This method ensures a smooth transfer of your virtual environment without copying system-specific paths.
+
+---
+
 
